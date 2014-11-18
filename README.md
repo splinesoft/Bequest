@@ -1,8 +1,8 @@
-## Bequest
+# Bequest
 
-Bequest is an [iOS app] of type [developer utility] that [creates and replays HTTP/S requests].
+Bequest is an **[iOS app]** of type **[developer utility]** that **[creates and replays HTTP/S requests]**.
 
-Major goals for Bequest:
+### Major goals:
 
 1. Universal app (iPhone and iPad)
 2. 99% Swift (excluding Pods)
@@ -11,7 +11,7 @@ Major goals for Bequest:
 
 (Are items 3 and 4 mutually exclusive? Stay tuned to find out!)
 
-Major features for Bequest:
+### Major features:
 
 * Create an HTTP/S request with:
      * A **method** (`GET`, `POST`, `PATCH`, etc. or any custom value)
@@ -26,7 +26,7 @@ Major features for Bequest:
 * Save the request to be replayed later
 * Display and open saved requests 
 
-Nice to have:
+### Nice to have:
 
 * Syntax highlighting 
 * Prettify/auto-indent for JSON/XML
@@ -34,11 +34,13 @@ Nice to have:
 * Something nicer to look at than a spinner and text label while it's loading
 * A slick app icon with a "B" and an arrow or something EVEN CRAZIER
 
-Yacht features (as in, we'll build it from the deck of our yacht that we bought after releasing Bequest):
+### Yacht features:
+
+(As in, we'll build them from the deck of our yacht that we bought after releasing Bequest)
 
 * Response asset loading timeline (waterfall)
 
-Brought to you by:
+### Brought to you by:
 
 * [Jonathan Hersh](https://github.com/jhersh)
 * ...
