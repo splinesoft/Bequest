@@ -1,0 +1,18 @@
+source 'https://github.com/cocoapods/specs.git'
+
+platform :ios, '8.1'
+
+xcodeproj 'Bequest'
+
+link_with 'Bequest'
+
+# UI
+pod 'SSDataSources', '0.7.3'
+
+# Networking
+pod 'Alamofire', :git => "https://github.com/mrackwitz/Alamofire.git", :branch => "podspec"
+
+# Tests
+target :BequestTests, :exclusive => true do
+	pod 'Expecta'
+end

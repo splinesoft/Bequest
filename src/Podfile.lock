@@ -1,0 +1,21 @@
+PODS:
+  - Alamofire (1.1.0)
+  - Expecta (0.3.1)
+  - SSDataSources (0.7.3)
+
+DEPENDENCIES:
+  - Alamofire (from `https://github.com/mrackwitz/Alamofire.git`, branch `podspec`)
+  - Expecta
+  - SSDataSources (= 0.7.3)
+
+EXTERNAL SOURCES:
+  Alamofire:
+    :branch: podspec
+    :git: https://github.com/mrackwitz/Alamofire.git
+
+SPEC CHECKSUMS:
+  Alamofire: 4cff790102216d69f3b12dd69885c468870d51e9
+  Expecta: 03aabd0a89d8dea843baecb19a7fd7466a69a31d
+  SSDataSources: 03687c54e8b215add71306556ee8cef0a5960b69
+
+COCOAPODS: 0.35.0.rc2

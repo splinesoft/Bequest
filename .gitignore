@@ -4,4 +4,7 @@
 build
 Pods
 output
+xcuserdata
+xcshareddata
+*.xcworkspacedata
 
