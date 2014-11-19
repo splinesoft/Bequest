@@ -1,10 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'xcpretty'
-gem 'shenzhen'
-gem 'fui'
-gem 'obcd'
-gem 'cocoapods-keys'
 
 gem 'cocoapods', :git => 'https://github.com/CocoaPods/CocoaPods.git', :branch => 'swift'
 gem 'cocoapods-core', :git => 'https://github.com/CocoaPods/Core.git', :branch => 'swift'
