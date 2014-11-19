@@ -18,9 +18,6 @@ end
 desc 'Installs dependencies and pods'
 task :setup do
 
-	puts "Installing bundle...".cyan
-	sh "bundle install"
-	
 	puts "Installing Pods...".cyan
 	sh "bundle exec pod install --project-directory=src"
 
