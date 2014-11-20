@@ -4,6 +4,14 @@
 
 Bequest is an **[iOS app]** of type **[developer utility]** that **[creates and replays HTTP/S requests]**.
 
+### Getting Started
+
+Bequest is now a thing that exists! After cloning the repo:
+
+1. `bundle install` to pull down the CocoaPods branch with Swift support
+2. `rake setup` to install Pods
+3. You're all set! `rake test` will run app tests.
+
 ### Major goals:
 
 1. Universal app (iPhone and iPad)
