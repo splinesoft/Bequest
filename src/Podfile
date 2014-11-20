@@ -4,15 +4,20 @@ platform :ios, '8.0'
 
 xcodeproj 'Bequest'
 
-link_with 'Bequest'
+def import_pods
+    # UI
+    pod 'SSDataSources', '0.7.3'
 
-# UI
-pod 'SSDataSources', '0.7.3'
+    # Networking
+    pod 'Alamofire', :git => "https://github.com/mrackwitz/Alamofire.git", :branch => "podspec"
+end
 
-# Networking
-pod 'Alamofire', :git => "https://github.com/mrackwitz/Alamofire.git", :branch => "podspec"
+target :Bequest do
+    import_pods
+end
 
 # Tests
 target :BequestTests, :exclusive => true do
+    import_pods
 	pod 'Expecta'
 end
