@@ -30,7 +30,7 @@ task :test do
 	sh "set -o pipefail && bundle exec xcodebuild "+
 	"-scheme 'Bequest Dev' "+
 	"-workspace 'src/Bequest.xcworkspace' "+
-	"-sdk iphonesimulator "+
+	"-sdk iphonesimulator8.1 "+
 	"-destination \"platform=iOS Simulator,name=iPhone 6\" "+
 	"ONLY_ACTIVE_ARCH=NO "+
 	"RUN_CLANG_STATIC_ANALYZER=YES "+
