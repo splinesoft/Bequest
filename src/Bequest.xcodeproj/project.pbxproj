@@ -445,6 +445,17 @@
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				WARNING_CFLAGS = (
+					"-Wnewline-eof",
+					"-Wbridge-cast",
+					"-Wimplicit-fallthrough",
+					"-Wpointer-arith",
+					"-Wunreachable-code",
+					"-Wall",
+					"-Winit-self",
+					"-Wreturn-type",
+					"-Wfloat-equal",
+				);
 			};
 			name = Debug;
 		};
@@ -507,6 +518,17 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
+				WARNING_CFLAGS = (
+					"-Wnewline-eof",
+					"-Wbridge-cast",
+					"-Wimplicit-fallthrough",
+					"-Wpointer-arith",
+					"-Wunreachable-code",
+					"-Wall",
+					"-Winit-self",
+					"-Wreturn-type",
+					"-Wfloat-equal",
+				);
 			};
 			name = Release;
 		};
@@ -629,6 +651,17 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
+				WARNING_CFLAGS = (
+					"-Wnewline-eof",
+					"-Wbridge-cast",
+					"-Wimplicit-fallthrough",
+					"-Wpointer-arith",
+					"-Wunreachable-code",
+					"-Wall",
+					"-Winit-self",
+					"-Wreturn-type",
+					"-Wfloat-equal",
+				);
 			};
 			name = Adhoc;
 		};
