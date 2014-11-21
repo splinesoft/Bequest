@@ -19,5 +19,5 @@ end
 # Tests
 target :BequestTests, :exclusive => true do
     import_pods
-	pod 'Expecta'
+    pod 'Expecta'
 end
