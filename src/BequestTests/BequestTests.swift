@@ -13,15 +13,32 @@ import Nimble
 
 class BequestTests : QuickSpec {
     
+    private func BQSTExpectHTTPResponse(closure : (() -> Void) -> Void) {
+        var receivedResponse = false
+        
+        closure {
+            receivedResponse = true
+        }
+        
+        expect(receivedResponse).toEventually(beTrue(), timeout: 10, pollInterval: 0.75)
+    }
+    
+    private func BQSTURLForMethod(method : String) -> NSURL {
+        return NSURL(string: "http://httpbin.org/" + method.lowercaseString)!
+    }
+    
     override func spec() {
         
-        describe("an HTTP client") {
+        describe("BQSTHTTPClient") {
             var URL : NSURL?
+            var client : BQSTHTTPClient?
             
-            beforeEach { URL = NSURL(string: "http://google.com")! }
+            beforeEach {
+                URL = self.BQSTURLForMethod("GET")
+                client = BQSTHTTPClient()
+            }
             
             it("is initializable") {
-                let client = BQSTHTTPClient()
                 expect(client).toNot(beNil())
             }
             
@@ -45,17 +62,51 @@ class BequestTests : QuickSpec {
             context("when sending simple HTTP requests") {
                
                 it("makes successful GET requests") {
-                    var receivedResponse = false
+                    self.BQSTExpectHTTPResponse {
+                        (completion : () -> Void) in
                     
-                    BQSTHTTPClient.request(URL!) {
-                        (req, resp : NSHTTPURLResponse?, _, _) in
+                        BQSTHTTPClient.request(URL!) {
+                            (req, resp : NSHTTPURLResponse?, _, _) in
+                            
+                            expect(resp).toNot(beNil())
+                            expect(resp!.statusCode == 200).to(beTruthy())
+                            completion()
+                        }
+                    }
+                }
+                
+                it("makes successful POST requests") {
+                    self.BQSTExpectHTTPResponse {
+                        (completion : () -> Void) in
                         
-                        receivedResponse = true
-                        expect(resp).toNot(beNil())
-                        expect(resp!.statusCode == 200).to(beTruthy())
+                        BQSTHTTPClient.request(self.BQSTURLForMethod("POST"), method: .POST) {
+                            (req, resp : NSHTTPURLResponse?, _, _) in
+                            
+                            expect(resp).toNot(beNil())
+                            expect(resp!.statusCode == 200).to(beTruthy())
+                            completion()
+                        }
+                    }
+                }
+                
+                it("reports download progress") {
+                    var receivedSomeProgress = false
+                    
+                    let progress : BQSTProgressBlock = {
+                        (_, progress : Float) in
+                        
+                        if progress > 0 {
+                            receivedSomeProgress = true
+                        }
                     }
                     
-                    expect(receivedResponse).toEventually(beTrue(), timeout: 30, pollInterval: 0.75)
+                    BQSTHTTPClient.request(self.BQSTURLForMethod("GET"),
+                        method: "GET",
+                        headers: nil,
+                        parameters: nil,
+                        progress: progress) { (_, _, _, _) in }
+                    
+                    expect(receivedSomeProgress).toEventually(beTrue(), timeout: 5, pollInterval: 0.75)
                 }
             }
         }
