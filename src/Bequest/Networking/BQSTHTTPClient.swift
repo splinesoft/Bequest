@@ -14,6 +14,8 @@ public typealias BQSTResponseBlock = (NSURLRequest, NSHTTPURLResponse?, AnyObjec
 
 public class BQSTHTTPClient {
     
+    // MARK: NSURLRequest helpers
+    
     public class func requestForURL(url : NSURL,
         method      : String,
         headers     : [NSObject : AnyObject],
@@ -27,6 +29,8 @@ public class BQSTHTTPClient {
         return request
     }
     
+    // MARK: HTTP Requests
+    
     public class func request(url : NSURL, _ response : BQSTResponseBlock) {
         
         self.request(url, method: nil, headers: nil, parameters: nil, progress: nil, response)
@@ -39,7 +43,7 @@ public class BQSTHTTPClient {
     
     public class func request(url: NSURL,
         method: String?,
-        headers: [String:String]?,
+        headers: [NSObject:AnyObject]?,
         parameters: [String:String]?,
         progress: BQSTProgressBlock?,
         _ response : BQSTResponseBlock) {
@@ -48,9 +52,7 @@ public class BQSTHTTPClient {
         
         let request : Alamofire.Request = Alamofire.request(URLRequest)
             
-        request.progress(closure: {
-            (bytes, total, expected) in
-            
+        request.progress(closure: { (bytes, total, expected) in
             progress?(URLRequest, Float(total) / (Float(expected) ?? Float(1)))
             return
         })
