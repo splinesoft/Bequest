@@ -17,9 +17,9 @@ public class BQSTHTTPClient {
     // MARK: NSURLRequest helpers
     
     public class func requestForURL(url : NSURL,
-        method      : String,
-        headers     : [NSObject : AnyObject],
-        parameters  : [String:String]) -> NSURLRequest {
+        method      : String = "GET",
+        headers     : [NSObject : AnyObject] = [:],
+        parameters  : [String:String] = [:]) -> NSURLRequest {
             
         let request = NSMutableURLRequest(URL: url)
         
@@ -52,7 +52,7 @@ public class BQSTHTTPClient {
         
         let request : Alamofire.Request = Alamofire.request(URLRequest)
             
-        request.progress(closure: { (bytes, total, expected) in
+        request.progress(closure: { (_, total, expected) in
             progress?(URLRequest, Float(total) / (Float(expected) ?? Float(1)))
             return
         })

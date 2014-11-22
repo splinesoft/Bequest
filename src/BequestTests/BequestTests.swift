@@ -62,11 +62,9 @@ class BequestTests : QuickSpec {
             context("when sending simple HTTP requests") {
                
                 it("makes successful GET requests") {
-                    self.BQSTExpectHTTPResponse {
-                        (completion : () -> Void) in
+                    self.BQSTExpectHTTPResponse { (completion : () -> Void) in
                     
-                        BQSTHTTPClient.request(URL!) {
-                            (req, resp : NSHTTPURLResponse?, _, _) in
+                        BQSTHTTPClient.request(URL!) { (req, resp : NSHTTPURLResponse?, _, _) in
                             
                             expect(resp).toNot(beNil())
                             expect(resp!.statusCode == 200).to(beTruthy())
@@ -76,8 +74,7 @@ class BequestTests : QuickSpec {
                 }
                 
                 it("makes successful POST requests") {
-                    self.BQSTExpectHTTPResponse {
-                        (completion : () -> Void) in
+                    self.BQSTExpectHTTPResponse { (completion : () -> Void) in
                         
                         BQSTHTTPClient.request(self.BQSTURLForMethod("POST"), method: .POST) {
                             (req, resp : NSHTTPURLResponse?, _, _) in
