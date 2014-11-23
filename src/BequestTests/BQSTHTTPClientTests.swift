@@ -138,6 +138,7 @@ class BQSTHTTPClientTests: QuickSpec {
                             expect(resp).toNot(beNil())
                             expect(object).toNot(beNil())
                             expect(resp!.statusCode == 200).to(beTruthy())
+                            expect(object!.contentType! == .JSON).to(beTrue())
                                 
                             if let dict = object!.object as? BQSTJSONResponse {
                                 expect(dict.count == 2).to(beTrue())
