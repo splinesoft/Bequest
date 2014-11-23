@@ -106,6 +106,41 @@ class BequestTests : QuickSpec {
                     expect(receivedSomeProgress).toEventually(beTrue(), timeout: 5, pollInterval: 0.75)
                 }
             }
+            
+            context("when sending JSON requests") {
+                it("can parse a JSON object") {
+                    /*
+                    {
+                    "one": "two",
+                    "key": "value"
+                    }
+                    */
+                    
+                    self.BQSTExpectHTTPResponse { (completion : () -> Void) in
+                        
+                        BQSTHTTPClient.request(NSURL(string: "http://echo.jsontest.com/key/value/one/two")!,
+                            method: .GET) { (req, resp : NSHTTPURLResponse?, object : AnyObject?, _) in
+                            
+                            expect(resp).toNot(beNil())
+                            expect(object).toNot(beNil())
+                            expect(resp!.statusCode == 200).to(beTruthy())
+                                
+                            var error : NSError?
+                            let (JSON : AnyObject?, _) = BQSTHTTPClient.JSONObjectForData(object as NSData, options: nil)
+                            
+                            if let dict = JSON as? Dictionary<String,AnyObject> {
+                                expect(dict.count > 0).to(beTrue())
+                                expect(dict["one"] as? String == "two").to(beTrue())
+                                expect(dict["key"] as? String == "value").to(beTrue())
+                            } else {
+                                XCTFail("Failed to parse JSON object with \(error)")
+                            }
+                            
+                            completion()
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -29,6 +29,16 @@ public class BQSTHTTPClient {
         return request
     }
     
+    // MARK: JSON serializing
+    
+    public class func JSONObjectForData(data: NSData, options: NSJSONReadingOptions = .AllowFragments) -> (AnyObject?, NSError?) {
+        
+        var error : NSError?
+        var object : AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: options, error: &error)
+        
+        return (object, error)
+    }
+    
     // MARK: HTTP Requests
     
     public class func request(url : NSURL, _ response : BQSTResponseBlock) {
@@ -59,5 +69,4 @@ public class BQSTHTTPClient {
             
         request.response(response)
     }
-    
 }
