@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5E6B02301A1D2DA500EB5CCC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6B022F1A1D2DA500EB5CCC /* AppDelegate.swift */; };
-		5E6B02461A1D2DA500EB5CCC /* BequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6B02451A1D2DA500EB5CCC /* BequestTests.swift */; };
+		5E6B02461A1D2DA500EB5CCC /* BQSTHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6B02451A1D2DA500EB5CCC /* BQSTHTTPClientTests.swift */; };
 		5E6B02551A1D430100EB5CCC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E6B02531A1D430100EB5CCC /* Images.xcassets */; };
 		5E6B025B1A1D5C3B00EB5CCC /* BQSTHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6B025A1A1D5C3B00EB5CCC /* BQSTHTTPClient.swift */; };
 		5E6B025C1A1D5DBA00EB5CCC /* BQSTHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6B025A1A1D5C3B00EB5CCC /* BQSTHTTPClient.swift */; };
@@ -36,7 +36,7 @@
 		5E6B022F1A1D2DA500EB5CCC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5E6B023F1A1D2DA500EB5CCC /* BequestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BequestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E6B02441A1D2DA500EB5CCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5E6B02451A1D2DA500EB5CCC /* BequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BequestTests.swift; sourceTree = "<group>"; };
+		5E6B02451A1D2DA500EB5CCC /* BQSTHTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BQSTHTTPClientTests.swift; sourceTree = "<group>"; };
 		5E6B02531A1D430100EB5CCC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5E6B02541A1D430100EB5CCC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5E6B025A1A1D5C3B00EB5CCC /* BQSTHTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTHTTPClient.swift; sourceTree = "<group>"; };
@@ -101,7 +101,7 @@
 		5E6B02421A1D2DA500EB5CCC /* BequestTests */ = {
 			isa = PBXGroup;
 			children = (
-				5E6B02451A1D2DA500EB5CCC /* BequestTests.swift */,
+				5E6B02451A1D2DA500EB5CCC /* BQSTHTTPClientTests.swift */,
 				5E6B02431A1D2DA500EB5CCC /* Supporting Files */,
 			);
 			path = BequestTests;
@@ -364,7 +364,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E6B025C1A1D5DBA00EB5CCC /* BQSTHTTPClient.swift in Sources */,
-				5E6B02461A1D2DA500EB5CCC /* BequestTests.swift in Sources */,
+				5E6B02461A1D2DA500EB5CCC /* BQSTHTTPClientTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,12 +9,10 @@
 import Foundation
 import Alamofire
 
-public typealias BQSTProgressBlock = (NSURLRequest, Float) -> Void
-public typealias BQSTResponseBlock = (NSURLRequest, NSHTTPURLResponse?, AnyObject?, NSError?) -> Void
-public typealias BQSTJSONResponse = [NSObject:AnyObject]
+public let BQSTHeaderContentType: String = "Content-Type"
 
-// More than we'll ever know what to do with https://en.wikipedia.org/wiki/Internet_media_type
-public enum BQSTResponseContentType : String {
+// More than we'll ever know what to do with: https://en.wikipedia.org/wiki/Internet_media_type
+public enum BQSTResponseContentType: String, Printable {
     // Applications
     case JSON = "application/json"
     case XML  = "application/xml"
@@ -29,7 +27,21 @@ public enum BQSTResponseContentType : String {
     // Text
     case TXT  = "text/plain"
     case HTML = "text/html"
+    
+    public var description: String {
+        return self.rawValue
+    }
 }
+
+// An HTTP response
+public struct BQSTHTTPResponse {
+    var contentType: BQSTResponseContentType? // The interpreted content type
+    var object: AnyObject? // The serialized object, or raw data if serializing failed
+}
+
+public typealias BQSTProgressBlock = (NSURLRequest, Float) -> Void
+public typealias BQSTResponseBlock = (NSURLRequest, NSHTTPURLResponse?, BQSTHTTPResponse?, NSError?) -> Void
+public typealias BQSTJSONResponse = [NSObject:AnyObject]
 
 public enum BQSTJSONResult {
     case Success (BQSTJSONResponse)
@@ -39,7 +51,7 @@ public enum BQSTJSONResult {
     
     public static func JSONObjectForData(data: NSData, options: NSJSONReadingOptions = .AllowFragments) -> BQSTJSONResult {
         
-        var error : NSError?
+        var error: NSError?
         var object = NSJSONSerialization.JSONObjectWithData(data, options: options, error: &error) as? [NSObject:AnyObject]
         
         if object != nil {
@@ -54,10 +66,10 @@ public class BQSTHTTPClient {
     
     // MARK: NSURLRequest helpers
     
-    public class func requestForURL(url : NSURL,
-        method      : String = "GET",
-        headers     : [NSObject:AnyObject] = [:],
-        parameters  : [String:String] = [:]) -> NSURLRequest {
+    public class func requestForURL(url: NSURL,
+        method: String = "GET",
+        headers: [NSObject:AnyObject] = [:],
+        parameters: [String:String] = [:]) -> NSURLRequest {
             
         let request = NSMutableURLRequest(URL: url)
         
@@ -71,16 +83,20 @@ public class BQSTHTTPClient {
     
     // MARK: Response serializing
     
-    public class func serializeResponse(response: NSHTTPURLResponse?, data: NSData) -> AnyObject? {
+    public class func serializeResponse(response: NSHTTPURLResponse?, data: NSData) -> BQSTHTTPResponse {
+        
+        var serializedResponse = BQSTHTTPResponse(contentType: nil, object: nil)
         
         if let headers = response?.allHeaderFields {
             
-            if let contentTypeRaw = headers["Content-Type"] as? String {
+            if let contentTypeRaw = headers[BQSTHeaderContentType] as? String {
                 
                 // e.g. Content-Type: "application/json; charset=ISO-8859-1"
                 let contentTypeComponents = contentTypeRaw.componentsSeparatedByString(";")
                 
                 if let contentType = BQSTResponseContentType(rawValue: contentTypeComponents.first as String!) {
+                    
+                    serializedResponse.contentType = contentType
                 
                     switch contentType {
                     case .JSON:
@@ -88,7 +104,7 @@ public class BQSTHTTPClient {
                         
                         switch JSONObject {
                         case .Success(let dict):
-                            return dict
+                            serializedResponse.object = dict
                         default:
                             break
                         }
@@ -103,27 +119,29 @@ public class BQSTHTTPClient {
                     case .GIF, .PNG, .JPEG:
                         
                         if let image = UIImage(data: data) {
-                            return image
+                            serializedResponse.object = image
                         }
                         
                     default:
-                        return NSString(data: data, encoding: NSUTF8StringEncoding)
+                        serializedResponse.object = NSString(data: data, encoding: NSUTF8StringEncoding)
                     }
                 }
             }
+        } else {
+            serializedResponse.object = data
         }
         
-        return data
+        return serializedResponse
     }
     
     // MARK: HTTP Requests
     
-    public class func request(url : NSURL, _ response : BQSTResponseBlock) {
+    public class func request(url: NSURL, _ response: BQSTResponseBlock) {
         
         self.request(url, method: nil, headers: nil, parameters: nil, progress: nil, response)
     }
     
-    public class func request(url : NSURL, method : Alamofire.Method, _ response : BQSTResponseBlock) {
+    public class func request(url: NSURL, method: Alamofire.Method, _ response: BQSTResponseBlock) {
         
         self.request(url, method: method.rawValue, headers: nil, parameters: nil, progress: nil, response)
     }
@@ -133,18 +151,18 @@ public class BQSTHTTPClient {
         headers: [NSObject:AnyObject]?,
         parameters: [String:String]?,
         progress: BQSTProgressBlock?,
-        _ response : BQSTResponseBlock) {
+        _ response: BQSTResponseBlock) {
             
         let URLRequest = self.requestForURL(url, method: method ?? "GET", headers: headers ?? [:], parameters: parameters ?? [:])
         
-        let request : Alamofire.Request = Alamofire.request(URLRequest)
+        let request: Alamofire.Request = Alamofire.request(URLRequest)
             
         request.progress(closure: { (_, total, expected) in
             progress?(URLRequest, Float(total) / (Float(expected) ?? Float(1)))
             return
         })
             
-        request.response { (request, URLResponse : NSHTTPURLResponse?, object: AnyObject?, error: NSError?) in
+        request.response { (request, URLResponse: NSHTTPURLResponse?, object: AnyObject?, error: NSError?) in
             
             if let data = object as? NSData {
                 response(URLRequest,
