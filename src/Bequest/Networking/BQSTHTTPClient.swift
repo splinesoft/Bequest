@@ -15,6 +15,20 @@ public typealias BQSTResponseBlock = (NSURLRequest, NSHTTPURLResponse?, AnyObjec
 public enum BQSTJSONResult {
     case Success ([NSObject:AnyObject])
     case Failure (NSError?)
+    
+    // MARK: JSON serializing
+    
+    public static func JSONObjectForData(data: NSData, options: NSJSONReadingOptions = .AllowFragments) -> BQSTJSONResult {
+        
+        var error : NSError?
+        var object = NSJSONSerialization.JSONObjectWithData(data, options: options, error: &error) as? [NSObject:AnyObject]
+        
+        if object != nil {
+            return .Success(object!)
+        } else {
+            return .Failure(error)
+        }
+    }
 }
 
 public class BQSTHTTPClient {
@@ -32,20 +46,6 @@ public class BQSTHTTPClient {
         request.allHTTPHeaderFields = headers
         
         return request
-    }
-    
-    // MARK: JSON serializing
-    
-    public class func JSONObjectForData(data: NSData, options: NSJSONReadingOptions = .AllowFragments) -> BQSTJSONResult {
-        
-        var error : NSError?
-        var object = NSJSONSerialization.JSONObjectWithData(data, options: options, error: &error) as? [NSObject:AnyObject]
-        
-        if object != nil {
-            return BQSTJSONResult.Success(object!)
-        } else {
-            return BQSTJSONResult.Failure(error)
-        }
     }
     
     // MARK: HTTP Requests

@@ -126,7 +126,7 @@ class BequestTests : QuickSpec {
                             expect(resp!.statusCode == 200).to(beTruthy())
                                 
                             var error : NSError?
-                            let JSONResult : BQSTJSONResult = BQSTHTTPClient.JSONObjectForData(object as NSData, options: nil)
+                            let JSONResult = BQSTJSONResult.JSONObjectForData(object as NSData, options: nil)
                                 
                             switch JSONResult {
                             case .Success(let dict):
