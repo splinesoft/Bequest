@@ -127,12 +127,14 @@ class BequestTests : QuickSpec {
                                 
                             var error : NSError?
                             let JSONResult : BQSTJSONResult = BQSTHTTPClient.JSONObjectForData(object as NSData, options: nil)
-                            
-                            if let dict = JSONResult.JSONObject as? Dictionary<String,AnyObject> {
+                                
+                            switch JSONResult {
+                            case .Success(let dict):
                                 expect(dict.count > 0).to(beTrue())
                                 expect(dict["one"] as? String == "two").to(beTrue())
                                 expect(dict["key"] as? String == "value").to(beTrue())
-                            } else {
+                            
+                            case .Failure(let error):
                                 XCTFail("Failed to parse JSON object with \(error)")
                             }
                             

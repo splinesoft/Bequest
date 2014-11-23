@@ -12,9 +12,9 @@ import Alamofire
 public typealias BQSTProgressBlock = (NSURLRequest, Float) -> Void
 public typealias BQSTResponseBlock = (NSURLRequest, NSHTTPURLResponse?, AnyObject?, NSError?) -> Void
 
-public struct BQSTJSONResult {
-    let JSONObject : AnyObject?
-    let error : NSError?
+public enum BQSTJSONResult {
+    case Success ([NSObject:AnyObject])
+    case Failure (NSError?)
 }
 
 public class BQSTHTTPClient {
@@ -39,9 +39,13 @@ public class BQSTHTTPClient {
     public class func JSONObjectForData(data: NSData, options: NSJSONReadingOptions = .AllowFragments) -> BQSTJSONResult {
         
         var error : NSError?
-        var object : AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: options, error: &error)
+        var object = NSJSONSerialization.JSONObjectWithData(data, options: options, error: &error) as? [NSObject:AnyObject]
         
-        return BQSTJSONResult(JSONObject: object, error: error)
+        if object != nil {
+            return BQSTJSONResult.Success(object!)
+        } else {
+            return BQSTJSONResult.Failure(error)
+        }
     }
     
     // MARK: HTTP Requests
