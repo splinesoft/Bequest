@@ -1,5 +1,7 @@
 osx_image: xcode61
 language: objective-c
-cache: bundler
-before_script: rake setup
+install: true
+before_script: 
+    - bundle install
+    - rake setup
 script: rake test
