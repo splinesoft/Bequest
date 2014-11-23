@@ -76,6 +76,31 @@ public class BQSTHTTPClient {
             return
         })
             
-        request.response(response)
+        request.response { (_, URLResponse : NSHTTPURLResponse?, object: AnyObject?, error: NSError?) in
+            if let data = object as? NSData {
+                
+                // Try to interpret the result as a JSON object
+                let JSON = BQSTJSONResult.JSONObjectForData(data, options: nil)
+                
+                switch JSON {
+                case .Success(let dict):
+                    response(URLRequest, URLResponse, dict, nil)
+                    return
+                default:
+                    break
+                }
+                
+                // Try to interpret the result as a String
+                if let string = NSString(data: data, encoding: NSUTF8StringEncoding) {
+                    response(URLRequest, URLResponse, string, nil)
+                    return
+                }
+                
+                // Base case: we have only a blob of data
+                response(URLRequest, URLResponse, data, nil)
+            } else {
+                response(URLRequest, URLResponse, nil, error)
+            }
+        }
     }
 }
