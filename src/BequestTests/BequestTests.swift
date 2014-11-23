@@ -20,7 +20,7 @@ class BequestTests : QuickSpec {
             receivedResponse = true
         }
         
-        expect(receivedResponse).toEventually(beTrue(), timeout: 10, pollInterval: 0.75)
+        expect(receivedResponse).toEventually(beTrue(), timeout: 10, pollInterval: 0.5)
     }
     
     private func BQSTURLForMethod(method : String) -> NSURL {
@@ -62,7 +62,7 @@ class BequestTests : QuickSpec {
             context("when sending simple HTTP requests") {
                
                 it("makes successful GET requests") {
-                    self.BQSTExpectHTTPResponse { (completion : () -> Void) in
+                    self.BQSTExpectHTTPResponse { (completion: () -> Void) in
                     
                         BQSTHTTPClient.request(URL!) { (req, resp : NSHTTPURLResponse?, _, _) in
                             
@@ -74,7 +74,7 @@ class BequestTests : QuickSpec {
                 }
                 
                 it("makes successful POST requests") {
-                    self.BQSTExpectHTTPResponse { (completion : () -> Void) in
+                    self.BQSTExpectHTTPResponse { (completion: () -> Void) in
                         
                         BQSTHTTPClient.request(self.BQSTURLForMethod("POST"), method: .POST) {
                             (req, resp : NSHTTPURLResponse?, _, _) in
@@ -105,6 +105,19 @@ class BequestTests : QuickSpec {
                     
                     expect(receivedSomeProgress).toEventually(beTrue(), timeout: 5, pollInterval: 0.75)
                 }
+                
+                it("can recognize and serialize an image") {
+                    self.BQSTExpectHTTPResponse { (completion: () -> Void) in
+                        
+                        BQSTHTTPClient.request(NSURL(string: "http://splinesoft.net/img/jhoviform.png")!) {
+                            (_, _, object: AnyObject?, _) in
+                            
+                            expect(object).toNot(beNil())
+                            expect(object as? UIImage).toNot(beNil())
+                            completion()
+                        }
+                    }
+                }
             }
             
             context("when sending JSON requests") {
@@ -125,8 +138,8 @@ class BequestTests : QuickSpec {
                             expect(object).toNot(beNil())
                             expect(resp!.statusCode == 200).to(beTruthy())
                                 
-                            if let dict = object as? [NSObject:AnyObject]  {
-                                expect(dict.count > 0).to(beTrue())
+                            if let dict = object! as? BQSTJSONResponse {
+                                expect(dict.count == 2).to(beTrue())
                                 expect(dict["one"] as? String == "two").to(beTrue())
                                 expect(dict["key"] as? String == "value").to(beTrue())
                             } else {
