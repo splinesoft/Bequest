@@ -106,7 +106,7 @@ class BQSTHTTPClientTests: QuickSpec {
                     expect(receivedSomeProgress).toEventually(beTrue(), timeout: 5, pollInterval: 0.75)
                 }
                 
-                it("can recognize and serialize an image") {
+                it("can serialize an image response") {
                     self.BQSTExpectHTTPResponse { (completion: () -> Void) in
                         
                         BQSTHTTPClient.request(NSURL(string: "http://splinesoft.net/img/jhoviform.png")!) {
