@@ -167,11 +167,13 @@ public class BQSTHTTPClient {
         
         let request: Alamofire.Request = Alamofire.request(URLRequest)
             
-        request.progress(closure: { (_, total, expected) in
-            
-            progress?(URLRequest, Float(total) / (Float(expected) ?? Float(1)))
-            return
-        })
+        if progress != nil {
+            request.progress(closure: { (_, total, expected) in
+                
+                progress!(URLRequest, Float(total) / (Float(expected) ?? Float(1)))
+                return
+            })
+        }
             
         request.response { (request: NSURLRequest, URLResponse: NSHTTPURLResponse?, object: AnyObject?, error: NSError?) in
             
