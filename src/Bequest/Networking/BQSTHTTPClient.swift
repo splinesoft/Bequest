@@ -9,6 +9,27 @@
 import Foundation
 import Alamofire
 
+// MARK: JSON serializing
+
+public typealias BQSTJSONResponse = [NSObject:AnyObject]
+
+public enum BQSTJSONResult {
+    case Success (BQSTJSONResponse)
+    case Failure (NSError?)
+    
+    public static func resultForData(data: NSData, options: NSJSONReadingOptions = .AllowFragments) -> BQSTJSONResult {
+        
+        var error: NSError?
+        var object = NSJSONSerialization.JSONObjectWithData(data, options: options, error: &error) as? [NSObject:AnyObject]
+        
+        if object != nil {
+            return .Success(object!)
+        } else {
+            return .Failure(error)
+        }
+    }
+}
+
 // MARK: Response serializing
 
 public let BQSTHeaderContentType: String = "Content-Type"
@@ -99,27 +120,6 @@ public struct BQSTHTTPResponse {
 
 public typealias BQSTProgressBlock = (NSURLRequest, Float) -> Void
 public typealias BQSTResponseBlock = (NSURLRequest, NSHTTPURLResponse?, BQSTHTTPResponse?, NSError?) -> Void
-
-// MARK: JSON serializing
-
-public typealias BQSTJSONResponse = [NSObject:AnyObject]
-
-public enum BQSTJSONResult {
-    case Success (BQSTJSONResponse)
-    case Failure (NSError?)
-    
-    public static func resultForData(data: NSData, options: NSJSONReadingOptions = .AllowFragments) -> BQSTJSONResult {
-        
-        var error: NSError?
-        var object = NSJSONSerialization.JSONObjectWithData(data, options: options, error: &error) as? [NSObject:AnyObject]
-        
-        if object != nil {
-            return .Success(object!)
-        } else {
-            return .Failure(error)
-        }
-    }
-}
 
 // MARK: HTTP Client
 
