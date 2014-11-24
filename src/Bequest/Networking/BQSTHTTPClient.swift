@@ -20,7 +20,7 @@ public enum BQSTJSONResult {
     public static func resultForData(data: NSData, options: NSJSONReadingOptions = .AllowFragments) -> BQSTJSONResult {
         
         var error: NSError?
-        var object = NSJSONSerialization.JSONObjectWithData(data, options: options, error: &error) as? [NSObject:AnyObject]
+        var object = NSJSONSerialization.JSONObjectWithData(data, options: options, error: &error) as? BQSTJSONResponse
         
         if object != nil {
             return .Success(object!)
