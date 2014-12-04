@@ -2,13 +2,13 @@ PODS:
   - Alamofire (1.1.0)
   - Nimble (0.1.0)
   - Quick (0.2.0)
-  - SSDataSources (0.7.3)
+  - SSDataSources (0.7.4)
 
 DEPENDENCIES:
   - Alamofire (from `https://github.com/mrackwitz/Alamofire.git`, branch `podspec`)
   - Nimble (from `https://github.com/Quick/Nimble`)
   - Quick (from `https://github.com/Quick/Quick`)
-  - SSDataSources (= 0.7.3)
+  - SSDataSources (= 0.7.4)
 
 EXTERNAL SOURCES:
   Alamofire:
@@ -23,6 +23,6 @@ SPEC CHECKSUMS:
   Alamofire: 4cff790102216d69f3b12dd69885c468870d51e9
   Nimble: a758538afa362515139cc23f17a19be9b0d20ae0
   Quick: 1b2e5892266a111ec2e13f925f8a4103978f13f8
-  SSDataSources: 03687c54e8b215add71306556ee8cef0a5960b69
+  SSDataSources: 32265d83e9396a1ebde924e792d0143472358986
 
 COCOAPODS: 0.35.0

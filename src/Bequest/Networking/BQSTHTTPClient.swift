@@ -35,7 +35,7 @@ public enum BQSTJSONResult {
 public let BQSTHeaderContentType: String = "Content-Type"
 
 // More than we'll ever know what to do with: https://en.wikipedia.org/wiki/Internet_media_type
-public enum BQSTResponseContentType: String, Printable {
+public enum BQSTResponseContentType: String {
     // Applications
     case JSON = "application/json"
     case XML  = "application/xml"

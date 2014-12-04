@@ -6,7 +6,7 @@ xcodeproj 'Bequest'
 
 def import_pods
     # UI
-    pod 'SSDataSources', '0.7.3'
+    pod 'SSDataSources', '0.7.4'
 
     # Networking
     pod 'Alamofire', :git => "https://github.com/mrackwitz/Alamofire.git", :branch => "podspec"
