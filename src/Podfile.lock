@@ -1,6 +1,6 @@
 PODS:
   - Alamofire (1.1.0)
-  - Nimble (0.1.0)
+  - Nimble (0.2.0)
   - Quick (0.2.0)
   - SSDataSources (0.7.4)
 
@@ -19,9 +19,20 @@ EXTERNAL SOURCES:
   Quick:
     :git: https://github.com/Quick/Quick
 
+CHECKOUT OPTIONS:
+  Alamofire:
+    :commit: caa66f74e10471e1577d73e16e8c03d0557a54ab
+    :git: https://github.com/mrackwitz/Alamofire.git
+  Nimble:
+    :commit: b06688243190c089265cd7e99778a811a1ffdac2
+    :git: https://github.com/Quick/Nimble
+  Quick:
+    :commit: c1ad99697e45992a1aab11e6ddcf02fb0fb3a5e2
+    :git: https://github.com/Quick/Quick
+
 SPEC CHECKSUMS:
   Alamofire: 4cff790102216d69f3b12dd69885c468870d51e9
-  Nimble: a758538afa362515139cc23f17a19be9b0d20ae0
+  Nimble: 7a24fd5e6be10334811078c02ee406a30ea2c89d
   Quick: 1b2e5892266a111ec2e13f925f8a4103978f13f8
   SSDataSources: 32265d83e9396a1ebde924e792d0143472358986
 
