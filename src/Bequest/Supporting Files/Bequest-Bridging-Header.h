@@ -5,3 +5,4 @@
 #pragma once
 
 #import <SSDataSources/SSDataSources.h>
+#import <Masonry/Masonry.h>
