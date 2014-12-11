@@ -7,12 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E0D38981A3A4D6F00A149F2 /* UIColor+BQSTColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0D38971A3A4D6F00A149F2 /* UIColor+BQSTColors.swift */; };
+		5E0D389A1A3A4DE300A149F2 /* UIView+BQSTDrawing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0D38991A3A4DE300A149F2 /* UIView+BQSTDrawing.swift */; };
+		5E6084A91A3A517F00F2A8CA /* BQSTColoredCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6084A81A3A517F00F2A8CA /* BQSTColoredCollectionCell.swift */; };
+		5E6084AC1A3A546700F2A8CA /* BQSTRequestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6084AB1A3A546700F2A8CA /* BQSTRequestController.swift */; };
 		5E6B02301A1D2DA500EB5CCC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6B022F1A1D2DA500EB5CCC /* AppDelegate.swift */; };
 		5E6B02461A1D2DA500EB5CCC /* BQSTHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6B02451A1D2DA500EB5CCC /* BQSTHTTPClientTests.swift */; };
 		5E6B02551A1D430100EB5CCC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E6B02531A1D430100EB5CCC /* Images.xcassets */; };
 		5E6B025B1A1D5C3B00EB5CCC /* BQSTHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6B025A1A1D5C3B00EB5CCC /* BQSTHTTPClient.swift */; };
 		5E6B025C1A1D5DBA00EB5CCC /* BQSTHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6B025A1A1D5C3B00EB5CCC /* BQSTHTTPClient.swift */; };
-		8ACBE4E5E5B575218857F7DE /* Pods_Bequest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD3E55E19E0CE39F6AE9C5F3 /* Pods_Bequest.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		8ACBE4E5E5B575218857F7DE /* Pods_Bequest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD3E55E19E0CE39F6AE9C5F3 /* Pods_Bequest.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		91327C22DA4F4BE9A04D8B2F /* Pods_BequestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FB006581FE0A43A806A5018 /* Pods_BequestTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -32,6 +36,11 @@
 		439F95F6224A40F81EBB0879 /* Pods-BequestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BequestTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BequestTests/Pods-BequestTests.release.xcconfig"; sourceTree = "<group>"; };
 		52BDAB1BC80E926BDCAEDD84 /* Pods-Bequest.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bequest.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-Bequest/Pods-Bequest.adhoc.xcconfig"; sourceTree = "<group>"; };
 		52EE680D8831A415189F933E /* Pods.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.adhoc.xcconfig; path = "Pods/Target Support Files/Pods/Pods.adhoc.xcconfig"; sourceTree = "<group>"; };
+		5E0D38971A3A4D6F00A149F2 /* UIColor+BQSTColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+BQSTColors.swift"; sourceTree = "<group>"; };
+		5E0D38991A3A4DE300A149F2 /* UIView+BQSTDrawing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+BQSTDrawing.swift"; sourceTree = "<group>"; };
+		5E0D38A11A3A50CD00A149F2 /* Bequest-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bequest-Bridging-Header.h"; sourceTree = "<group>"; };
+		5E6084A81A3A517F00F2A8CA /* BQSTColoredCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTColoredCollectionCell.swift; sourceTree = "<group>"; };
+		5E6084AB1A3A546700F2A8CA /* BQSTRequestController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTRequestController.swift; sourceTree = "<group>"; };
 		5E6B022A1A1D2DA500EB5CCC /* Bequest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bequest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E6B022F1A1D2DA500EB5CCC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5E6B023F1A1D2DA500EB5CCC /* BequestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BequestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,6 +77,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5E0D38961A3A4D5D00A149F2 /* Additions */ = {
+			isa = PBXGroup;
+			children = (
+				5E0D38971A3A4D6F00A149F2 /* UIColor+BQSTColors.swift */,
+				5E0D38991A3A4DE300A149F2 /* UIView+BQSTDrawing.swift */,
+			);
+			path = Additions;
+			sourceTree = "<group>";
+		};
+		5E0D389B1A3A4FC900A149F2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5E6084A81A3A517F00F2A8CA /* BQSTColoredCollectionCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5E6084AA1A3A545B00F2A8CA /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5E6084AB1A3A546700F2A8CA /* BQSTRequestController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		5E6B02211A1D2DA500EB5CCC = {
 			isa = PBXGroup;
 			children = (
@@ -92,7 +126,10 @@
 			isa = PBXGroup;
 			children = (
 				5E6B022F1A1D2DA500EB5CCC /* AppDelegate.swift */,
+				5E0D38961A3A4D5D00A149F2 /* Additions */,
+				5E6084AA1A3A545B00F2A8CA /* Controllers */,
 				5E6B02571A1D430D00EB5CCC /* Networking */,
+				5E0D389B1A3A4FC900A149F2 /* Views */,
 				5E6B02521A1D430100EB5CCC /* Supporting Files */,
 			);
 			path = Bequest;
@@ -118,6 +155,7 @@
 		5E6B02521A1D430100EB5CCC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5E0D38A11A3A50CD00A149F2 /* Bequest-Bridging-Header.h */,
 				5E6B02531A1D430100EB5CCC /* Images.xcassets */,
 				5E6B02541A1D430100EB5CCC /* Info.plist */,
 			);
@@ -355,7 +393,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E6B025B1A1D5C3B00EB5CCC /* BQSTHTTPClient.swift in Sources */,
+				5E0D389A1A3A4DE300A149F2 /* UIView+BQSTDrawing.swift in Sources */,
 				5E6B02301A1D2DA500EB5CCC /* AppDelegate.swift in Sources */,
+				5E6084A91A3A517F00F2A8CA /* BQSTColoredCollectionCell.swift in Sources */,
+				5E0D38981A3A4D6F00A149F2 /* UIColor+BQSTColors.swift in Sources */,
+				5E6084AC1A3A546700F2A8CA /* BQSTRequestController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -538,9 +580,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "Bequest/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Bequest/Supporting Files/Bequest-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -550,9 +595,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "Bequest/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Bequest/Supporting Files/Bequest-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -671,9 +718,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "Bequest/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Bequest/Supporting Files/Bequest-Bridging-Header.h";
 			};
 			name = Adhoc;
 		};
