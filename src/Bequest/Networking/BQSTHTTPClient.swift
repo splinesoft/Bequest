@@ -118,7 +118,7 @@ public struct BQSTHTTPResponse {
     }
 }
 
-public typealias BQSTProgressBlock = (NSURLRequest, Float) -> Void
+public typealias BQSTProgressBlock = (NSURLRequest, NSProgress) -> Void
 public typealias BQSTResponseBlock = (NSURLRequest, NSHTTPURLResponse?, BQSTHTTPResponse?, NSError?) -> Void
 
 // MARK: HTTP Client
@@ -169,9 +169,15 @@ public class BQSTHTTPClient {
         let request: Alamofire.Request = Alamofire.request(URLRequest)
             
         if progress != nil {
-            request.progress(closure: { (_, total, expected) in
+            let counter = NSProgress()
+            counter.kind = NSProgressFileOperationKindDownloading
+            
+            request.progress(closure: { (read, completed, expected) in
                 
-                progress!(URLRequest, Float(total) / (Float(expected) ?? Float(1)))
+                counter.totalUnitCount = expected
+                counter.completedUnitCount = completed
+                
+                progress!(URLRequest, counter)
                 return
             })
         }

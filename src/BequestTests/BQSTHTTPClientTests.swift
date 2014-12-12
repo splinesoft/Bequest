@@ -90,9 +90,9 @@ class BQSTHTTPClientTests: QuickSpec {
                     var receivedSomeProgress = false
                     
                     let progress: BQSTProgressBlock = {
-                        (_, progress: Float) in
+                        (_, progress: NSProgress) in
                         
-                        if progress > 0 {
+                        if progress.completedUnitCount > 0 {
                             receivedSomeProgress = true
                         }
                     }
