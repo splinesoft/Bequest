@@ -11,6 +11,7 @@ import UIKit
 
 let kBQSTBoxInsets : UIEdgeInsets = UIEdgeInsetsMake(0, 0, 10, 10)
 let kBQSTBoxShadowInsets : UIEdgeInsets = UIEdgeInsetsMake(10, 10, 0, 0)
+let kBQSTShadowOpacity : CGFloat = 0.7
 
 extension UIView {
     
@@ -36,12 +37,27 @@ extension UIView {
         // Draw lower left shadow corner
         CGContextSaveGState(context)
         
-        CGContextSetFillColorWithColor(context, UIColor.BQSTGrayColor().CGColor)
+        CGContextSetFillColorWithColor(context, UIColor.BQSTGrayColor().colorWithAlphaComponent(kBQSTShadowOpacity).CGColor)
         
         CGContextMoveToPoint(context, CGRectGetMinX(rect), CGRectGetMaxY(rect) - kBQSTBoxInsets.bottom)
         CGContextAddLineToPoint(context, CGRectGetMinX(rect) + kBQSTBoxShadowInsets.left, CGRectGetMaxY(rect))
         CGContextAddLineToPoint(context, CGRectGetMinX(rect) + kBQSTBoxShadowInsets.left, CGRectGetMaxY(rect) - kBQSTBoxInsets.bottom)
         CGContextAddLineToPoint(context, CGRectGetMinX(rect), CGRectGetMaxY(rect) - kBQSTBoxInsets.bottom)
+        CGContextClosePath(context)
+        CGContextFillPath(context)
+        
+        CGContextRestoreGState(context)
+        
+        // Right side parallelogram
+        CGContextSaveGState(context)
+        
+        CGContextSetFillColorWithColor(context, UIColor.grayColor().colorWithAlphaComponent(kBQSTShadowOpacity).CGColor)
+        
+        CGContextMoveToPoint(context, CGRectGetMaxX(rect) - kBQSTBoxInsets.right, CGRectGetMinY(rect))
+        CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMinY(rect) + kBQSTBoxShadowInsets.top)
+        CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMaxY(rect))
+        CGContextAddLineToPoint(context, CGRectGetMaxX(rect) - kBQSTBoxInsets.right, CGRectGetMaxY(rect) - kBQSTBoxInsets.bottom)
+        CGContextAddLineToPoint(context, CGRectGetMaxX(rect) - kBQSTBoxInsets.right, CGRectGetMinY(rect))
         CGContextClosePath(context)
         CGContextFillPath(context)
         
