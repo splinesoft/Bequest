@@ -9,8 +9,12 @@
 /* Begin PBXBuildFile section */
 		5E0D38981A3A4D6F00A149F2 /* UIColor+BQSTColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0D38971A3A4D6F00A149F2 /* UIColor+BQSTColors.swift */; };
 		5E0D389A1A3A4DE300A149F2 /* UIView+BQSTDrawing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0D38991A3A4DE300A149F2 /* UIView+BQSTDrawing.swift */; };
-		5E6084A91A3A517F00F2A8CA /* BQSTColoredCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6084A81A3A517F00F2A8CA /* BQSTColoredCollectionCell.swift */; };
+		5E6084A91A3A517F00F2A8CA /* BQSTBlockyCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6084A81A3A517F00F2A8CA /* BQSTBlockyCollectionCell.swift */; };
 		5E6084AC1A3A546700F2A8CA /* BQSTRequestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6084AB1A3A546700F2A8CA /* BQSTRequestController.swift */; };
+		5E6084AE1A3B856A00F2A8CA /* UIView+BQSTAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6084AD1A3B856A00F2A8CA /* UIView+BQSTAnimations.swift */; };
+		5E6084B01A3B8A3F00F2A8CA /* BQSTCollectionValueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6084AF1A3B8A3F00F2A8CA /* BQSTCollectionValueCell.swift */; };
+		5E6084B21A3B8A8100F2A8CA /* UIFont+BQSTFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6084B11A3B8A8100F2A8CA /* UIFont+BQSTFonts.swift */; };
+		5E6084B41A3BAFCA00F2A8CA /* BQSTNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6084B31A3BAFCA00F2A8CA /* BQSTNavigationController.swift */; };
 		5E6B02301A1D2DA500EB5CCC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6B022F1A1D2DA500EB5CCC /* AppDelegate.swift */; };
 		5E6B02461A1D2DA500EB5CCC /* BQSTHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6B02451A1D2DA500EB5CCC /* BQSTHTTPClientTests.swift */; };
 		5E6B02551A1D430100EB5CCC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E6B02531A1D430100EB5CCC /* Images.xcassets */; };
@@ -37,8 +41,12 @@
 		5E0D38971A3A4D6F00A149F2 /* UIColor+BQSTColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+BQSTColors.swift"; sourceTree = "<group>"; };
 		5E0D38991A3A4DE300A149F2 /* UIView+BQSTDrawing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+BQSTDrawing.swift"; sourceTree = "<group>"; };
 		5E0D38A11A3A50CD00A149F2 /* Bequest-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bequest-Bridging-Header.h"; sourceTree = "<group>"; };
-		5E6084A81A3A517F00F2A8CA /* BQSTColoredCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTColoredCollectionCell.swift; sourceTree = "<group>"; };
+		5E6084A81A3A517F00F2A8CA /* BQSTBlockyCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTBlockyCollectionCell.swift; sourceTree = "<group>"; };
 		5E6084AB1A3A546700F2A8CA /* BQSTRequestController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTRequestController.swift; sourceTree = "<group>"; };
+		5E6084AD1A3B856A00F2A8CA /* UIView+BQSTAnimations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+BQSTAnimations.swift"; sourceTree = "<group>"; };
+		5E6084AF1A3B8A3F00F2A8CA /* BQSTCollectionValueCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTCollectionValueCell.swift; sourceTree = "<group>"; };
+		5E6084B11A3B8A8100F2A8CA /* UIFont+BQSTFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+BQSTFonts.swift"; sourceTree = "<group>"; };
+		5E6084B31A3BAFCA00F2A8CA /* BQSTNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTNavigationController.swift; sourceTree = "<group>"; };
 		5E6B022A1A1D2DA500EB5CCC /* Bequest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bequest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E6B022F1A1D2DA500EB5CCC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5E6B023F1A1D2DA500EB5CCC /* BequestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BequestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,6 +86,8 @@
 			isa = PBXGroup;
 			children = (
 				5E0D38971A3A4D6F00A149F2 /* UIColor+BQSTColors.swift */,
+				5E6084B11A3B8A8100F2A8CA /* UIFont+BQSTFonts.swift */,
+				5E6084AD1A3B856A00F2A8CA /* UIView+BQSTAnimations.swift */,
 				5E0D38991A3A4DE300A149F2 /* UIView+BQSTDrawing.swift */,
 			);
 			path = Additions;
@@ -86,7 +96,8 @@
 		5E0D389B1A3A4FC900A149F2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5E6084A81A3A517F00F2A8CA /* BQSTColoredCollectionCell.swift */,
+				5E6084A81A3A517F00F2A8CA /* BQSTBlockyCollectionCell.swift */,
+				5E6084AF1A3B8A3F00F2A8CA /* BQSTCollectionValueCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -94,6 +105,7 @@
 		5E6084AA1A3A545B00F2A8CA /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5E6084B31A3BAFCA00F2A8CA /* BQSTNavigationController.swift */,
 				5E6084AB1A3A546700F2A8CA /* BQSTRequestController.swift */,
 			);
 			path = Controllers;
@@ -386,10 +398,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E6084B21A3B8A8100F2A8CA /* UIFont+BQSTFonts.swift in Sources */,
+				5E6084B41A3BAFCA00F2A8CA /* BQSTNavigationController.swift in Sources */,
+				5E6084AE1A3B856A00F2A8CA /* UIView+BQSTAnimations.swift in Sources */,
 				5E6B025B1A1D5C3B00EB5CCC /* BQSTHTTPClient.swift in Sources */,
 				5E0D389A1A3A4DE300A149F2 /* UIView+BQSTDrawing.swift in Sources */,
+				5E6084B01A3B8A3F00F2A8CA /* BQSTCollectionValueCell.swift in Sources */,
 				5E6B02301A1D2DA500EB5CCC /* AppDelegate.swift in Sources */,
-				5E6084A91A3A517F00F2A8CA /* BQSTColoredCollectionCell.swift in Sources */,
+				5E6084A91A3A517F00F2A8CA /* BQSTBlockyCollectionCell.swift in Sources */,
 				5E0D38981A3A4D6F00A149F2 /* UIColor+BQSTColors.swift in Sources */,
 				5E6084AC1A3A546700F2A8CA /* BQSTRequestController.swift in Sources */,
 			);

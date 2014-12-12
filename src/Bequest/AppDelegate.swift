@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        window!.rootViewController = BQSTRequestController()
+        window!.rootViewController = BQSTNavigationController(rootViewController: BQSTRequestController())
         window!.makeKeyAndVisible()
         
         return true

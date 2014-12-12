@@ -10,8 +10,16 @@ import Foundation
 import UIKit
 import SSDataSources
 
-let kBQSTRequestInsets = UIEdgeInsetsMake(30, 10, 10, 10)
+let kBQSTRequestInsets = UIEdgeInsetsMake(10, 10, 10, 10)
 let kBQSTLineSpacing = CGFloat(14)
+
+enum BQSTRequestRow : Int {
+    case URL = 0
+    case Method
+    
+    
+    case NumRows
+}
 
 class BQSTRequestController : UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
@@ -39,13 +47,37 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor.blackColor()
+        self.title = "Bequest"
         
-        dataSource = SSExpandingDataSource(items: [1, 2, 3])
-        dataSource!.cellClass = BQSTColoredCollectionCell.self
+        let section = SSSection(numberOfItems: UInt(BQSTRequestRow.NumRows.rawValue))
+        dataSource = SSExpandingDataSource(section: section)
+        
+        dataSource!.cellCreationBlock = { (value, collectionView, indexPath) in
+            return BQSTCollectionValueCell.self(forCollectionView: collectionView as UICollectionView,
+                indexPath: indexPath as NSIndexPath)
+        }
+        
+        dataSource!.cellConfigureBlock = {
+            (c, value, collectionView, indexPath) in
+            
+            if let row = BQSTRequestRow(rawValue: indexPath.row) {
+                
+                let cell = c as BQSTCollectionValueCell
+                
+                switch row {
+                case .Method:
+                    cell.label?.text = "Method"
+                case .URL:
+                    cell.label?.text = "URL"
+                default:
+                    break
+                }
+            }
+        }
 
         collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: UICollectionViewFlowLayout())
-        collectionView!.registerClass(BQSTColoredCollectionCell.self,
-            forCellWithReuseIdentifier: BQSTColoredCollectionCell.identifier())
+        collectionView!.registerClass(BQSTCollectionValueCell.self,
+            forCellWithReuseIdentifier: BQSTCollectionValueCell.identifier())
         collectionView!.delegate = self
         
         self.view.addSubview(collectionView!)
@@ -78,8 +110,22 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
     func collectionView(collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        
-        return CGSize(width: CGRectGetWidth(collectionView.frame) - kBQSTRequestInsets.left - kBQSTRequestInsets.right,
+            
+        let fullWidth = CGSize(width: CGRectGetWidth(collectionView.frame) - kBQSTRequestInsets.left - kBQSTRequestInsets.right,
             height: 60)
+        let halfWidth = CGSizeMake(fullWidth.width / 2, fullWidth.height)
+    
+        if let row = BQSTRequestRow(rawValue: indexPath.row) {
+            
+            switch row {
+            case .URL:
+                return fullWidth
+            default:
+                return halfWidth
+            }
+            
+        }
+        
+        return CGSizeZero
     }
 }
