@@ -12,18 +12,29 @@ import Masonry
 class BQSTCollectionValueCell : BQSTBlockyCollectionCell {
     
     var label : UILabel?
+    var textField : UITextField?
     
     override func configureCell() {
         super.configureCell()
         
         label = UILabel(frame: CGRectMake(kBQSTBoxInsets.left,
-            CGRectGetHeight(self.frame) - kBQSTBoxInsets.bottom,
-            CGRectGetWidth(self.frame) - kBQSTBoxInsets.right,
+            CGRectGetHeight(self.contentView.frame) - kBQSTBoxInsets.bottom,
+            CGRectGetWidth(self.contentView.frame) - kBQSTBoxInsets.right,
             kBQSTBoxInsets.bottom))
         label!.font = UIFont.BQSTFont(15)
         label!.textColor = UIColor.darkTextColor()
         label!.textAlignment = .Right
         self.contentView.addSubview(label!)
+        
+        textField = UITextField(frame: CGRectMake(kBQSTBoxShadowInsets.left,
+            0,
+            CGRectGetWidth(self.contentView.frame) - kBQSTBoxInsets.right - kBQSTBoxShadowInsets.left,
+            CGRectGetHeight(self.contentView.frame) - kBQSTBoxInsets.bottom))
+        textField!.font = UIFont.BQSTMonoFont(16)
+        textField!.textColor = UIColor.whiteColor()
+        textField!.clearButtonMode = .WhileEditing
+        self.contentView.addSubview(textField!)
+        
 //        label!.mas_makeConstraints { (make : MASConstraintMaker!) in
 //            // Absurd Swift syntax for Masonry
 //            (((make.right.and().bottom().equalTo())(self.contentView)).insets())(kBQSTBoxShadowInsets)

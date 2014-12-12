@@ -109,6 +109,13 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
     
     func collectionView(collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
+        minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+        
+        return 10
+    }
+    
+    func collectionView(collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
             
         let fullWidth = CGSize(width: CGRectGetWidth(collectionView.frame) - kBQSTRequestInsets.left - kBQSTRequestInsets.right,
