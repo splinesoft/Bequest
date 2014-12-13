@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import SSDataSources
+import Masonry
 
 let kBQSTRequestInsets = UIEdgeInsetsMake(10, 10, 10, 10)
 let kBQSTLineSpacing = CGFloat(14)
@@ -21,7 +22,7 @@ enum BQSTRequestRow : Int {
     case NumRows
 }
 
-class BQSTRequestController : UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class BQSTRequestController : UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UITextFieldDelegate {
 
     internal var collectionView : UICollectionView?
     internal var dataSource : SSExpandingDataSource?
@@ -36,7 +37,6 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -47,7 +47,7 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor.blackColor()
-        self.title = "Bequest"
+        self.title = UIApplication.BQSTApplicationName()
         
         let section = SSSection(numberOfItems: UInt(BQSTRequestRow.NumRows.rawValue))
         dataSource = SSExpandingDataSource(section: section)
@@ -64,6 +64,8 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
                 
                 let cell = c as BQSTCollectionValueCell
                 
+                cell.textField!.delegate = self
+                
                 switch row {
                 case .Method:
                     cell.label?.text = "Method"
@@ -79,10 +81,33 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
         collectionView!.registerClass(BQSTCollectionValueCell.self,
             forCellWithReuseIdentifier: BQSTCollectionValueCell.identifier())
         collectionView!.delegate = self
+        collectionView!.keyboardDismissMode = .Interactive
         
         self.view.addSubview(collectionView!)
         
         dataSource!.collectionView = collectionView
+    }
+    
+    /// MARK: UITextFieldDelegate
+    
+    func textFieldShouldEndEditing(textField: UITextField) -> Bool {
+        return true
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        return true
+    }
+    
+    func textField(textField: UITextField,
+        shouldChangeCharactersInRange range: NSRange,
+        replacementString string: String) -> Bool {
+            
+        if string == "\n" {
+            textField.resignFirstResponder()
+            return false
+        }
+            
+        return true
     }
     
     /// MARK: UICollectionViewDelegate

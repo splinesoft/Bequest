@@ -20,6 +20,7 @@
 		5E6B02551A1D430100EB5CCC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E6B02531A1D430100EB5CCC /* Images.xcassets */; };
 		5E6B025B1A1D5C3B00EB5CCC /* BQSTHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6B025A1A1D5C3B00EB5CCC /* BQSTHTTPClient.swift */; };
 		5E6B025C1A1D5DBA00EB5CCC /* BQSTHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6B025A1A1D5C3B00EB5CCC /* BQSTHTTPClient.swift */; };
+		5EF560531A3C046100A86002 /* UIApplication+BQSTAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF560521A3C046100A86002 /* UIApplication+BQSTAdditions.swift */; };
 		8ACBE4E5E5B575218857F7DE /* Pods_Bequest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD3E55E19E0CE39F6AE9C5F3 /* Pods_Bequest.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		91327C22DA4F4BE9A04D8B2F /* Pods_BequestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FB006581FE0A43A806A5018 /* Pods_BequestTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
@@ -55,6 +56,7 @@
 		5E6B02531A1D430100EB5CCC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5E6B02541A1D430100EB5CCC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5E6B025A1A1D5C3B00EB5CCC /* BQSTHTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTHTTPClient.swift; sourceTree = "<group>"; };
+		5EF560521A3C046100A86002 /* UIApplication+BQSTAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+BQSTAdditions.swift"; sourceTree = "<group>"; };
 		67E41A9CE64DF83BF130FCB1 /* Pods-BequestTests.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BequestTests.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-BequestTests/Pods-BequestTests.adhoc.xcconfig"; sourceTree = "<group>"; };
 		9FB006581FE0A43A806A5018 /* Pods_BequestTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BequestTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB872DB7CB0F525FF91DA371 /* Pods-Bequest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bequest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bequest/Pods-Bequest.debug.xcconfig"; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 		5E0D38961A3A4D5D00A149F2 /* Additions */ = {
 			isa = PBXGroup;
 			children = (
+				5EF560521A3C046100A86002 /* UIApplication+BQSTAdditions.swift */,
 				5E0D38971A3A4D6F00A149F2 /* UIColor+BQSTColors.swift */,
 				5E6084B11A3B8A8100F2A8CA /* UIFont+BQSTFonts.swift */,
 				5E6084AD1A3B856A00F2A8CA /* UIView+BQSTAnimations.swift */,
@@ -405,6 +408,7 @@
 				5E0D389A1A3A4DE300A149F2 /* UIView+BQSTDrawing.swift in Sources */,
 				5E6084B01A3B8A3F00F2A8CA /* BQSTCollectionValueCell.swift in Sources */,
 				5E6B02301A1D2DA500EB5CCC /* AppDelegate.swift in Sources */,
+				5EF560531A3C046100A86002 /* UIApplication+BQSTAdditions.swift in Sources */,
 				5E6084A91A3A517F00F2A8CA /* BQSTBlockyCollectionCell.swift in Sources */,
 				5E0D38981A3A4D6F00A149F2 /* UIColor+BQSTColors.swift in Sources */,
 				5E6084AC1A3A546700F2A8CA /* BQSTRequestController.swift in Sources */,
