@@ -9,8 +9,8 @@
 import Foundation
 import UIKit
 
-let kBQSTBoxInsets : UIEdgeInsets = UIEdgeInsetsMake(0, 0, 16, 14)
-let kBQSTBoxShadowInsets : UIEdgeInsets = UIEdgeInsetsMake(14, 16, 0, 0)
+let kBQSTBoxInsets : UIEdgeInsets = UIEdgeInsetsMake(0, 0, 14, 14)
+let kBQSTBoxShadowInsets : UIEdgeInsets = UIEdgeInsetsMake(14, 14, 0, 0)
 let kBQSTShadowOpacity : CGFloat = 0.7
 
 extension UIView {

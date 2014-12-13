@@ -21,7 +21,7 @@ class BQSTCollectionValueCell : BQSTBlockyCollectionCell {
             CGRectGetHeight(self.contentView.frame) - kBQSTBoxInsets.bottom,
             CGRectGetWidth(self.contentView.frame) - kBQSTBoxInsets.right,
             kBQSTBoxInsets.bottom))
-        label!.font = UIFont.BQSTFont(15)
+        label!.font = UIFont.BQSTFont(14)
         label!.textColor = UIColor.darkTextColor()
         label!.textAlignment = .Right
         self.contentView.addSubview(label!)
