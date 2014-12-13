@@ -33,6 +33,10 @@ class BQSTCollectionValueCell : BQSTBlockyCollectionCell {
         textField!.font = UIFont.BQSTMonoFont(16)
         textField!.textColor = UIColor.whiteColor()
         textField!.clearButtonMode = .WhileEditing
+        textField!.returnKeyType = .Done
+        textField!.autocapitalizationType = .None
+        textField!.autocorrectionType = .No
+        textField!.spellCheckingType = .No
         self.contentView.addSubview(textField!)
         
 //        label!.mas_makeConstraints { (make : MASConstraintMaker!) in
