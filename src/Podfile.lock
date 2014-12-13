@@ -5,6 +5,7 @@ PODS:
   - pop (1.0.7)
   - Quick (0.2.0)
   - SSDataSources (0.8.0)
+  - TTTAttributedLabel (1.12.0)
 
 DEPENDENCIES:
   - Alamofire (from `https://github.com/mrackwitz/Alamofire.git`, branch `podspec`)
@@ -13,6 +14,7 @@ DEPENDENCIES:
   - pop
   - Quick (from `https://github.com/Quick/Quick`)
   - SSDataSources (= 0.8.0)
+  - TTTAttributedLabel
 
 EXTERNAL SOURCES:
   Alamofire:
@@ -41,5 +43,6 @@ SPEC CHECKSUMS:
   pop: 2f14a1ea61339767af9e66741b418c831b3844df
   Quick: 1b2e5892266a111ec2e13f925f8a4103978f13f8
   SSDataSources: 4a9f4ecbc390e107c98002a91181e671429bc7b4
+  TTTAttributedLabel: 9825f9b6c8f1c01939fa26827e59b7586483a45b
 
 COCOAPODS: 0.35.0
