@@ -38,6 +38,19 @@ class BQSTRequestManager : NSObject, UITextFieldDelegate {
         return _sharedManager
     }
     
+    func valueForRow(row: BQSTRequestRow) -> String? {
+        switch row {
+        case .URL:
+            return mutableRequest.URL?.absoluteString ?? "http://splinesoft.net"
+        case .Method:
+            return mutableRequest.HTTPMethod ?? "GET"
+        default:
+            break
+        }
+        
+        return nil
+    }
+    
     /// MARK: UITextFieldDelegate
     
     func textFieldDidEndEditing(textField: UITextField) {
@@ -58,6 +71,7 @@ class BQSTRequestManager : NSObject, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
         return true
     }
     

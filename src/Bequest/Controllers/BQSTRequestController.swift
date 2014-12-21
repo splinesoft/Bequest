@@ -9,15 +9,20 @@
 import Foundation
 import UIKit
 import SSDataSources
-import Masonry
 
 let kBQSTRequestInsets = UIEdgeInsetsMake(10, 10, 10, 10)
 let kBQSTLineSpacing = CGFloat(14)
 
+enum BQSTRequestSection : Int {
+    case Request = 0
+    case Response
+    
+    case NumSections
+}
+
 enum BQSTRequestRow : Int {
     case URL = 0
     case Method
-    
     
     case NumRows
 }
@@ -25,9 +30,11 @@ enum BQSTRequestRow : Int {
 class BQSTRequestController : UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UITextFieldDelegate {
 
     internal var collectionView : UICollectionView?
-    let dataSource : SSExpandingDataSource = {
+    let dataSource : SSSectionedDataSource = {
         let section = SSSection(numberOfItems: UInt(BQSTRequestRow.NumRows.rawValue))
-        let dataSource = SSExpandingDataSource(section: section)
+        let dataSource = SSSectionedDataSource(section: section)
+        
+        dataSource.rowAnimation = .Fade
         
         dataSource.cellCreationBlock = { (value, collectionView, indexPath) in
             return BQSTCollectionValueCell.self(forCollectionView: collectionView as UICollectionView,
@@ -60,7 +67,8 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
         self.title = UIApplication.BQSTApplicationName()
         self.navigationController?.navigationBar.tintColor = UIColor.BQSTRedColor()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .FastForward,
-            target: self, action: Selector("sendRequest"))
+            target: self,
+            action: Selector("sendRequest"))
         
         dataSource.cellConfigureBlock = { (c, value, collectionView, indexPath) in
             
@@ -70,6 +78,7 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
                 
                 cell.textField!.tag = indexPath.row
                 cell.textField!.delegate = BQSTRequestManager.sharedManager
+                cell.textField!.text = BQSTRequestManager.sharedManager.valueForRow(row)
                 
                 switch row {
                 case .Method:
