@@ -25,7 +25,17 @@ enum BQSTRequestRow : Int {
 class BQSTRequestController : UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UITextFieldDelegate {
 
     internal var collectionView : UICollectionView?
-    internal var dataSource : SSExpandingDataSource?
+    let dataSource : SSExpandingDataSource = {
+        let section = SSSection(numberOfItems: UInt(BQSTRequestRow.NumRows.rawValue))
+        let dataSource = SSExpandingDataSource(section: section)
+        
+        dataSource.cellCreationBlock = { (value, collectionView, indexPath) in
+            return BQSTCollectionValueCell.self(forCollectionView: collectionView as UICollectionView,
+                indexPath: indexPath as NSIndexPath)
+        }
+        
+        return dataSource
+    }()
     
     override init() {
         super.init()
@@ -49,16 +59,7 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
         self.view.backgroundColor = UIColor.blackColor()
         self.title = UIApplication.BQSTApplicationName()
         
-        let section = SSSection(numberOfItems: UInt(BQSTRequestRow.NumRows.rawValue))
-        dataSource = SSExpandingDataSource(section: section)
-        
-        dataSource!.cellCreationBlock = { (value, collectionView, indexPath) in
-            return BQSTCollectionValueCell.self(forCollectionView: collectionView as UICollectionView,
-                indexPath: indexPath as NSIndexPath)
-        }
-        
-        dataSource!.cellConfigureBlock = {
-            (c, value, collectionView, indexPath) in
+        dataSource.cellConfigureBlock = { (c, value, collectionView, indexPath) in
             
             if let row = BQSTRequestRow(rawValue: indexPath.row) {
                 
@@ -85,7 +86,7 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
         
         self.view.addSubview(collectionView!)
         
-        dataSource!.collectionView = collectionView
+        dataSource.collectionView = collectionView
     }
     
     /// MARK: UITextFieldDelegate
