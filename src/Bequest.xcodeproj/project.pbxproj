@@ -24,6 +24,7 @@
 		8ACBE4E5E5B575218857F7DE /* Pods_Bequest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD3E55E19E0CE39F6AE9C5F3 /* Pods_Bequest.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		91327C22DA4F4BE9A04D8B2F /* Pods_BequestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FB006581FE0A43A806A5018 /* Pods_BequestTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		E96788811A47884900D38695 /* BQSTRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96788801A47884900D38695 /* BQSTRequestManager.swift */; };
+		E96788831A478E1F00D38695 /* BQSTResponseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96788821A478E1F00D38695 /* BQSTResponseController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		BB872DB7CB0F525FF91DA371 /* Pods-Bequest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bequest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bequest/Pods-Bequest.debug.xcconfig"; sourceTree = "<group>"; };
 		CD3E55E19E0CE39F6AE9C5F3 /* Pods_Bequest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bequest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E96788801A47884900D38695 /* BQSTRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTRequestManager.swift; sourceTree = "<group>"; };
+		E96788821A478E1F00D38695 /* BQSTResponseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTResponseController.swift; sourceTree = "<group>"; };
 		EF20EFF2E4BA0F289180A5F7 /* Pods-Bequest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bequest.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bequest/Pods-Bequest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -112,6 +114,7 @@
 			children = (
 				5E6084B31A3BAFCA00F2A8CA /* BQSTNavigationController.swift */,
 				5E6084AB1A3A546700F2A8CA /* BQSTRequestController.swift */,
+				E96788821A478E1F00D38695 /* BQSTResponseController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -407,6 +410,7 @@
 				5E6084B21A3B8A8100F2A8CA /* UIFont+BQSTFonts.swift in Sources */,
 				5E6084B41A3BAFCA00F2A8CA /* BQSTNavigationController.swift in Sources */,
 				5E6084AE1A3B856A00F2A8CA /* UIView+BQSTAnimations.swift in Sources */,
+				E96788831A478E1F00D38695 /* BQSTResponseController.swift in Sources */,
 				5E6B025B1A1D5C3B00EB5CCC /* BQSTHTTPClient.swift in Sources */,
 				5E0D389A1A3A4DE300A149F2 /* UIView+BQSTDrawing.swift in Sources */,
 				5E6084B01A3B8A3F00F2A8CA /* BQSTCollectionValueCell.swift in Sources */,

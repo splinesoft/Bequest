@@ -102,7 +102,7 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
         dataSource.collectionView = collectionView
     }
     
-    /// MARK: Actions
+    /// MARK: Sending Requests
     
     func sendRequest() {
         self.view.endEditing(true)
@@ -120,6 +120,15 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
             
             if let httpResponse = parsedResponse {
                 println("Received a response of type \(httpResponse.contentType?.description) and object \(httpResponse.object)")
+                let responseController = BQSTResponseController(request: request, response: httpResponse)
+                self.navigationController!.pushViewController(responseController, animated: true)
+            } else {
+                let alert = UIAlertView(title: "Request Failed",
+                    message: "Could not parse a response for this request.",
+                    delegate: nil,
+                    cancelButtonTitle: "Darn")
+                
+                alert.show()
             }
         }
     }
