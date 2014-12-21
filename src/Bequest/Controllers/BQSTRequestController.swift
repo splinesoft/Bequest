@@ -58,6 +58,9 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
         
         self.view.backgroundColor = UIColor.blackColor()
         self.title = UIApplication.BQSTApplicationName()
+        self.navigationController?.navigationBar.tintColor = UIColor.BQSTRedColor()
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .FastForward,
+            target: self, action: Selector("sendRequest"))
         
         dataSource.cellConfigureBlock = { (c, value, collectionView, indexPath) in
             
@@ -65,7 +68,8 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
                 
                 let cell = c as BQSTCollectionValueCell
                 
-                cell.textField!.delegate = self
+                cell.textField!.tag = indexPath.row
+                cell.textField!.delegate = BQSTRequestManager.sharedManager
                 
                 switch row {
                 case .Method:
@@ -89,26 +93,26 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
         dataSource.collectionView = collectionView
     }
     
-    /// MARK: UITextFieldDelegate
+    /// MARK: Actions
     
-    func textFieldShouldEndEditing(textField: UITextField) -> Bool {
-        return true
-    }
-    
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        return true
-    }
-    
-    func textField(textField: UITextField,
-        shouldChangeCharactersInRange range: NSRange,
-        replacementString string: String) -> Bool {
+    func sendRequest() {
+        self.view.endEditing(true)
+        
+        self.navigationItem.rightBarButtonItem!.enabled = false
+        
+        let request = BQSTRequestManager.sharedManager.currentRequest
+        
+        println("Sending a request of type \(request.HTTPMethod!) to URL \(request.URL)")
+        
+        BQSTHTTPClient.request(request, progress: nil) {
+            (request: NSURLRequest, response: NSHTTPURLResponse?, parsedResponse: BQSTHTTPResponse?, error: NSError?) in
             
-        if string == "\n" {
-            textField.resignFirstResponder()
-            return false
+            self.navigationItem.rightBarButtonItem!.enabled = true
+            
+            if let httpResponse = parsedResponse {
+                println("Received a response of type \(httpResponse.contentType?.description) and object \(httpResponse.object)")
+            }
         }
-            
-        return true
     }
     
     /// MARK: UICollectionViewDelegate

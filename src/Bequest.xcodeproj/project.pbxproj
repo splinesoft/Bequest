@@ -23,6 +23,7 @@
 		5EF560531A3C046100A86002 /* UIApplication+BQSTAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF560521A3C046100A86002 /* UIApplication+BQSTAdditions.swift */; };
 		8ACBE4E5E5B575218857F7DE /* Pods_Bequest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD3E55E19E0CE39F6AE9C5F3 /* Pods_Bequest.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		91327C22DA4F4BE9A04D8B2F /* Pods_BequestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FB006581FE0A43A806A5018 /* Pods_BequestTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		E96788811A47884900D38695 /* BQSTRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96788801A47884900D38695 /* BQSTRequestManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		9FB006581FE0A43A806A5018 /* Pods_BequestTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BequestTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB872DB7CB0F525FF91DA371 /* Pods-Bequest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bequest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bequest/Pods-Bequest.debug.xcconfig"; sourceTree = "<group>"; };
 		CD3E55E19E0CE39F6AE9C5F3 /* Pods_Bequest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bequest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E96788801A47884900D38695 /* BQSTRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTRequestManager.swift; sourceTree = "<group>"; };
 		EF20EFF2E4BA0F289180A5F7 /* Pods-Bequest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bequest.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bequest/Pods-Bequest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -178,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				5E6B025A1A1D5C3B00EB5CCC /* BQSTHTTPClient.swift */,
+				E96788801A47884900D38695 /* BQSTRequestManager.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -410,6 +413,7 @@
 				5E6B02301A1D2DA500EB5CCC /* AppDelegate.swift in Sources */,
 				5EF560531A3C046100A86002 /* UIApplication+BQSTAdditions.swift in Sources */,
 				5E6084A91A3A517F00F2A8CA /* BQSTBlockyCollectionCell.swift in Sources */,
+				E96788811A47884900D38695 /* BQSTRequestManager.swift in Sources */,
 				5E0D38981A3A4D6F00A149F2 /* UIColor+BQSTColors.swift in Sources */,
 				5E6084AC1A3A546700F2A8CA /* BQSTRequestController.swift in Sources */,
 			);

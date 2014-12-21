@@ -154,6 +154,16 @@ public class BQSTHTTPClient {
         self.request(url, method: method.rawValue, headers: nil, parameters: nil, progress: nil, response)
     }
     
+    public class func request(request: NSURLRequest, progress: BQSTProgressBlock?, _ response: BQSTResponseBlock) {
+        
+        self.request(request.URL,
+            method: request.HTTPMethod,
+            headers: request.allHTTPHeaderFields,
+            parameters: [:],
+            progress: progress,
+            response)
+    }
+    
     public class func request(url: NSURL,
         method: String?,
         headers: [NSObject:AnyObject]?,
