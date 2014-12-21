@@ -33,6 +33,10 @@ class BQSTResponseController : UIViewController {
         super.init(coder: aDecoder)
     }
     
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
