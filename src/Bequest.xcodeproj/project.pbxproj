@@ -28,6 +28,7 @@
 		E96788851A4791B200D38695 /* BQSTSimpleCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96788841A4791B200D38695 /* BQSTSimpleCollectionCell.swift */; };
 		E96788871A47ABCC00D38695 /* BQSTCollectionHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96788861A47ABCC00D38695 /* BQSTCollectionHeaderFooterView.swift */; };
 		E96788891A47B54B00D38695 /* BQSTResponseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96788881A47B54B00D38695 /* BQSTResponseCell.swift */; };
+		E9D81C531A47C24B00FF7A42 /* BQSTProgressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D81C521A47C24B00FF7A42 /* BQSTProgressButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		E96788841A4791B200D38695 /* BQSTSimpleCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTSimpleCollectionCell.swift; sourceTree = "<group>"; };
 		E96788861A47ABCC00D38695 /* BQSTCollectionHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTCollectionHeaderFooterView.swift; sourceTree = "<group>"; };
 		E96788881A47B54B00D38695 /* BQSTResponseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTResponseCell.swift; sourceTree = "<group>"; };
+		E9D81C521A47C24B00FF7A42 /* BQSTProgressButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTProgressButton.swift; sourceTree = "<group>"; };
 		EF20EFF2E4BA0F289180A5F7 /* Pods-Bequest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bequest.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bequest/Pods-Bequest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -112,6 +114,7 @@
 				5E6084A81A3A517F00F2A8CA /* BQSTBlockyCollectionCell.swift */,
 				E96788861A47ABCC00D38695 /* BQSTCollectionHeaderFooterView.swift */,
 				5E6084AF1A3B8A3F00F2A8CA /* BQSTCollectionValueCell.swift */,
+				E9D81C521A47C24B00FF7A42 /* BQSTProgressButton.swift */,
 				E96788841A4791B200D38695 /* BQSTSimpleCollectionCell.swift */,
 				E96788881A47B54B00D38695 /* BQSTResponseCell.swift */,
 			);
@@ -425,6 +428,7 @@
 				5E0D389A1A3A4DE300A149F2 /* UIView+BQSTDrawing.swift in Sources */,
 				5E6084B01A3B8A3F00F2A8CA /* BQSTCollectionValueCell.swift in Sources */,
 				5E6B02301A1D2DA500EB5CCC /* AppDelegate.swift in Sources */,
+				E9D81C531A47C24B00FF7A42 /* BQSTProgressButton.swift in Sources */,
 				5EF560531A3C046100A86002 /* UIApplication+BQSTAdditions.swift in Sources */,
 				E96788891A47B54B00D38695 /* BQSTResponseCell.swift in Sources */,
 				5E6084A91A3A517F00F2A8CA /* BQSTBlockyCollectionCell.swift in Sources */,

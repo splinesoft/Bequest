@@ -29,8 +29,9 @@ enum BQSTRequestRow : Int {
 
 class BQSTRequestController : UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UITextFieldDelegate {
 
-    internal var collectionView : UICollectionView?
-    let dataSource : SSSectionedDataSource = {
+    private var collectionView: UICollectionView?
+    
+    private let dataSource : SSSectionedDataSource = {
         let section = SSSection(numberOfItems: UInt(BQSTRequestRow.NumRows.rawValue))
         let dataSource = SSSectionedDataSource(section: section)
         
@@ -42,6 +43,11 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
         }
         
         return dataSource
+    }()
+    private let progressButton: BQSTProgressButton = {
+        let button = BQSTProgressButton(frame: CGRectMake(0, 0, 44, 44))
+        button.progressState = .Ready
+        return button
     }()
     
     override init() {
@@ -60,15 +66,19 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
         return .LightContent
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.progressButton.progressState = .Ready
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor.blackColor()
         self.title = UIApplication.BQSTApplicationName()
         self.navigationController?.navigationBar.tintColor = UIColor.BQSTRedColor()
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .FastForward,
-            target: self,
-            action: Selector("sendRequest"))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: progressButton)
+        progressButton.addTarget(self, action: Selector("sendRequest"), forControlEvents: .TouchUpInside)
         
         dataSource.cellConfigureBlock = { (c, value, collectionView, indexPath) in
             
@@ -105,23 +115,30 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
     /// MARK: Sending Requests
     
     func sendRequest() {
-        self.view.endEditing(true)
         
-        self.navigationItem.rightBarButtonItem!.enabled = false
+        if self.progressButton.progressState == .Loading {
+            self.progressButton.progressState = .Ready
+            return
+        }
+        
+        self.view.endEditing(true)
         
         let request = BQSTRequestManager.sharedManager.currentRequest
         
         println("Sending a request of type \(request.HTTPMethod!) to URL \(request.URL)")
         
-        BQSTHTTPClient.request(request, progress: { (request, progress) in
-                println("load progress: \((progress as NSProgress).fractionCompleted)")
-            }) {
+        self.progressButton.progressPercentage = 0
+        self.progressButton.progressState = .Loading
+        
+        let progressBlock: BQSTProgressBlock = { (request, progress) in
+            self.progressButton.progressPercentage = (progress as NSProgress).fractionCompleted
+        }
+        
+        BQSTHTTPClient.request(request, progress: progressBlock) {
             (request: NSURLRequest, response: NSHTTPURLResponse?, parsedResponse: BQSTHTTPResponse?, error: NSError?) in
             
-            self.navigationItem.rightBarButtonItem!.enabled = true
-            
             if let httpResponse = parsedResponse {
-                println("Received a response of type \(httpResponse.contentType?.description)")
+                println("response received: \(response!.statusCode)")
                 let responseController = BQSTResponseController(request: request, response: response, parsedResponse: httpResponse)
                 self.navigationController!.pushViewController(responseController, animated: true)
             } else {
