@@ -49,19 +49,7 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
         button.progressState = .Ready
         return button
     }()
-    
-    override init() {
-        super.init()
-    }
-    
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-    
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
+
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
     }

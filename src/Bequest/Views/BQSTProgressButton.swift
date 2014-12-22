@@ -78,18 +78,26 @@ class BQSTProgressButton: UIControl {
         return animation
     }()
     
+    override var highlighted: Bool {
+        didSet {
+            self.setNeedsDisplay()
+        }
+    }
+    
     override func drawRect(rect: CGRect) {
         switch self.progressState {
         case .Ready:
             
-            ("Send" as NSString).drawInRect(rect, withAttributes: [NSFontAttributeName: UIFont.BQSTMonoFont(18),
-                NSForegroundColorAttributeName: UIColor.BQSTRedColor()])
+            ("Send" as NSString).drawInRect(CGRectInset(rect, 0, 10), withAttributes:
+                [NSFontAttributeName: UIFont.BQSTFont(18),
+                    NSKernAttributeName: NSNull(),
+                    NSForegroundColorAttributeName: self.highlighted ? UIColor.whiteColor() : UIColor.BQSTRedColor()])
             
             break
         case .Loading:
             
-            ("X" as NSString).drawInRect(CGRectInset(rect, 8, 6), withAttributes: [NSFontAttributeName: UIFont.BQSTMonoFont(22),
-                NSForegroundColorAttributeName: UIColor.BQSTRedColor()])
+            ("X" as NSString).drawInRect(CGRectInset(rect, 8, 6), withAttributes: [NSFontAttributeName: UIFont.BQSTFont(22),
+                NSForegroundColorAttributeName: self.highlighted ? UIColor.whiteColor() : UIColor.BQSTRedColor()])
             
             break
         default:
