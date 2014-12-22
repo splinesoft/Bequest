@@ -26,6 +26,7 @@
 		E96788811A47884900D38695 /* BQSTRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96788801A47884900D38695 /* BQSTRequestManager.swift */; };
 		E96788831A478E1F00D38695 /* BQSTResponseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96788821A478E1F00D38695 /* BQSTResponseController.swift */; };
 		E96788851A4791B200D38695 /* BQSTSimpleCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96788841A4791B200D38695 /* BQSTSimpleCollectionCell.swift */; };
+		E96788871A47ABCC00D38695 /* BQSTCollectionHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96788861A47ABCC00D38695 /* BQSTCollectionHeaderFooterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		E96788801A47884900D38695 /* BQSTRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTRequestManager.swift; sourceTree = "<group>"; };
 		E96788821A478E1F00D38695 /* BQSTResponseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTResponseController.swift; sourceTree = "<group>"; };
 		E96788841A4791B200D38695 /* BQSTSimpleCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTSimpleCollectionCell.swift; sourceTree = "<group>"; };
+		E96788861A47ABCC00D38695 /* BQSTCollectionHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTCollectionHeaderFooterView.swift; sourceTree = "<group>"; };
 		EF20EFF2E4BA0F289180A5F7 /* Pods-Bequest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bequest.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bequest/Pods-Bequest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -106,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				5E6084A81A3A517F00F2A8CA /* BQSTBlockyCollectionCell.swift */,
+				E96788861A47ABCC00D38695 /* BQSTCollectionHeaderFooterView.swift */,
 				5E6084AF1A3B8A3F00F2A8CA /* BQSTCollectionValueCell.swift */,
 				E96788841A4791B200D38695 /* BQSTSimpleCollectionCell.swift */,
 			);
@@ -412,6 +415,7 @@
 			files = (
 				5E6084B21A3B8A8100F2A8CA /* UIFont+BQSTFonts.swift in Sources */,
 				5E6084B41A3BAFCA00F2A8CA /* BQSTNavigationController.swift in Sources */,
+				E96788871A47ABCC00D38695 /* BQSTCollectionHeaderFooterView.swift in Sources */,
 				5E6084AE1A3B856A00F2A8CA /* UIView+BQSTAnimations.swift in Sources */,
 				E96788831A478E1F00D38695 /* BQSTResponseController.swift in Sources */,
 				5E6B025B1A1D5C3B00EB5CCC /* BQSTHTTPClient.swift in Sources */,

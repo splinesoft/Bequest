@@ -18,6 +18,7 @@ class BQSTResponseController : UIViewController, UICollectionViewDelegate, UICol
     private let dataSource : SSSectionedDataSource = {
         let dataSource = SSSectionedDataSource(items: nil)
         dataSource.removeAllSections()
+        dataSource.collectionViewSupplementaryElementClass = BQSTCollectionHeaderFooterView.self
         dataSource.cellCreationBlock = { (item, collectionView, indexPath) in
             if indexPath.section == 0 {
                 return BQSTSimpleCollectionCell(forCollectionView: collectionView as UICollectionView, indexPath: indexPath) as UICollectionViewCell
@@ -28,6 +29,17 @@ class BQSTResponseController : UIViewController, UICollectionViewDelegate, UICol
         dataSource.cellConfigureBlock = { (cell, item, collectionView, indexPath) in
             if indexPath.section == 0 {
                 (cell as BQSTSimpleCollectionCell).label!.text = item as? String
+                (cell as BQSTSimpleCollectionCell).label!.textAlignment = (indexPath.row % 2 == 0
+                    ? .Right
+                    : .Left)
+            }
+        }
+        
+        dataSource.collectionSupplementaryConfigureBlock = { (v, kind, collectionView, indexPath) in
+            let view = v as BQSTCollectionHeaderFooterView
+            
+            if indexPath.section == 0 {
+                view.label?.text = "Headers (\(dataSource.numberOfItemsInSection(0) / 2))"
             }
         }
         
@@ -37,7 +49,11 @@ class BQSTResponseController : UIViewController, UICollectionViewDelegate, UICol
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: layout)
         
-        collectionView.registerClass(BQSTSimpleCollectionCell.self, forCellWithReuseIdentifier: BQSTSimpleCollectionCell.identifier())
+        collectionView.registerClass(BQSTSimpleCollectionCell.self,
+            forCellWithReuseIdentifier: BQSTSimpleCollectionCell.identifier())
+        collectionView.registerClass(BQSTCollectionHeaderFooterView.self,
+            forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
+            withReuseIdentifier: BQSTCollectionHeaderFooterView.identifier())
         
         return collectionView
     }()
@@ -96,6 +112,17 @@ class BQSTResponseController : UIViewController, UICollectionViewDelegate, UICol
     /// MARK: UICollectionViewDelegate
     
     /// MARK: UICollectionViewDelegateFlowLayout
+    
+    func collectionView(collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        referenceSizeForHeaderInSection section: Int) -> CGSize {
+        
+            if section == 0 {
+                return CGSizeMake(0, 60)
+            }
+            
+            return CGSizeZero
+    }
     
     func collectionView(collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
