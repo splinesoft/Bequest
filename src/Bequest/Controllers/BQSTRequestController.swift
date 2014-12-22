@@ -120,11 +120,11 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
             
             if let httpResponse = parsedResponse {
                 println("Received a response of type \(httpResponse.contentType?.description) and object \(httpResponse.object)")
-                let responseController = BQSTResponseController(request: request, response: httpResponse)
+                let responseController = BQSTResponseController(request: request, response: response, parsedResponse: httpResponse)
                 self.navigationController!.pushViewController(responseController, animated: true)
             } else {
                 let alert = UIAlertView(title: "Request Failed",
-                    message: "Could not parse a response for this request.",
+                    message: error?.description ?? "Could not parse a response for this request.",
                     delegate: nil,
                     cancelButtonTitle: "Darn")
                 

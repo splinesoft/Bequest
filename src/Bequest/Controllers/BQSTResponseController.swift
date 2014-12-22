@@ -8,29 +8,52 @@
 
 import Foundation
 import UIKit
+import SSDataSources
 
-class BQSTResponseController : UIViewController {
+class BQSTResponseController : UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
-    private let _request : NSURLRequest
-    private let _response : BQSTHTTPResponse
+    private let request : NSURLRequest
+    private let response : NSHTTPURLResponse?
+    private let parsedResponse : BQSTHTTPResponse
+    private let dataSource : SSSectionedDataSource = {
+        let dataSource = SSSectionedDataSource(items: nil)
+        dataSource.removeAllSections()
+        dataSource.cellCreationBlock = { (item, collectionView, indexPath) in
+            if indexPath.section == 0 {
+                return BQSTSimpleCollectionCell(forCollectionView: collectionView as UICollectionView, indexPath: indexPath) as UICollectionViewCell
+            }
+            
+            return nil
+        }
+        dataSource.cellConfigureBlock = { (cell, item, collectionView, indexPath) in
+            if indexPath.section == 0 {
+                (cell as BQSTSimpleCollectionCell).label!.text = item as? String
+            }
+        }
+        
+        return dataSource
+    }()
+    private let collectionView : UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        let collectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: layout)
+        
+        collectionView.registerClass(BQSTSimpleCollectionCell.self, forCellWithReuseIdentifier: BQSTSimpleCollectionCell.identifier())
+        
+        return collectionView
+    }()
     
-    required init(request: NSURLRequest, response: BQSTHTTPResponse) {
-        _request = request
-        _response = response
-        super.init()
+    init(request: NSURLRequest, response: NSHTTPURLResponse?, parsedResponse: BQSTHTTPResponse) {
+        self.request = request
+        self.response = response
+        self.parsedResponse = parsedResponse
+        super.init(nibName: nil, bundle: nil)
     }
-    
-    /// This crap with default values is just crap
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
-        _request = NSURLRequest()
-        _response = BQSTHTTPResponse(contentType: nil, object: 0)
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-    
+
     required init(coder aDecoder: NSCoder) {
-        _request = NSURLRequest()
-        _response = BQSTHTTPResponse(contentType: nil, object: 0)
+        self.request = NSURLRequest()
+        self.parsedResponse = BQSTHTTPResponse(contentType: nil, object: 0)
         super.init(coder: aDecoder)
+        
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -42,5 +65,88 @@ class BQSTResponseController : UIViewController {
         
         self.title = "Response"
         self.view.backgroundColor = UIColor.blackColor()
+        
+        collectionView.frame = self.view.bounds
+        self.view.addSubview(collectionView)
+        collectionView.delegate = self
+        
+        if (response?.statusCode != nil) {
+            self.title = self.title! + " (\(response!.statusCode))"
+        }
+        
+        // HTTP Headers
+        if response?.allHeaderFields != nil {
+            let sortedNames: [NSObject] = (response?.allHeaderFields.keys.array.sorted {
+                return ($0 as String) < ($1 as String)
+            })!
+
+            var headers = NSMutableArray()
+            
+            for key in sortedNames {
+                headers.addObject(key)
+                headers.addObject(response!.allHeaderFields[key]!)
+            }
+            
+            dataSource.appendSection(SSSection(items: headers))
+        }
+        
+        dataSource.collectionView = collectionView
+    }
+    
+    /// MARK: UICollectionViewDelegate
+    
+    /// MARK: UICollectionViewDelegateFlowLayout
+    
+    func collectionView(collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+        
+        return UIEdgeInsetsZero
+    }
+    
+    func collectionView(collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+        
+            if section == 0 {
+                return 0
+            }
+            
+            return 0
+    }
+    
+    func collectionView(collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+        
+            if section == 0 {
+                return 0
+            }
+            
+            return 0
+    }
+    
+    func collectionView(collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        
+            if indexPath.section == 0 {
+                if indexPath.row % 2 == 0 {
+                    return self.collectionView(collectionView,
+                        layout: collectionViewLayout,
+                        sizeForItemAtIndexPath: NSIndexPath(forItem: indexPath.row + 1, inSection: indexPath.section))
+                }
+                
+                let text = dataSource.itemAtIndexPath(indexPath) as NSString
+                let rect = text.boundingRectWithSize(CGSizeMake((CGRectGetWidth(collectionView.frame) / 2) - kBQSTSimpleCellInsets.left - kBQSTSimpleCellInsets.right, CGFloat.max),
+                    options: .UsesLineFragmentOrigin,
+                    attributes: [NSFontAttributeName: UIFont.BQSTHTTPHeaderFont()],
+                    context: nil)
+                
+                return CGSizeMake(CGRectGetWidth(collectionView.frame) / 2,
+                    ceil(CGRectGetHeight(rect)) + kBQSTSimpleCellInsets.bottom + kBQSTSimpleCellInsets.top)
+            }
+            
+            return CGSizeZero
     }
 }

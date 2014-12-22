@@ -18,4 +18,10 @@ extension UIFont {
     class func BQSTMonoFont(size : CGFloat) -> UIFont {
         return self(name: "Menlo", size: size)!
     }
+    
+    /// MARK - UI Elements
+    
+    class func BQSTHTTPHeaderFont() -> UIFont {
+        return self.BQSTMonoFont(10)
+    }
 }
