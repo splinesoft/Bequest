@@ -27,6 +27,7 @@
 		E96788831A478E1F00D38695 /* BQSTResponseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96788821A478E1F00D38695 /* BQSTResponseController.swift */; };
 		E96788851A4791B200D38695 /* BQSTSimpleCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96788841A4791B200D38695 /* BQSTSimpleCollectionCell.swift */; };
 		E96788871A47ABCC00D38695 /* BQSTCollectionHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96788861A47ABCC00D38695 /* BQSTCollectionHeaderFooterView.swift */; };
+		E96788891A47B54B00D38695 /* BQSTResponseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96788881A47B54B00D38695 /* BQSTResponseCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		E96788821A478E1F00D38695 /* BQSTResponseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTResponseController.swift; sourceTree = "<group>"; };
 		E96788841A4791B200D38695 /* BQSTSimpleCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTSimpleCollectionCell.swift; sourceTree = "<group>"; };
 		E96788861A47ABCC00D38695 /* BQSTCollectionHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTCollectionHeaderFooterView.swift; sourceTree = "<group>"; };
+		E96788881A47B54B00D38695 /* BQSTResponseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTResponseCell.swift; sourceTree = "<group>"; };
 		EF20EFF2E4BA0F289180A5F7 /* Pods-Bequest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bequest.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bequest/Pods-Bequest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,6 +113,7 @@
 				E96788861A47ABCC00D38695 /* BQSTCollectionHeaderFooterView.swift */,
 				5E6084AF1A3B8A3F00F2A8CA /* BQSTCollectionValueCell.swift */,
 				E96788841A4791B200D38695 /* BQSTSimpleCollectionCell.swift */,
+				E96788881A47B54B00D38695 /* BQSTResponseCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -423,6 +426,7 @@
 				5E6084B01A3B8A3F00F2A8CA /* BQSTCollectionValueCell.swift in Sources */,
 				5E6B02301A1D2DA500EB5CCC /* AppDelegate.swift in Sources */,
 				5EF560531A3C046100A86002 /* UIApplication+BQSTAdditions.swift in Sources */,
+				E96788891A47B54B00D38695 /* BQSTResponseCell.swift in Sources */,
 				5E6084A91A3A517F00F2A8CA /* BQSTBlockyCollectionCell.swift in Sources */,
 				E96788811A47884900D38695 /* BQSTRequestManager.swift in Sources */,
 				5E0D38981A3A4D6F00A149F2 /* UIColor+BQSTColors.swift in Sources */,

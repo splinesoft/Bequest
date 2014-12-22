@@ -20,7 +20,7 @@ class BQSTCollectionHeaderFooterView : SSBaseCollectionReusableView {
         if view.button == nil {
             view.button = UIButton.buttonWithType(UIButtonType.System) as? UIButton //UILabel(frame: view.frame)
             view.button?.setTitleColor(UIColor.BQSTRedColor(), forState: .Normal)
-            view.button?.setTitleColor(UIColor.lightGrayColor(), forState: .Selected)
+            view.button?.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
             view.button?.titleLabel?.font = UIFont.BQSTFont(18)
             view.button?.titleLabel?.textAlignment = .Left
             view.addSubview(view.button!)

@@ -10,6 +10,7 @@ def import_pods
     pod 'Masonry'
     pod 'pop'
     pod 'TTTAttributedLabel'
+    pod 'JTSImageViewController'
 
     # Networking
     pod 'Alamofire', :git => "https://github.com/mrackwitz/Alamofire.git", :branch => "podspec"

@@ -17,7 +17,7 @@ class BQSTSimpleCollectionCell : SSBaseCollectionCell {
     
     override func configureCell() {
         super.configureCell()
-        
+
         label = UILabel(frame: self.contentView.frame)
         label!.font = UIFont.BQSTHTTPHeaderFont()
         label!.textColor = UIColor.BQSTRedColor()
@@ -36,8 +36,9 @@ class BQSTSimpleCollectionCell : SSBaseCollectionCell {
         let context = UIGraphicsGetCurrentContext()
         
         CGContextSetStrokeColorWithColor(context, UIColor.BQSTRedColor().CGColor)
-        CGContextMoveToPoint(context, CGRectGetMinX(rect), CGRectGetMaxY(rect))
-        CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMaxY(rect))
+        CGContextSetLineWidth(context, 2)
+        CGContextMoveToPoint(context, CGRectGetMinX(rect), CGRectGetMaxY(rect) - 1)
+        CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMaxY(rect) - 1)
         CGContextStrokePath(context)
     }
 }

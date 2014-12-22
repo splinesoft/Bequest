@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import SSDataSources
+import JTSImageViewController
 
 class BQSTResponseController : UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
@@ -21,18 +22,10 @@ class BQSTResponseController : UIViewController, UICollectionViewDelegate, UICol
         dataSource.collectionViewSupplementaryElementClass = BQSTCollectionHeaderFooterView.self
         dataSource.cellCreationBlock = { (item, collectionView, indexPath) in
             if indexPath.section == 0 {
-                return BQSTSimpleCollectionCell(forCollectionView: collectionView as UICollectionView, indexPath: indexPath) as UICollectionViewCell
+                return BQSTSimpleCollectionCell(forCollectionView: collectionView as UICollectionView, indexPath: indexPath)
             }
             
-            return nil
-        }
-        dataSource.cellConfigureBlock = { (cell, item, collectionView, indexPath) in
-            if indexPath.section == 0 {
-                (cell as BQSTSimpleCollectionCell).label!.text = item as? String
-                (cell as BQSTSimpleCollectionCell).label!.textAlignment = (indexPath.row % 2 == 0
-                    ? .Right
-                    : .Left)
-            }
+            return BQSTResponseCell(forCollectionView: collectionView as UICollectionView, indexPath: indexPath)
         }
         
         dataSource.collapsedSectionCountBlock = { (section, sectionIndex) in
@@ -51,6 +44,9 @@ class BQSTResponseController : UIViewController, UICollectionViewDelegate, UICol
         
         collectionView.registerClass(BQSTSimpleCollectionCell.self,
             forCellWithReuseIdentifier: BQSTSimpleCollectionCell.identifier())
+        collectionView.registerClass(BQSTResponseCell.self,
+            forCellWithReuseIdentifier: BQSTResponseCell.identifier())
+        
         collectionView.registerClass(BQSTCollectionHeaderFooterView.self,
             forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
             withReuseIdentifier: BQSTCollectionHeaderFooterView.identifier())
@@ -105,6 +101,20 @@ class BQSTResponseController : UIViewController, UICollectionViewDelegate, UICol
             }
         }
         
+        dataSource.cellConfigureBlock = { (cell, item, collectionView, indexPath) in
+            switch indexPath.section {
+            case 0:
+                (cell as BQSTSimpleCollectionCell).label!.text = item as? String
+                (cell as BQSTSimpleCollectionCell).label!.textAlignment = (indexPath.row % 2 == 0
+                    ? .Right
+                    : .Left)
+            case 1:
+                (cell as BQSTResponseCell).configureWithResponse(self.parsedResponse)
+            default:
+                break
+            }
+        }
+        
         // HTTP Headers
         if response?.allHeaderFields != nil {
             let sortedNames: [NSObject] = (response?.allHeaderFields.keys.array.sorted {
@@ -121,10 +131,36 @@ class BQSTResponseController : UIViewController, UICollectionViewDelegate, UICol
             dataSource.appendSection(SSSection(items: headers))
         }
         
+        // Response object
+        dataSource.appendSection(SSSection(numberOfItems: 1))
+        
         dataSource.collectionView = collectionView
     }
     
     /// MARK: UICollectionViewDelegate
+    
+    func collectionView(collectionView: UICollectionView,
+        didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+            
+            if indexPath.section == 1 {
+                switch self.parsedResponse.contentType! {
+                case .JPEG, .GIF, .PNG:
+                    
+                    let imageInfo = JTSImageInfo()
+                    imageInfo.image = self.parsedResponse.object as UIImage
+                    imageInfo.referenceView = collectionView
+                    imageInfo.referenceContentMode = .ScaleAspectFit
+                    
+                    let imageViewController = JTSImageViewController(imageInfo: imageInfo, mode: .Image, backgroundStyle: .Blurred)
+                    
+                    imageViewController.showFromViewController(self, transition: ._FromOffscreen)
+                    
+                default:
+                    break
+                }
+            }
+    }
     
     /// MARK: UICollectionViewDelegateFlowLayout
     
@@ -143,16 +179,12 @@ class BQSTResponseController : UIViewController, UICollectionViewDelegate, UICol
         layout collectionViewLayout: UICollectionViewLayout,
         insetForSectionAtIndex section: Int) -> UIEdgeInsets {
         
-        return UIEdgeInsetsZero
+            return UIEdgeInsetsZero
     }
     
     func collectionView(collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
         minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
-        
-            if section == 0 {
-                return 0
-            }
             
             return 0
     }
@@ -160,11 +192,7 @@ class BQSTResponseController : UIViewController, UICollectionViewDelegate, UICol
     func collectionView(collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
         minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-        
-            if section == 0 {
-                return 0
-            }
-            
+
             return 0
     }
     
@@ -189,6 +217,15 @@ class BQSTResponseController : UIViewController, UICollectionViewDelegate, UICol
                     ceil(CGRectGetHeight(rect)) + kBQSTSimpleCellInsets.bottom + kBQSTSimpleCellInsets.top)
             }
             
-            return CGSizeZero
+            switch self.parsedResponse.contentType! {
+            case .GIF, .JPEG, .PNG:
+                let size = (self.parsedResponse.object as UIImage).size
+                return CGSizeMake(min(size.width, CGRectGetWidth(collectionView.frame)), min(size.height, 100))
+                
+            case .HTML:
+                return CGSizeMake(CGRectGetWidth(collectionView.frame), 500)
+            default:
+                return CGSizeZero
+            }
     }
 }
