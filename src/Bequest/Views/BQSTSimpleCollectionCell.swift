@@ -35,10 +35,15 @@ class BQSTSimpleCollectionCell : SSBaseCollectionCell {
     override func drawRect(rect: CGRect) {
         let context = UIGraphicsGetCurrentContext()
         
+        CGContextSaveGState(context)
+        
         CGContextSetStrokeColorWithColor(context, UIColor.BQSTRedColor().CGColor)
-        CGContextSetLineWidth(context, 2)
+        CGContextSetLineWidth(context, 1)
         CGContextMoveToPoint(context, CGRectGetMinX(rect), CGRectGetMaxY(rect) - 1)
         CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMaxY(rect) - 1)
+        CGContextClosePath(context)
         CGContextStrokePath(context)
+        
+        CGContextRestoreGState(context)
     }
 }

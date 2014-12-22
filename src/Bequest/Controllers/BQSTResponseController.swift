@@ -179,7 +179,12 @@ class BQSTResponseController : UIViewController, UICollectionViewDelegate, UICol
         layout collectionViewLayout: UICollectionViewLayout,
         insetForSectionAtIndex section: Int) -> UIEdgeInsets {
         
-            return UIEdgeInsetsZero
+            switch section {
+            case 0:
+                return UIEdgeInsetsZero
+            default:
+                return UIEdgeInsetsMake(20, 0, 20, 0)
+            }
     }
     
     func collectionView(collectionView: UICollectionView,
@@ -201,20 +206,24 @@ class BQSTResponseController : UIViewController, UICollectionViewDelegate, UICol
         sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
             if indexPath.section == 0 {
-                if indexPath.row % 2 == 0 {
-                    return self.collectionView(collectionView,
-                        layout: collectionViewLayout,
-                        sizeForItemAtIndexPath: NSIndexPath(forItem: indexPath.row + 1, inSection: indexPath.section))
+                
+                let cellWidth = CGRectGetWidth(collectionView.frame) / 2
+                
+                func sizeText(text: String) -> CGFloat {
+                    let rect = text.boundingRectWithSize(CGSizeMake(cellWidth - kBQSTSimpleCellInsets.left - kBQSTSimpleCellInsets.right, CGFloat.max),
+                        options: .UsesLineFragmentOrigin,
+                        attributes: [NSFontAttributeName: UIFont.BQSTHTTPHeaderFont()],
+                        context: nil)
+                    
+                    return ceil(CGRectGetHeight(rect) + kBQSTSimpleCellInsets.bottom + kBQSTSimpleCellInsets.top)
                 }
                 
                 let text = dataSource.itemAtIndexPath(indexPath) as NSString
-                let rect = text.boundingRectWithSize(CGSizeMake((CGRectGetWidth(collectionView.frame) / 2) - kBQSTSimpleCellInsets.left - kBQSTSimpleCellInsets.right, CGFloat.max),
-                    options: .UsesLineFragmentOrigin,
-                    attributes: [NSFontAttributeName: UIFont.BQSTHTTPHeaderFont()],
-                    context: nil)
+                let otherText = dataSource.itemAtIndexPath(NSIndexPath(forItem:(indexPath.row % 2 == 0
+                    ? indexPath.row + 1
+                    : indexPath.row - 1), inSection:indexPath.section)) as NSString
                 
-                return CGSizeMake(CGRectGetWidth(collectionView.frame) / 2,
-                    ceil(CGRectGetHeight(rect)) + kBQSTSimpleCellInsets.bottom + kBQSTSimpleCellInsets.top)
+                return CGSizeMake(cellWidth, max(sizeText(text), sizeText(otherText)))
             }
             
             switch self.parsedResponse.contentType! {

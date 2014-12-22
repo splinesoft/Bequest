@@ -123,6 +123,7 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
         self.progressButton.progressState = .Loading
         
         let progressBlock: BQSTProgressBlock = { (_, progress: NSProgress) in
+            println("progress: \(progress.fractionCompleted)")
             self.progressButton.progressPercentage = progress.fractionCompleted
         }
         
