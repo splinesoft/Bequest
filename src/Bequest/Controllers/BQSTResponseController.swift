@@ -15,8 +15,8 @@ class BQSTResponseController : UIViewController, UICollectionViewDelegate, UICol
     private let request : NSURLRequest
     private let response : NSHTTPURLResponse?
     private let parsedResponse : BQSTHTTPResponse
-    private let dataSource : SSSectionedDataSource = {
-        let dataSource = SSSectionedDataSource(items: nil)
+    private let dataSource : SSExpandingDataSource = {
+        let dataSource = SSExpandingDataSource(items: nil)
         dataSource.removeAllSections()
         dataSource.collectionViewSupplementaryElementClass = BQSTCollectionHeaderFooterView.self
         dataSource.cellCreationBlock = { (item, collectionView, indexPath) in
@@ -35,12 +35,12 @@ class BQSTResponseController : UIViewController, UICollectionViewDelegate, UICol
             }
         }
         
-        dataSource.collectionSupplementaryConfigureBlock = { (v, kind, collectionView, indexPath) in
-            let view = v as BQSTCollectionHeaderFooterView
-            
-            if indexPath.section == 0 {
-                view.label?.text = "Headers (\(dataSource.numberOfItemsInSection(0) / 2))"
+        dataSource.collapsedSectionCountBlock = { (section, sectionIndex) in
+            if sectionIndex == 0 {
+                return 6
             }
+            
+            return 0
         }
         
         return dataSource
@@ -76,6 +76,10 @@ class BQSTResponseController : UIViewController, UICollectionViewDelegate, UICol
         return .LightContent
     }
     
+    func toggleHeaders() {
+        self.dataSource.toggleSectionAtIndex(0)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -88,6 +92,17 @@ class BQSTResponseController : UIViewController, UICollectionViewDelegate, UICol
         
         if (response?.statusCode != nil) {
             self.title = self.title! + " (\(response!.statusCode))"
+        }
+        
+        dataSource.collectionSupplementaryConfigureBlock = { (v, kind, collectionView, indexPath) in
+            let view = v as BQSTCollectionHeaderFooterView
+            
+            view.button?.removeTarget(self, action: Selector("toggleHeaders"), forControlEvents: UIControlEvents.TouchUpInside)
+            
+            if indexPath.section == 0 {
+                view.button?.setTitle("Headers (\(self.dataSource.numberOfItemsInSection(0) / 2))", forState:.Normal)
+                view.button?.addTarget(self, action: Selector("toggleHeaders"), forControlEvents: UIControlEvents.TouchUpInside)
+            }
         }
         
         // HTTP Headers

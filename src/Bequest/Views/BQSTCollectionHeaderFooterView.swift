@@ -11,17 +11,19 @@ import SSDataSources
 
 class BQSTCollectionHeaderFooterView : SSBaseCollectionReusableView {
     
-    var label: UILabel?
+    var button: UIButton?
     
     override class func supplementaryViewForCollectionView(cv: UICollectionView!, kind: String!, indexPath: NSIndexPath!) -> BQSTCollectionHeaderFooterView {
         
         let view = super.supplementaryViewForCollectionView(cv, kind: kind, indexPath: indexPath) as BQSTCollectionHeaderFooterView
         
-        if view.label == nil {
-            view.label = UILabel(frame: view.frame)
-            view.label!.font = UIFont.BQSTFont(18)
-            view.label!.textColor = UIColor.BQSTRedColor()
-            view.addSubview(view.label!)
+        if view.button == nil {
+            view.button = UIButton.buttonWithType(UIButtonType.System) as? UIButton //UILabel(frame: view.frame)
+            view.button?.setTitleColor(UIColor.BQSTRedColor(), forState: .Normal)
+            view.button?.setTitleColor(UIColor.lightGrayColor(), forState: .Selected)
+            view.button?.titleLabel?.font = UIFont.BQSTFont(18)
+            view.button?.titleLabel?.textAlignment = .Left
+            view.addSubview(view.button!)
         }
         
         return view
@@ -29,6 +31,6 @@ class BQSTCollectionHeaderFooterView : SSBaseCollectionReusableView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.label?.frame = UIEdgeInsetsInsetRect(self.frame, kBQSTSimpleCellInsets)
+        self.button?.frame = UIEdgeInsetsInsetRect(self.frame, kBQSTSimpleCellInsets)
     }
 }
