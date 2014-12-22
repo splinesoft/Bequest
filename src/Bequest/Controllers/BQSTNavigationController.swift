@@ -29,6 +29,7 @@ class BQSTNavigationController : UINavigationController {
         self.navigationBar.barTintColor = UIColor.blackColor()
         self.navigationBar.opaque = false
         self.navigationBar.translucent = true
+        self.navigationBar.tintColor = UIColor.BQSTRedColor()
         self.navigationBar.titleTextAttributes = [
             NSForegroundColorAttributeName : UIColor.BQSTRedColor(),
             NSFontAttributeName : UIFont.BQSTFont(20),

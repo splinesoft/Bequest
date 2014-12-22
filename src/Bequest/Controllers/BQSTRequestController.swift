@@ -29,7 +29,14 @@ enum BQSTRequestRow : Int {
 
 class BQSTRequestController : UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UITextFieldDelegate {
 
-    private var collectionView: UICollectionView?
+    private let collectionView: UICollectionView = {
+        let cv = UICollectionView(frame: CGRectZero, collectionViewLayout: UICollectionViewFlowLayout())
+        cv.registerClass(BQSTCollectionValueCell.self,
+            forCellWithReuseIdentifier: BQSTCollectionValueCell.identifier())
+        cv.keyboardDismissMode = .Interactive
+        
+        return cv
+    }()
     
     private let dataSource : SSSectionedDataSource = {
         let section = SSSection(numberOfItems: UInt(BQSTRequestRow.NumRows.rawValue))
@@ -44,6 +51,7 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
         
         return dataSource
     }()
+    
     private let progressButton: BQSTProgressButton = {
         let button = BQSTProgressButton(frame: CGRectMake(0, 0, 44, 44))
         button.progressState = .Ready
@@ -64,7 +72,7 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
         
         self.view.backgroundColor = UIColor.blackColor()
         self.title = UIApplication.BQSTApplicationName()
-        self.navigationController?.navigationBar.tintColor = UIColor.BQSTRedColor()
+        
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: progressButton)
         progressButton.addTarget(self, action: Selector("sendRequest"), forControlEvents: .TouchUpInside)
         
@@ -89,13 +97,9 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
             }
         }
 
-        collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: UICollectionViewFlowLayout())
-        collectionView!.registerClass(BQSTCollectionValueCell.self,
-            forCellWithReuseIdentifier: BQSTCollectionValueCell.identifier())
-        collectionView!.delegate = self
-        collectionView!.keyboardDismissMode = .Interactive
-        
-        self.view.addSubview(collectionView!)
+        collectionView.frame = self.view.frame
+        collectionView.delegate = self
+        self.view.addSubview(collectionView)
         
         dataSource.collectionView = collectionView
     }
@@ -118,8 +122,8 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
         self.progressButton.progressPercentage = 0
         self.progressButton.progressState = .Loading
         
-        let progressBlock: BQSTProgressBlock = { (request, progress) in
-            self.progressButton.progressPercentage = (progress as NSProgress).fractionCompleted
+        let progressBlock: BQSTProgressBlock = { (_, progress: NSProgress) in
+            self.progressButton.progressPercentage = progress.fractionCompleted
         }
         
         BQSTHTTPClient.request(request, progress: progressBlock) {
