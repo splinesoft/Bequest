@@ -232,7 +232,7 @@ class BQSTResponseController : UIViewController, UICollectionViewDelegate, UICol
                 return CGSizeMake(min(size.width, CGRectGetWidth(collectionView.frame)), min(size.height, 100))
                 
             case .HTML:
-                return CGSizeMake(CGRectGetWidth(collectionView.frame), 500)
+                return CGSizeMake(CGRectGetWidth(collectionView.frame), 300)
             default:
                 return CGSizeZero
             }
