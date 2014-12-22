@@ -23,7 +23,7 @@ class BQSTResponseCell : SSBaseCollectionCell {
         
         self.segmentControl = UISegmentedControl()
         self.segmentControl?.tintColor = UIColor.BQSTRedColor()
-        self.segmentControl?.apportionsSegmentWidthsByContent = true
+        self.segmentControl?.apportionsSegmentWidthsByContent = false
         self.segmentControl!.addTarget(self, action: Selector("segmentControlChanged:"), forControlEvents: .ValueChanged)
     }
     
