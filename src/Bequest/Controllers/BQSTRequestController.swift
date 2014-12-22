@@ -113,13 +113,15 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
         
         println("Sending a request of type \(request.HTTPMethod!) to URL \(request.URL)")
         
-        BQSTHTTPClient.request(request, progress: nil) {
+        BQSTHTTPClient.request(request, progress: { (request, progress) in
+                println("load progress: \((progress as NSProgress).fractionCompleted)")
+            }) {
             (request: NSURLRequest, response: NSHTTPURLResponse?, parsedResponse: BQSTHTTPResponse?, error: NSError?) in
             
             self.navigationItem.rightBarButtonItem!.enabled = true
             
             if let httpResponse = parsedResponse {
-                println("Received a response of type \(httpResponse.contentType?.description) and object \(httpResponse.object)")
+                println("Received a response of type \(httpResponse.contentType?.description)")
                 let responseController = BQSTResponseController(request: request, response: response, parsedResponse: httpResponse)
                 self.navigationController!.pushViewController(responseController, animated: true)
             } else {
