@@ -41,7 +41,7 @@ class BQSTRequestManager : NSObject, UITextFieldDelegate {
     func valueForRow(row: BQSTRequestRow) -> String? {
         switch row {
         case .URL:
-            return mutableRequest.URL?.absoluteString ?? "http://splinesoft.net"
+            return mutableRequest.URL?.absoluteString ?? kBQSTDefaultURL.absoluteString
         case .Method:
             return mutableRequest.HTTPMethod ?? "GET"
         default:
