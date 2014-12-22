@@ -139,6 +139,7 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
             
             if let httpResponse = parsedResponse {
                 println("response received: \(response!.statusCode)")
+                self.progressButton.progressState = .Complete
                 let responseController = BQSTResponseController(request: request, response: response, parsedResponse: httpResponse)
                 self.navigationController!.pushViewController(responseController, animated: true)
             } else {

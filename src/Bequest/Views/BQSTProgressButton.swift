@@ -15,23 +15,35 @@ class BQSTProgressButton: UIControl {
         case Unknown = 0
         case Ready
         case Loading
+        case Complete
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.opaque = false
+        self.backgroundColor = UIColor.clearColor()
+    }
+    
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
     
     var progressState: BQSTProgressButtonState = .Unknown {
-        willSet {
-            self.opaque = false
-            self.backgroundColor = UIColor.clearColor()
-            self.setNeedsDisplay()
-            
-            switch newValue {
+        didSet {
+            switch self.progressState {
             case .Loading:
                 let circleRect = CGRectInset(self.bounds, 6, 6)
-                self.circleShapeLayer.position = CGPointZero
+                self.circleShapeLayer.strokeColor = UIColor.BQSTRedColor().CGColor
                 self.circleShapeLayer.path = UIBezierPath(ovalInRect: circleRect).CGPath
                 self.layer.addSublayer(self.circleShapeLayer)
+            case .Complete:
+                self.circleShapeLayer.strokeColor = UIColor.BQSTGreenColor().CGColor
+                self.progressPercentage = 1
             default:
                 self.circleShapeLayer.removeFromSuperlayer()
             }
+            
+            self.setNeedsDisplay()
         }
     }
     
@@ -49,18 +61,19 @@ class BQSTProgressButton: UIControl {
     
     let circleShapeLayer: CAShapeLayer = {
         let layer = CAShapeLayer()
-        layer.strokeColor = UIColor.BQSTRedColor().CGColor
         layer.lineWidth = 2
+        layer.position = CGPointZero
         
         return layer
     }()
     
     let circleShapeAnimation: CABasicAnimation = {
         let animation = CABasicAnimation(keyPath: "strokeEnd")
-        animation.duration = 0.2
+        animation.duration = 0.1
         animation.repeatCount = 1
         animation.removedOnCompletion = false
         animation.fromValue = 0
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         
         return animation
     }()

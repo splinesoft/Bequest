@@ -11,11 +11,15 @@ import UIKit
 
 extension UIColor {
     
-    class func BQSTRedColor() -> UIColor! {
+    class func BQSTRedColor() -> UIColor {
         return self(red: CGFloat(0.9), green: CGFloat(0.1), blue: CGFloat(0.1), alpha: 1)
     }
     
-    class func BQSTGrayColor() -> UIColor! {
+    class func BQSTGrayColor() -> UIColor {
         return self(white: CGFloat(0.9), alpha: CGFloat(1.0))
+    }
+    
+    class func BQSTGreenColor() -> UIColor {
+        return self.greenColor()
     }
 }
