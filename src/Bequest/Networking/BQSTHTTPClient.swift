@@ -154,16 +154,6 @@ public class BQSTHTTPClient {
         self.request(url, method: method.rawValue, headers: nil, parameters: nil, progress: nil, response)
     }
     
-    public class func request(request: NSURLRequest, progress: BQSTProgressBlock?, _ response: BQSTResponseBlock) {
-        
-        self.request(request.URL,
-            method: request.HTTPMethod,
-            headers: request.allHTTPHeaderFields,
-            parameters: [:],
-            progress: progress,
-            response)
-    }
-    
     public class func request(url: NSURL,
         method: String?,
         headers: [NSObject:AnyObject]?,
@@ -175,9 +165,14 @@ public class BQSTHTTPClient {
             method: method ?? Alamofire.Method.GET.rawValue,
             headers: headers ?? [:],
             parameters: parameters ?? [:])
+
+        self.request(URLRequest, progress: progress, response)
+    }
+    
+    public class func request(URLRequest: NSURLRequest, progress: BQSTProgressBlock?, _ response: BQSTResponseBlock) {
         
         let request: Alamofire.Request = Alamofire.request(URLRequest)
-            
+        
         if progress != nil {
             let counter = NSProgress()
             counter.kind = NSProgressFileOperationKindDownloading
@@ -191,7 +186,7 @@ public class BQSTHTTPClient {
                 return
             })
         }
-            
+        
         request.response { (request: NSURLRequest, URLResponse: NSHTTPURLResponse?, object: AnyObject?, error: NSError?) in
             
             if let data = object as? NSData {
