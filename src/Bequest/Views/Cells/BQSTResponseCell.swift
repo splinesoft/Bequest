@@ -16,7 +16,7 @@ class BQSTResponseCell : SSBaseCollectionCell {
     private var imageView: UIImageView?
     private var response: BQSTHTTPResponse?
     private var segmentControl: UISegmentedControl?
-    private var textView: UITextView?
+    private var textView: BQSTHTMLTextView?
     
     override func configureCell() {
         super.configureCell()
@@ -89,6 +89,7 @@ class BQSTResponseCell : SSBaseCollectionCell {
             self.segmentControl!.insertSegmentWithTitle("Raw", atIndex: 0, animated: false)
             self.segmentControl!.insertSegmentWithTitle("Preview", atIndex: 1, animated: false)
             self.segmentControl!.selectedSegmentIndex = 0
+            self.segmentControl!.sizeToFit()
             
             if webView == nil {
                 self.webView = WKWebView(frame: self.contentView.frame,
@@ -96,9 +97,8 @@ class BQSTResponseCell : SSBaseCollectionCell {
             }
             
             if textView == nil {
-                self.textView = UITextView(frame: self.contentView.frame)
-                self.textView!.font = UIFont.BQSTMonoFont(16)
-                self.textView!.textColor = UIColor.BQSTRedColor()
+                self.textView = BQSTHTMLTextView(frame: self.contentView.frame)
+                self.textView!.defaultFont = UIFont.BQSTMonoFont(kBQSTDefaultHTMLFontSize)
                 self.textView!.editable = false
             }
             

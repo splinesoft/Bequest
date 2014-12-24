@@ -11,6 +11,7 @@ def import_pods
     pod 'pop'
     pod 'TTTAttributedLabel'
     pod 'JTSImageViewController'
+    pod 'CYRTextView'
 
     # Networking
     pod 'Alamofire', :git => "https://github.com/mrackwitz/Alamofire.git", :branch => "podspec"

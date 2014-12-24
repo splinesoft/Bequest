@@ -19,6 +19,10 @@ extension UIFont {
         return self(name: "Menlo", size: size)!
     }
     
+    class func BQSTItalicFont(size: CGFloat) -> UIFont {
+        return self(name: "HelveticaNeue-MediumItalic", size: size)!
+    }
+    
     /// MARK - UI Elements
     
     class func BQSTHTTPHeaderFont() -> UIFont {
