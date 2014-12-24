@@ -52,11 +52,7 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
         return dataSource
     }()
     
-    private let progressButton: BQSTProgressButton = {
-        let button = BQSTProgressButton(frame: CGRectMake(0, 0, 44, 44))
-        button.progressState = .Ready
-        return button
-    }()
+    private let progressButton: BQSTProgressButton = BQSTProgressButton(frame: CGRectMake(0, 0, 44, 44))
 
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
@@ -123,8 +119,7 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
         self.progressButton.progressState = .Loading
         
         let progressBlock: BQSTProgressBlock = { (_, progress: NSProgress) in
-            println("progress: \(progress.fractionCompleted)")
-            self.progressButton.progressPercentage = progress.fractionCompleted
+            self.progressButton.progressPercentage = CGFloat(progress.fractionCompleted)
         }
         
         BQSTHTTPClient.request(request, progress: progressBlock) {
@@ -133,8 +128,16 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
             if let httpResponse = parsedResponse {
                 println("response received: \(response!.statusCode)")
                 self.progressButton.progressState = .Complete
-                let responseController = BQSTResponseController(request: request, response: response, parsedResponse: httpResponse)
-                self.navigationController!.pushViewController(responseController, animated: true)
+
+                dispatch_after(
+                    dispatch_time(
+                        DISPATCH_TIME_NOW,
+                        Int64(0.25 * Double(NSEC_PER_SEC))
+                    ),
+                    dispatch_get_main_queue(), {
+                        let responseController = BQSTResponseController(request: request, response: response, parsedResponse: httpResponse)
+                        self.navigationController!.pushViewController(responseController, animated: true)
+                })
             } else {
                 let alert = UIAlertView(title: "Request Failed",
                     message: error?.description ?? "Could not parse a response for this request.",
