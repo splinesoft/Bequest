@@ -12,6 +12,14 @@ import SSDataSources
 import JTSImageViewController
 import TTTAttributedLabel
 
+enum BQSTResponseSection: Int {
+    case Request
+    case RequestHeaders
+    case ResponseHeaders
+    case Body
+    case Unknown
+}
+
 class BQSTResponseController : UITableViewController, UITableViewDelegate {
     
     private var request : NSURLRequest?
@@ -21,29 +29,16 @@ class BQSTResponseController : UITableViewController, UITableViewDelegate {
         let dataSource = SSExpandingDataSource(items: nil)
         dataSource.removeAllSections()
         dataSource.rowAnimation = .Fade
-
-        dataSource.cellCreationBlock = { (item, tableView, indexPath) in
-            if indexPath.section == 0 {
-                return BQSTHeaderCell(forTableView: tableView as UITableView)
-            }
-            
-            return BQSTResponseCell(forTableView: tableView as UITableView)
-        }
-        
-        dataSource.collapsedSectionCountBlock = { (section, sectionIndex) in
-            if sectionIndex == 0 {
-                return 3
-            }
-            
-            return 0
-        }
-        
         dataSource.tableActionBlock = { (action, tableView, indexPath) in
             return false
         }
         
         return dataSource
     }()
+    
+    private func responseSectionAtIndex(index: Int) -> BQSTResponseSection {
+        return BQSTResponseSection(rawValue: self.dataSource.sectionAtIndex(index).sectionIdentifier.integerValue) ?? .Unknown
+    }
     
     convenience init(request: NSURLRequest, response: NSHTTPURLResponse?, parsedResponse: BQSTHTTPResponse) {
         self.init(style: .Plain)
@@ -57,7 +52,7 @@ class BQSTResponseController : UITableViewController, UITableViewDelegate {
     }
     
     func toggleHeaders() {
-        self.dataSource.toggleSectionAtIndex(0)
+        self.dataSource.toggleSectionAtIndex(BQSTResponseSection.ResponseHeaders.rawValue)
     }
     
     override func viewDidLoad() {
@@ -77,34 +72,88 @@ class BQSTResponseController : UITableViewController, UITableViewDelegate {
             self.title = self.title! + " (\(response!.statusCode))"
         }
         
+        dataSource.cellCreationBlock = { (item, tableView, indexPath) in
+            
+            switch self.responseSectionAtIndex(indexPath.section) {
+            case .Request, .RequestHeaders, .ResponseHeaders:
+                return BQSTHeaderCell(forTableView: tableView as UITableView)
+            case .Body:
+                return BQSTResponseCell(forTableView: tableView as UITableView)
+            default:
+                return nil // crash
+            }
+        }
+        
+        dataSource.collapsedSectionCountBlock = { (section, sectionIndex) in
+            
+            switch self.responseSectionAtIndex(sectionIndex) {
+            case .RequestHeaders, .ResponseHeaders:
+                return 3
+            default:
+                return 0
+            }
+        }
+        
         dataSource.cellConfigureBlock = { (cell, items, collectionView, indexPath) in
-            switch indexPath.section {
-            case 0:
+            
+            switch self.responseSectionAtIndex(indexPath.section) {
+            case .RequestHeaders, .ResponseHeaders, .Request:
                 (cell as BQSTHeaderCell).configureWithValues(items as [String])
-            case 1:
+            case .Body:
                 (cell as BQSTResponseCell).configureWithResponse(self.parsedResponse!)
             default:
                 break
             }
         }
         
-        // HTTP Headers
-        if response?.allHeaderFields != nil {
-            let sortedNames: [NSObject] = (response?.allHeaderFields.keys.array.sorted {
+        // Request details and headers
+        if request != nil {
+            let requestItems = NSMutableArray()
+            requestItems.addObject(["URL" as NSString!, self.request!.URL.absoluteString])
+            requestItems.addObject(["Method" as NSString!, self.request!.HTTPMethod ?? "GET"])
+            
+            let section = SSSection(items: requestItems)
+            section.sectionIdentifier = NSNumber(integer: BQSTResponseSection.Request.rawValue)
+            dataSource.appendSection(section)
+            
+            if let requestHeaders = request!.allHTTPHeaderFields {
+                let sortedNames: [NSObject] = (requestHeaders.keys.array.sorted {
+                    return ($0 as String) < ($1 as String)
+                })
+                
+                var headerItems: [NSObject] = []
+                
+                for header in sortedNames {
+                    let value = requestHeaders[header] as String
+                    headerItems += [header, value]
+                }
+                
+                let headerSection = SSSection(items: headerItems)
+                headerSection.sectionIdentifier = NSNumber(integer: BQSTResponseSection.RequestHeaders.rawValue)
+                dataSource.appendSection(headerSection)
+            }
+        }
+        
+        // Response Headers
+        if let responseHeaders = response?.allHeaderFields {
+            let sortedNames: [NSObject] = (responseHeaders.keys.array.sorted {
                 return ($0 as String) < ($1 as String)
-            })!
+            })
 
             var headers = NSMutableArray()
             
             for key in sortedNames {
-                headers.addObject([key, response!.allHeaderFields[key]!])
+                headers.addObject([key, responseHeaders[key]!])
             }
             
-            dataSource.appendSection(SSSection(items: headers))
+            let section = SSSection(items: headers)
+            section.sectionIdentifier = NSNumber(integer: BQSTResponseSection.ResponseHeaders.rawValue)
+            dataSource.appendSection(section)
         }
         
         // Response object
-        dataSource.appendSection(SSSection(numberOfItems: 1))
+        let bodySection = SSSection(numberOfItems: 1, header: nil, footer: nil, identifier: BQSTResponseSection.Body.rawValue)
+        dataSource.appendSection(bodySection)
         
         dataSource.tableView = self.tableView
     }
@@ -113,26 +162,35 @@ class BQSTResponseController : UITableViewController, UITableViewDelegate {
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
-        if section == 0 {
-            return 44
+        switch self.responseSectionAtIndex(section) {
+        case .RequestHeaders, .ResponseHeaders, .Request:
+            return 32
+        default:
+            return 0
         }
-        
-        return 0
     }
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-        if section == 0 {
+        switch self.responseSectionAtIndex(section) {
+        case .RequestHeaders, .ResponseHeaders:
             let header = BQSTTableHeaderFooterView(reuseIdentifier: BQSTTableHeaderFooterView.identifier())
             
             header.button?.removeTarget(self, action: Selector("toggleHeaders"), forControlEvents: UIControlEvents.TouchUpInside)
-            header.button?.setTitle("Headers (\(self.dataSource.numberOfItemsInSection(0)))", forState:.Normal)
+            header.button?.setTitle("Response Headers (\(self.dataSource.numberOfItemsInSection(section)))", forState:.Normal)
             header.button?.addTarget(self, action: Selector("toggleHeaders"), forControlEvents: UIControlEvents.TouchUpInside)
             
             return header
+        case .Request:
+            let header = BQSTTableHeaderFooterView(reuseIdentifier: BQSTTableHeaderFooterView.identifier())
+            
+            header.button?.removeTarget(self, action: Selector("toggleHeaders"), forControlEvents: .TouchUpInside)
+            header.button?.setTitle("Request", forState: .Normal)
+            
+            return header
+        default:
+            return nil
         }
-        
-        return nil
     }
     
     override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -145,7 +203,8 @@ class BQSTResponseController : UITableViewController, UITableViewDelegate {
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
 
-        if indexPath.section == 0 {
+        switch self.responseSectionAtIndex(indexPath.section) {
+        case .RequestHeaders, .ResponseHeaders, .Request:
             let items: [String] = self.dataSource.itemAtIndexPath(indexPath) as [String]!
             
             let cellWidth = CGRectGetWidth(tableView.frame) / 2
@@ -160,14 +219,16 @@ class BQSTResponseController : UITableViewController, UITableViewDelegate {
             }
             
             return max(sizeText(items[0]), sizeText(items[1]))
-        }
-        
-        switch self.parsedResponse!.contentType! {
-        case .GIF, .JPEG, .PNG:
-            let size = (self.parsedResponse!.object as UIImage).size
-            return min(size.height, 100)
-        case .HTML:
-            return CGRectGetHeight(tableView.frame) - 110
+        case .Body:
+            switch self.parsedResponse!.contentType! {
+            case .GIF, .JPEG, .PNG:
+                let size = (self.parsedResponse!.object as UIImage).size
+                return min(size.height, 100)
+            case .HTML:
+                return CGRectGetHeight(tableView.frame) - 110
+            default:
+                return 0
+            }
         default:
             return 0
         }
@@ -175,7 +236,8 @@ class BQSTResponseController : UITableViewController, UITableViewDelegate {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        if indexPath.section == 1 {
+        switch self.responseSectionAtIndex(indexPath.section) {
+        case .Body:
             switch self.parsedResponse!.contentType! {
             case .JPEG, .GIF, .PNG:
                 
@@ -191,7 +253,8 @@ class BQSTResponseController : UITableViewController, UITableViewDelegate {
             default:
                 break
             }
+        default:
+            break
         }
-
     }
 }

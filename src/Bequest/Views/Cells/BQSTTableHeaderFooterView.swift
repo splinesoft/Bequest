@@ -25,7 +25,7 @@ class BQSTTableHeaderFooterView : SSBaseHeaderFooterView {
         self.backgroundView = background
         
         if self.button == nil {
-            self.button = UIButton.buttonWithType(UIButtonType.System) as? UIButton //UILabel(frame: view.frame)
+            self.button = UIButton.buttonWithType(UIButtonType.Custom) as? UIButton
             self.button!.setTitleColor(UIColor.BQSTRedColor(), forState: .Normal)
             self.button!.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
             self.button!.titleLabel?.font = UIFont.BQSTFont(18)
