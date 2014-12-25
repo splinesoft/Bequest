@@ -22,4 +22,8 @@ extension UIColor {
     class func BQSTGreenColor() -> UIColor {
         return self.greenColor()
     }
+    
+    class func BQSTNavColor() -> UIColor {
+        return self(white: 0.05, alpha: 1.0)
+    }
 }

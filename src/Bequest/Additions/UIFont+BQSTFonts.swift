@@ -26,6 +26,10 @@ extension UIFont {
     /// MARK - UI Elements
     
     class func BQSTHTTPHeaderFont() -> UIFont {
-        return self.BQSTMonoFont(10)
+        return self.BQSTMonoFont(11)
+    }
+    
+    class func BQSTRawResponseFont() -> UIFont {
+        return self.BQSTMonoFont(12)
     }
 }

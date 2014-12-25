@@ -9,7 +9,7 @@
 import Foundation
 import CYRTextView
 
-let kBQSTDefaultHTMLFontSize: CGFloat = 11
+let kBQSTDefaultHTMLFontSize: CGFloat = 12
 
 extension CYRToken {
     
@@ -19,7 +19,7 @@ extension CYRToken {
         self.name = name
         self.expression = expression
         
-        let f = font ?? UIFont.BQSTMonoFont(kBQSTDefaultHTMLFontSize)
+        let f = font ?? UIFont.BQSTRawResponseFont()
         let c = UIColor(red: color.r / 255, green: color.g / 255, blue: color.b / 255, alpha: 1)
         
         self.attributes = [
@@ -31,7 +31,7 @@ extension CYRToken {
 
 class BQSTHTMLTextView : CYRTextView {
     
-    var defaultFont: UIFont! = UIFont.BQSTMonoFont(kBQSTDefaultHTMLFontSize) {
+    var defaultFont: UIFont! = UIFont.BQSTRawResponseFont() {
         didSet {
             self.font = self.defaultFont
             self.updateTokens()

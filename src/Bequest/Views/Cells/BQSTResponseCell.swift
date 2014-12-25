@@ -98,7 +98,7 @@ class BQSTResponseCell : SSBaseCollectionCell {
             
             if textView == nil {
                 self.textView = BQSTHTMLTextView(frame: self.contentView.frame)
-                self.textView!.defaultFont = UIFont.BQSTMonoFont(kBQSTDefaultHTMLFontSize)
+                self.textView!.defaultFont = UIFont.BQSTRawResponseFont()
                 self.textView!.editable = false
             }
             

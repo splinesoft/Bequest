@@ -104,10 +104,13 @@ class BQSTResponseController : UIViewController, UICollectionViewDelegate, UICol
         dataSource.cellConfigureBlock = { (cell, item, collectionView, indexPath) in
             switch indexPath.section {
             case 0:
-                (cell as BQSTSimpleCollectionCell).label!.text = item as? String
                 (cell as BQSTSimpleCollectionCell).label!.textAlignment = (indexPath.row % 2 == 0
                     ? .Right
                     : .Left)
+                (cell as BQSTSimpleCollectionCell).label!.textColor = (indexPath.row % 2 == 0
+                    ? UIColor.BQSTGrayColor()
+                    : UIColor.BQSTRedColor())
+                (cell as BQSTSimpleCollectionCell).label!.text = item as? String
             case 1:
                 (cell as BQSTResponseCell).configureWithResponse(self.parsedResponse)
             default:
@@ -169,7 +172,7 @@ class BQSTResponseController : UIViewController, UICollectionViewDelegate, UICol
         referenceSizeForHeaderInSection section: Int) -> CGSize {
         
             if section == 0 {
-                return CGSizeMake(0, 60)
+                return CGSizeMake(0, 44)
             }
             
             return CGSizeZero
