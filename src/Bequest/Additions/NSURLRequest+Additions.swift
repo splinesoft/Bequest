@@ -17,7 +17,9 @@ extension NSURLRequest {
         headers: [NSObject:AnyObject] = [:],
         parameters: [NSObject:AnyObject] = [:]) -> NSURLRequest {
             
-            let request = NSMutableURLRequest(URL: url)
+            let request = NSMutableURLRequest(URL: url,
+                cachePolicy: .ReloadIgnoringLocalCacheData,
+                timeoutInterval: 30)
             
             request.HTTPMethod = method
             request.allHTTPHeaderFields = headers
