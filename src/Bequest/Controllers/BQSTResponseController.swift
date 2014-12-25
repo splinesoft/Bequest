@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import SSDataSources
 import JTSImageViewController
+import TTTAttributedLabel
 
 class BQSTResponseController : UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
@@ -22,7 +23,7 @@ class BQSTResponseController : UIViewController, UICollectionViewDelegate, UICol
         dataSource.collectionViewSupplementaryElementClass = BQSTCollectionHeaderFooterView.self
         dataSource.cellCreationBlock = { (item, collectionView, indexPath) in
             if indexPath.section == 0 {
-                return BQSTSimpleCollectionCell(forCollectionView: collectionView as UICollectionView, indexPath: indexPath)
+                return BQSTHeaderCollectionCell(forCollectionView: collectionView as UICollectionView, indexPath: indexPath)
             }
             
             return BQSTResponseCell(forCollectionView: collectionView as UICollectionView, indexPath: indexPath)
@@ -42,8 +43,8 @@ class BQSTResponseController : UIViewController, UICollectionViewDelegate, UICol
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: layout)
         
-        collectionView.registerClass(BQSTSimpleCollectionCell.self,
-            forCellWithReuseIdentifier: BQSTSimpleCollectionCell.identifier())
+        collectionView.registerClass(BQSTHeaderCollectionCell.self,
+            forCellWithReuseIdentifier: BQSTHeaderCollectionCell.identifier())
         collectionView.registerClass(BQSTResponseCell.self,
             forCellWithReuseIdentifier: BQSTResponseCell.identifier())
         
@@ -104,13 +105,13 @@ class BQSTResponseController : UIViewController, UICollectionViewDelegate, UICol
         dataSource.cellConfigureBlock = { (cell, item, collectionView, indexPath) in
             switch indexPath.section {
             case 0:
-                (cell as BQSTSimpleCollectionCell).label!.textAlignment = (indexPath.row % 2 == 0
+                (cell as BQSTHeaderCollectionCell).label!.textAlignment = (indexPath.row % 2 == 0
                     ? .Right
                     : .Left)
-                (cell as BQSTSimpleCollectionCell).label!.textColor = (indexPath.row % 2 == 0
+                (cell as BQSTHeaderCollectionCell).label!.textColor = (indexPath.row % 2 == 0
                     ? UIColor.BQSTGrayColor()
                     : UIColor.BQSTRedColor())
-                (cell as BQSTSimpleCollectionCell).label!.text = item as? String
+                (cell as BQSTHeaderCollectionCell).label!.text = item as? String
             case 1:
                 (cell as BQSTResponseCell).configureWithResponse(self.parsedResponse)
             default:
@@ -213,12 +214,12 @@ class BQSTResponseController : UIViewController, UICollectionViewDelegate, UICol
                 let cellWidth = CGRectGetWidth(collectionView.frame) / 2
                 
                 func sizeText(text: String) -> CGFloat {
-                    let rect = text.boundingRectWithSize(CGSizeMake(cellWidth - kBQSTSimpleCellInsets.left - kBQSTSimpleCellInsets.right, CGFloat.max),
-                        options: .UsesLineFragmentOrigin,
-                        attributes: [NSFontAttributeName: UIFont.BQSTHTTPHeaderFont()],
-                        context: nil)
+                    let attributedString = NSAttributedString.headerAttributedString(text)
+                    let size = TTTAttributedLabel.sizeThatFitsAttributedString(attributedString,
+                        withConstraints: CGSizeMake(cellWidth - kBQSTSimpleCellInsets.left - kBQSTSimpleCellInsets.right, CGFloat.max),
+                        limitedToNumberOfLines: 0)
                     
-                    return ceil(CGRectGetHeight(rect) + kBQSTSimpleCellInsets.bottom + kBQSTSimpleCellInsets.top)
+                    return ceil(size.height + kBQSTSimpleCellInsets.bottom + kBQSTSimpleCellInsets.top)
                 }
                 
                 let text = dataSource.itemAtIndexPath(indexPath) as NSString
