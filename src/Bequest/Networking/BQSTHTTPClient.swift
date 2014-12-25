@@ -74,7 +74,7 @@ public struct BQSTHTTPResponse {
                     
                     serializedResponse.contentType = contentType
                     
-                    println("content-type: \(contentType.description)")
+                    println("content-type: \(contentTypeRaw)")
                     
                     switch contentType {
                     case .JSON:
@@ -104,9 +104,7 @@ public struct BQSTHTTPResponse {
                         
                     case .TXT, .HTML:
                         
-                        // TODO: charset
-                        
-                        serializedResponse.object = NSString(data: data, encoding: NSUTF8StringEncoding) ?? ""
+                        serializedResponse.object = data.BQSTString(contentType: contentTypeRaw)
                         
                     default:
                         

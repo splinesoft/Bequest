@@ -21,6 +21,8 @@
 		5EF560531A3C046100A86002 /* UIApplication+BQSTAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF560521A3C046100A86002 /* UIApplication+BQSTAdditions.swift */; };
 		8ACBE4E5E5B575218857F7DE /* Pods_Bequest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD3E55E19E0CE39F6AE9C5F3 /* Pods_Bequest.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		91327C22DA4F4BE9A04D8B2F /* Pods_BequestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FB006581FE0A43A806A5018 /* Pods_BequestTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		E9451C8B1A4BC9350066891C /* NSData+BQSTAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9451C8A1A4BC9350066891C /* NSData+BQSTAdditions.swift */; };
+		E9451C8C1A4BC9350066891C /* NSData+BQSTAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9451C8A1A4BC9350066891C /* NSData+BQSTAdditions.swift */; };
 		E96788811A47884900D38695 /* BQSTRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96788801A47884900D38695 /* BQSTRequestManager.swift */; };
 		E96788831A478E1F00D38695 /* BQSTResponseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96788821A478E1F00D38695 /* BQSTResponseController.swift */; };
 		E999D77B1A4B579F0082324D /* BQSTBlockyCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E999D7761A4B579F0082324D /* BQSTBlockyCollectionCell.swift */; };
@@ -66,6 +68,7 @@
 		9FB006581FE0A43A806A5018 /* Pods_BequestTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BequestTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB872DB7CB0F525FF91DA371 /* Pods-Bequest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bequest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bequest/Pods-Bequest.debug.xcconfig"; sourceTree = "<group>"; };
 		CD3E55E19E0CE39F6AE9C5F3 /* Pods_Bequest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bequest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9451C8A1A4BC9350066891C /* NSData+BQSTAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSData+BQSTAdditions.swift"; sourceTree = "<group>"; };
 		E96788801A47884900D38695 /* BQSTRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTRequestManager.swift; sourceTree = "<group>"; };
 		E96788821A478E1F00D38695 /* BQSTResponseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTResponseController.swift; sourceTree = "<group>"; };
 		E999D7761A4B579F0082324D /* BQSTBlockyCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTBlockyCollectionCell.swift; sourceTree = "<group>"; };
@@ -101,6 +104,7 @@
 		5E0D38961A3A4D5D00A149F2 /* Additions */ = {
 			isa = PBXGroup;
 			children = (
+				E9451C8A1A4BC9350066891C /* NSData+BQSTAdditions.swift */,
 				5EF560521A3C046100A86002 /* UIApplication+BQSTAdditions.swift */,
 				5E0D38971A3A4D6F00A149F2 /* UIColor+BQSTColors.swift */,
 				5E6084B11A3B8A8100F2A8CA /* UIFont+BQSTFonts.swift */,
@@ -432,6 +436,7 @@
 			files = (
 				5E6084B21A3B8A8100F2A8CA /* UIFont+BQSTFonts.swift in Sources */,
 				5E6084B41A3BAFCA00F2A8CA /* BQSTNavigationController.swift in Sources */,
+				E9451C8B1A4BC9350066891C /* NSData+BQSTAdditions.swift in Sources */,
 				5E6084AE1A3B856A00F2A8CA /* UIView+BQSTAnimations.swift in Sources */,
 				E999D77D1A4B579F0082324D /* BQSTCollectionValueCell.swift in Sources */,
 				E96788831A478E1F00D38695 /* BQSTResponseController.swift in Sources */,
@@ -456,6 +461,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E6B025C1A1D5DBA00EB5CCC /* BQSTHTTPClient.swift in Sources */,
+				E9451C8C1A4BC9350066891C /* NSData+BQSTAdditions.swift in Sources */,
 				5E6B02461A1D2DA500EB5CCC /* BQSTHTTPClientTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
