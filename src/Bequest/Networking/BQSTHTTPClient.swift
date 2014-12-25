@@ -74,6 +74,8 @@ public struct BQSTHTTPResponse {
                     
                     serializedResponse.contentType = contentType
                     
+                    println("content-type: \(contentType.description)")
+                    
                     switch contentType {
                     case .JSON:
                         let JSONObject = BQSTJSONResult.resultForData(data, options: nil)
@@ -190,10 +192,16 @@ public class BQSTHTTPClient {
         request.response { (request: NSURLRequest, URLResponse: NSHTTPURLResponse?, object: AnyObject?, error: NSError?) in
             
             if let data = object as? NSData {
-                response(request,
-                    URLResponse,
-                    BQSTHTTPResponse.serializeResponse(URLResponse, data: data),
-                    error)
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
+                    let serializedResponse = BQSTHTTPResponse.serializeResponse(URLResponse, data: data)
+                    
+                    dispatch_async(dispatch_get_main_queue()) {
+                        response(request,
+                            URLResponse,
+                            serializedResponse,
+                            error)
+                    }
+                }
             } else {
                 response(URLRequest, URLResponse, nil, error)
             }
