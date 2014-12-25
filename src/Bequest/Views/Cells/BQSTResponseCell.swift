@@ -10,16 +10,19 @@ import Foundation
 import SSDataSources
 import WebKit
 
-class BQSTResponseCell : SSBaseCollectionCell {
+class BQSTResponseCell : SSBaseTableCell {
     
     private var webView: WKWebView?
-    private var imageView: UIImageView?
+    private var responseImageView: UIImageView?
     private var response: BQSTHTTPResponse?
     private var segmentControl: UISegmentedControl?
     private var textView: BQSTHTMLTextView?
     
     override func configureCell() {
         super.configureCell()
+        
+        self.backgroundColor = UIColor.clearColor()
+        self.selectionStyle = .None
         
         self.segmentControl = UISegmentedControl()
         self.segmentControl?.tintColor = UIColor.BQSTRedColor()
@@ -33,13 +36,13 @@ class BQSTResponseCell : SSBaseCollectionCell {
         if self.response != nil {
             switch self.response!.contentType! {
             case .GIF, .PNG, .JPEG:
-                self.imageView!.frame = self.contentView.bounds
+                self.responseImageView!.frame = self.contentView.bounds
             case .HTML:
-                self.segmentControl!.sizeToFit()
                 self.segmentControl!.frame = CGRectMake(floor((CGRectGetWidth(self.contentView.frame) - 150) / 2),
                     4, 150, 30)
                 let contentRect = CGRectMake(0, 44,
-                    CGRectGetWidth(self.contentView.frame), CGRectGetHeight(self.contentView.frame) - 44)
+                    CGRectGetWidth(self.contentView.frame),
+                    CGRectGetHeight(self.contentView.frame) - 44)
                 
                 self.textView!.frame = contentRect
                 self.webView!.frame = contentRect
@@ -66,7 +69,7 @@ class BQSTResponseCell : SSBaseCollectionCell {
     func configureWithResponse(response: BQSTHTTPResponse) {
         self.response = response
         
-        self.imageView?.removeFromSuperview()
+        self.responseImageView?.removeFromSuperview()
         self.webView?.removeFromSuperview()
         self.segmentControl?.removeFromSuperview()
         self.textView?.removeFromSuperview()
@@ -74,14 +77,14 @@ class BQSTResponseCell : SSBaseCollectionCell {
         switch response.contentType! {
         case .GIF, .PNG, .JPEG:
             
-            if imageView == nil {
-                self.imageView = UIImageView(image: response.object as? UIImage)
-                self.imageView!.contentMode = .ScaleAspectFit
+            if self.responseImageView == nil {
+                self.responseImageView = UIImageView(image: response.object as? UIImage)
+                self.responseImageView!.contentMode = .ScaleAspectFit
             } else {
-                imageView!.image = response.object as? UIImage
+                self.responseImageView!.image = response.object as? UIImage
             }
             
-            self.contentView.addSubview(self.imageView!)
+            self.contentView.addSubview(self.responseImageView!)
             
         case .HTML:
             
@@ -89,7 +92,6 @@ class BQSTResponseCell : SSBaseCollectionCell {
             self.segmentControl!.insertSegmentWithTitle("Raw", atIndex: 0, animated: false)
             self.segmentControl!.insertSegmentWithTitle("Preview", atIndex: 1, animated: false)
             self.segmentControl!.selectedSegmentIndex = 0
-            self.segmentControl!.sizeToFit()
             
             if webView == nil {
                 self.webView = WKWebView(frame: self.contentView.frame,

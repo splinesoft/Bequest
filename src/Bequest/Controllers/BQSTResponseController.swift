@@ -12,61 +12,44 @@ import SSDataSources
 import JTSImageViewController
 import TTTAttributedLabel
 
-class BQSTResponseController : UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class BQSTResponseController : UITableViewController, UITableViewDelegate {
     
-    private let request : NSURLRequest
-    private let response : NSHTTPURLResponse?
-    private let parsedResponse : BQSTHTTPResponse
+    private var request : NSURLRequest?
+    private var response : NSHTTPURLResponse?
+    private var parsedResponse : BQSTHTTPResponse?
     private let dataSource : SSExpandingDataSource = {
         let dataSource = SSExpandingDataSource(items: nil)
         dataSource.removeAllSections()
-        dataSource.collectionViewSupplementaryElementClass = BQSTCollectionHeaderFooterView.self
-        dataSource.cellCreationBlock = { (item, collectionView, indexPath) in
+        dataSource.rowAnimation = .Fade
+
+        dataSource.cellCreationBlock = { (item, tableView, indexPath) in
             if indexPath.section == 0 {
-                return BQSTHeaderCollectionCell(forCollectionView: collectionView as UICollectionView, indexPath: indexPath)
+                return BQSTHeaderCell(forTableView: tableView as UITableView)
             }
             
-            return BQSTResponseCell(forCollectionView: collectionView as UICollectionView, indexPath: indexPath)
+            return BQSTResponseCell(forTableView: tableView as UITableView)
         }
         
         dataSource.collapsedSectionCountBlock = { (section, sectionIndex) in
             if sectionIndex == 0 {
-                return 6
+                return 3
             }
             
             return 0
         }
         
+        dataSource.tableActionBlock = { (action, tableView, indexPath) in
+            return false
+        }
+        
         return dataSource
     }()
-    private let collectionView : UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        let collectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: layout)
-        
-        collectionView.registerClass(BQSTHeaderCollectionCell.self,
-            forCellWithReuseIdentifier: BQSTHeaderCollectionCell.identifier())
-        collectionView.registerClass(BQSTResponseCell.self,
-            forCellWithReuseIdentifier: BQSTResponseCell.identifier())
-        
-        collectionView.registerClass(BQSTCollectionHeaderFooterView.self,
-            forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
-            withReuseIdentifier: BQSTCollectionHeaderFooterView.identifier())
-        
-        return collectionView
-    }()
     
-    init(request: NSURLRequest, response: NSHTTPURLResponse?, parsedResponse: BQSTHTTPResponse) {
+    convenience init(request: NSURLRequest, response: NSHTTPURLResponse?, parsedResponse: BQSTHTTPResponse) {
+        self.init(style: .Plain)
         self.request = request
         self.response = response
         self.parsedResponse = parsedResponse
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    required init(coder aDecoder: NSCoder) {
-        self.request = NSURLRequest()
-        self.parsedResponse = BQSTHTTPResponse(contentType: nil, object: 0)
-        super.init(coder: aDecoder)
-        
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -81,39 +64,25 @@ class BQSTResponseController : UIViewController, UICollectionViewDelegate, UICol
         super.viewDidLoad()
         
         self.title = "Response"
-        self.view.backgroundColor = UIColor.blackColor()
         
-        collectionView.frame = self.view.bounds
-        self.view.addSubview(collectionView)
-        collectionView.delegate = self
+        self.view.backgroundColor = UIColor.blackColor()
+
+        self.tableView.separatorStyle = .None
+        self.tableView.delegate = self
+        
+        self.tableView.registerClass(BQSTTableHeaderFooterView.self,
+            forHeaderFooterViewReuseIdentifier: BQSTTableHeaderFooterView.identifier())
         
         if (response?.statusCode != nil) {
             self.title = self.title! + " (\(response!.statusCode))"
         }
         
-        dataSource.collectionSupplementaryConfigureBlock = { (v, kind, collectionView, indexPath) in
-            let view = v as BQSTCollectionHeaderFooterView
-            
-            view.button?.removeTarget(self, action: Selector("toggleHeaders"), forControlEvents: UIControlEvents.TouchUpInside)
-            
-            if indexPath.section == 0 {
-                view.button?.setTitle("Headers (\(self.dataSource.numberOfItemsInSection(0) / 2))", forState:.Normal)
-                view.button?.addTarget(self, action: Selector("toggleHeaders"), forControlEvents: UIControlEvents.TouchUpInside)
-            }
-        }
-        
-        dataSource.cellConfigureBlock = { (cell, item, collectionView, indexPath) in
+        dataSource.cellConfigureBlock = { (cell, items, collectionView, indexPath) in
             switch indexPath.section {
             case 0:
-                (cell as BQSTHeaderCollectionCell).label!.textAlignment = (indexPath.row % 2 == 0
-                    ? .Right
-                    : .Left)
-                (cell as BQSTHeaderCollectionCell).label!.textColor = (indexPath.row % 2 == 0
-                    ? UIColor.BQSTGrayColor()
-                    : UIColor.BQSTRedColor())
-                (cell as BQSTHeaderCollectionCell).label!.text = item as? String
+                (cell as BQSTHeaderCell).configureWithValues(items as [String])
             case 1:
-                (cell as BQSTResponseCell).configureWithResponse(self.parsedResponse)
+                (cell as BQSTResponseCell).configureWithResponse(self.parsedResponse!)
             default:
                 break
             }
@@ -128,8 +97,7 @@ class BQSTResponseController : UIViewController, UICollectionViewDelegate, UICol
             var headers = NSMutableArray()
             
             for key in sortedNames {
-                headers.addObject(key)
-                headers.addObject(response!.allHeaderFields[key]!)
+                headers.addObject([key, response!.allHeaderFields[key]!])
             }
             
             dataSource.appendSection(SSSection(items: headers))
@@ -138,107 +106,92 @@ class BQSTResponseController : UIViewController, UICollectionViewDelegate, UICol
         // Response object
         dataSource.appendSection(SSSection(numberOfItems: 1))
         
-        dataSource.collectionView = collectionView
+        dataSource.tableView = self.tableView
     }
     
-    /// MARK: UICollectionViewDelegate
+    /// MARK: UITableViewDelegate
     
-    func collectionView(collectionView: UICollectionView,
-        didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
-            
-            if indexPath.section == 1 {
-                switch self.parsedResponse.contentType! {
-                case .JPEG, .GIF, .PNG:
-                    
-                    let imageInfo = JTSImageInfo()
-                    imageInfo.image = self.parsedResponse.object as UIImage
-                    imageInfo.referenceView = collectionView
-                    imageInfo.referenceContentMode = .ScaleAspectFit
-                    
-                    let imageViewController = JTSImageViewController(imageInfo: imageInfo, mode: .Image, backgroundStyle: .Blurred)
-                    
-                    imageViewController.showFromViewController(self, transition: ._FromOffscreen)
-                    
-                default:
-                    break
-                }
-            }
-    }
-    
-    /// MARK: UICollectionViewDelegateFlowLayout
-    
-    func collectionView(collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        referenceSizeForHeaderInSection section: Int) -> CGSize {
+        if section == 0 {
+            return 44
+        }
         
-            if section == 0 {
-                return CGSizeMake(0, 44)
-            }
-            
-            return CGSizeZero
+        return 0
     }
     
-    func collectionView(collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-            switch section {
-            case 0:
-                return UIEdgeInsetsZero
-            default:
-                return UIEdgeInsetsMake(20, 0, 20, 0)
-            }
-    }
-    
-    func collectionView(collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+        if section == 0 {
+            let header = BQSTTableHeaderFooterView(reuseIdentifier: BQSTTableHeaderFooterView.identifier())
             
-            return 0
+            header.button?.removeTarget(self, action: Selector("toggleHeaders"), forControlEvents: UIControlEvents.TouchUpInside)
+            header.button?.setTitle("Headers (\(self.dataSource.numberOfItemsInSection(0)))", forState:.Normal)
+            header.button?.addTarget(self, action: Selector("toggleHeaders"), forControlEvents: UIControlEvents.TouchUpInside)
+            
+            return header
+        }
+        
+        return nil
     }
     
-    func collectionView(collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0
+    }
+    
+    override func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return nil
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
 
-            return 0
-    }
-    
-    func collectionView(collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        
-            if indexPath.section == 0 {
+        if indexPath.section == 0 {
+            let items: [String] = self.dataSource.itemAtIndexPath(indexPath) as [String]!
+            
+            let cellWidth = CGRectGetWidth(tableView.frame) / 2
+            
+            func sizeText(text: String) -> CGFloat {
+                let attributedString = NSAttributedString.headerAttributedString(text)
+                let size = TTTAttributedLabel.sizeThatFitsAttributedString(attributedString,
+                    withConstraints: CGSizeMake(cellWidth - kBQSTSimpleCellInsets.left - kBQSTSimpleCellInsets.right, CGFloat.max),
+                    limitedToNumberOfLines: 0)
                 
-                let cellWidth = CGRectGetWidth(collectionView.frame) / 2
-                
-                func sizeText(text: String) -> CGFloat {
-                    let attributedString = NSAttributedString.headerAttributedString(text)
-                    let size = TTTAttributedLabel.sizeThatFitsAttributedString(attributedString,
-                        withConstraints: CGSizeMake(cellWidth - kBQSTSimpleCellInsets.left - kBQSTSimpleCellInsets.right, CGFloat.max),
-                        limitedToNumberOfLines: 0)
-                    
-                    return ceil(size.height + kBQSTSimpleCellInsets.bottom + kBQSTSimpleCellInsets.top)
-                }
-                
-                let text = dataSource.itemAtIndexPath(indexPath) as NSString
-                let otherText = dataSource.itemAtIndexPath(NSIndexPath(forItem:(indexPath.row % 2 == 0
-                    ? indexPath.row + 1
-                    : indexPath.row - 1), inSection:indexPath.section)) as NSString
-                
-                return CGSizeMake(cellWidth, max(sizeText(text), sizeText(otherText)))
+                return ceil(size.height + kBQSTSimpleCellInsets.bottom + kBQSTSimpleCellInsets.top)
             }
             
-            switch self.parsedResponse.contentType! {
-            case .GIF, .JPEG, .PNG:
-                let size = (self.parsedResponse.object as UIImage).size
-                return CGSizeMake(min(size.width, CGRectGetWidth(collectionView.frame)), min(size.height, 100))
+            return max(sizeText(items[0]), sizeText(items[1]))
+        }
+        
+        switch self.parsedResponse!.contentType! {
+        case .GIF, .JPEG, .PNG:
+            let size = (self.parsedResponse!.object as UIImage).size
+            return min(size.height, 100)
+        case .HTML:
+            return CGRectGetHeight(tableView.frame) - 110
+        default:
+            return 0
+        }
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if indexPath.section == 1 {
+            switch self.parsedResponse!.contentType! {
+            case .JPEG, .GIF, .PNG:
                 
-            case .HTML:
-                return CGSizeMake(CGRectGetWidth(collectionView.frame), CGRectGetHeight(collectionView.frame) - 90)
+                let imageInfo = JTSImageInfo()
+                imageInfo.image = self.parsedResponse!.object as UIImage
+                imageInfo.referenceView = tableView
+                imageInfo.referenceContentMode = .ScaleAspectFit
+                
+                let imageViewController = JTSImageViewController(imageInfo: imageInfo, mode: .Image, backgroundStyle: .Blurred)
+                
+                imageViewController.showFromViewController(self, transition: ._FromOffscreen)
+                
             default:
-                return CGSizeZero
+                break
             }
+        }
+
     }
 }

@@ -30,10 +30,10 @@
 		E96788811A47884900D38695 /* BQSTRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96788801A47884900D38695 /* BQSTRequestManager.swift */; };
 		E96788831A478E1F00D38695 /* BQSTResponseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96788821A478E1F00D38695 /* BQSTResponseController.swift */; };
 		E999D77B1A4B579F0082324D /* BQSTBlockyCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E999D7761A4B579F0082324D /* BQSTBlockyCollectionCell.swift */; };
-		E999D77C1A4B579F0082324D /* BQSTCollectionHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E999D7771A4B579F0082324D /* BQSTCollectionHeaderFooterView.swift */; };
+		E999D77C1A4B579F0082324D /* BQSTTableHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E999D7771A4B579F0082324D /* BQSTTableHeaderFooterView.swift */; };
 		E999D77D1A4B579F0082324D /* BQSTCollectionValueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E999D7781A4B579F0082324D /* BQSTCollectionValueCell.swift */; };
 		E999D77E1A4B579F0082324D /* BQSTResponseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E999D7791A4B579F0082324D /* BQSTResponseCell.swift */; };
-		E999D77F1A4B579F0082324D /* BQSTHeaderCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E999D77A1A4B579F0082324D /* BQSTHeaderCollectionCell.swift */; };
+		E999D77F1A4B579F0082324D /* BQSTHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E999D77A1A4B579F0082324D /* BQSTHeaderCell.swift */; };
 		E999D7811A4B57C30082324D /* BQSTHTMLTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E999D7801A4B57C30082324D /* BQSTHTMLTextView.swift */; };
 		E9D81C531A47C24B00FF7A42 /* BQSTProgressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D81C521A47C24B00FF7A42 /* BQSTProgressButton.swift */; };
 /* End PBXBuildFile section */
@@ -78,10 +78,10 @@
 		E96788801A47884900D38695 /* BQSTRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTRequestManager.swift; sourceTree = "<group>"; };
 		E96788821A478E1F00D38695 /* BQSTResponseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTResponseController.swift; sourceTree = "<group>"; };
 		E999D7761A4B579F0082324D /* BQSTBlockyCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTBlockyCollectionCell.swift; sourceTree = "<group>"; };
-		E999D7771A4B579F0082324D /* BQSTCollectionHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTCollectionHeaderFooterView.swift; sourceTree = "<group>"; };
+		E999D7771A4B579F0082324D /* BQSTTableHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTTableHeaderFooterView.swift; sourceTree = "<group>"; };
 		E999D7781A4B579F0082324D /* BQSTCollectionValueCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTCollectionValueCell.swift; sourceTree = "<group>"; };
 		E999D7791A4B579F0082324D /* BQSTResponseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTResponseCell.swift; sourceTree = "<group>"; };
-		E999D77A1A4B579F0082324D /* BQSTHeaderCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTHeaderCollectionCell.swift; sourceTree = "<group>"; };
+		E999D77A1A4B579F0082324D /* BQSTHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTHeaderCell.swift; sourceTree = "<group>"; };
 		E999D7801A4B57C30082324D /* BQSTHTMLTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTHTMLTextView.swift; sourceTree = "<group>"; };
 		E9D81C521A47C24B00FF7A42 /* BQSTProgressButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTProgressButton.swift; sourceTree = "<group>"; };
 		EF20EFF2E4BA0F289180A5F7 /* Pods-Bequest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bequest.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bequest/Pods-Bequest.release.xcconfig"; sourceTree = "<group>"; };
@@ -237,10 +237,10 @@
 			isa = PBXGroup;
 			children = (
 				E999D7761A4B579F0082324D /* BQSTBlockyCollectionCell.swift */,
-				E999D7771A4B579F0082324D /* BQSTCollectionHeaderFooterView.swift */,
+				E999D7771A4B579F0082324D /* BQSTTableHeaderFooterView.swift */,
 				E999D7781A4B579F0082324D /* BQSTCollectionValueCell.swift */,
 				E999D7791A4B579F0082324D /* BQSTResponseCell.swift */,
-				E999D77A1A4B579F0082324D /* BQSTHeaderCollectionCell.swift */,
+				E999D77A1A4B579F0082324D /* BQSTHeaderCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -449,13 +449,13 @@
 				5E6084AE1A3B856A00F2A8CA /* UIView+BQSTAnimations.swift in Sources */,
 				E999D77D1A4B579F0082324D /* BQSTCollectionValueCell.swift in Sources */,
 				E96788831A478E1F00D38695 /* BQSTResponseController.swift in Sources */,
-				E999D77C1A4B579F0082324D /* BQSTCollectionHeaderFooterView.swift in Sources */,
+				E999D77C1A4B579F0082324D /* BQSTTableHeaderFooterView.swift in Sources */,
 				5E6B025B1A1D5C3B00EB5CCC /* BQSTHTTPClient.swift in Sources */,
 				5E0D389A1A3A4DE300A149F2 /* UIView+BQSTDrawing.swift in Sources */,
 				E999D7811A4B57C30082324D /* BQSTHTMLTextView.swift in Sources */,
 				E999D77B1A4B579F0082324D /* BQSTBlockyCollectionCell.swift in Sources */,
 				5E6B02301A1D2DA500EB5CCC /* AppDelegate.swift in Sources */,
-				E999D77F1A4B579F0082324D /* BQSTHeaderCollectionCell.swift in Sources */,
+				E999D77F1A4B579F0082324D /* BQSTHeaderCell.swift in Sources */,
 				E999D77E1A4B579F0082324D /* BQSTResponseCell.swift in Sources */,
 				E9D81C531A47C24B00FF7A42 /* BQSTProgressButton.swift in Sources */,
 				5EF560531A3C046100A86002 /* UIApplication+BQSTAdditions.swift in Sources */,
