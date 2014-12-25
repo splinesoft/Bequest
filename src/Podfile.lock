@@ -2,7 +2,6 @@ PODS:
   - Alamofire (1.1.0)
   - CYRTextView (0.4.0)
   - JTSImageViewController (1.4)
-  - Masonry (0.5.3)
   - Nimble (0.2.0)
   - pop (1.0.7)
   - Quick (0.2.0)
@@ -13,7 +12,6 @@ DEPENDENCIES:
   - Alamofire (from `https://github.com/mrackwitz/Alamofire.git`, branch `podspec`)
   - CYRTextView
   - JTSImageViewController
-  - Masonry
   - Nimble (from `https://github.com/Quick/Nimble`)
   - pop
   - Quick (from `https://github.com/Quick/Quick`)
@@ -44,7 +42,6 @@ SPEC CHECKSUMS:
   Alamofire: 4cff790102216d69f3b12dd69885c468870d51e9
   CYRTextView: 0ac6cf1da8ef5736fc78ea37978be50e51392c75
   JTSImageViewController: 9fe6402194b7679f0e28d0c1002d6164301fc34a
-  Masonry: 35368c2ca9577ca87722c12fc52c4bad9b1c1516
   Nimble: 7a24fd5e6be10334811078c02ee406a30ea2c89d
   pop: 2f14a1ea61339767af9e66741b418c831b3844df
   Quick: 1b2e5892266a111ec2e13f925f8a4103978f13f8

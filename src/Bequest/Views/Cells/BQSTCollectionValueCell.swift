@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Masonry
 
 class BQSTCollectionValueCell : BQSTBlockyCollectionCell {
     
@@ -38,12 +37,5 @@ class BQSTCollectionValueCell : BQSTBlockyCollectionCell {
         textField!.autocorrectionType = .No
         textField!.spellCheckingType = .No
         self.contentView.addSubview(textField!)
-        
-//        label!.mas_makeConstraints { (make : MASConstraintMaker!) in
-//            // Absurd Swift syntax for Masonry
-//            (((make.right.and().bottom().equalTo())(self.contentView)).insets())(kBQSTBoxShadowInsets)
-//            (((make.left.equalTo())(self.contentView)).insets())(kBQSTBoxInsets)
-//            ((make.height.equalTo())(kBQSTBoxShadowInsets.bottom))
-//        }
     }
 }
