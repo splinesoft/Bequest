@@ -45,7 +45,7 @@ class BQSTHTTPClientTests: QuickSpec {
             context("when creating NSURLRequest objects") {
                 
                 it("can create simple NSURLRequest objects") {
-                    let URLRequest: NSURLRequest = BQSTHTTPClient.requestForURL(URL!,
+                    let URLRequest: NSURLRequest = NSURLRequest.requestForURL(URL!,
                         method: "GET", headers: [:], parameters: [:]);
                     
                     expect(URLRequest).toNot(beNil())
@@ -53,7 +53,7 @@ class BQSTHTTPClientTests: QuickSpec {
                 }
                 
                 it("can create a POST request") {
-                    let URLRequest: NSURLRequest = BQSTHTTPClient.requestForURL(URL!, method: "POST", headers: [:], parameters: [:])
+                    let URLRequest: NSURLRequest = NSURLRequest.requestForURL(URL!, method: "POST", headers: [:], parameters: [:])
                     
                     expect(URLRequest.HTTPMethod == "POST").to(beTruthy())
                 }
