@@ -123,11 +123,31 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
         }
         
         BQSTHTTPClient.request(request, progress: progressBlock) {
-            (request: NSURLRequest, response: NSHTTPURLResponse?, parsedResponse: BQSTHTTPResponse?, error: NSError?) in
+            (request: NSURLRequest,
+            response: NSHTTPURLResponse?,
+            parsedResponse: BQSTHTTPResponse?,
+            error: NSError?) in
+            
+            self.progressButton.progressState = .Complete
+            
+            let failure: (Void) -> (Void) = {
+                let alert = UIAlertView(title: "Request Failed",
+                    message: error?.description ?? "Could not parse a response for this request.",
+                    delegate: nil,
+                    cancelButtonTitle: "Darn")
+                self.progressButton.progressState = .Ready
+                
+                alert.show()
+            }
             
             if let httpResponse = parsedResponse {
+                
+                if response == nil {
+                    failure()
+                    return
+                }
+                
                 println("response received: \(response!.statusCode)")
-                self.progressButton.progressState = .Complete
 
                 dispatch_after(
                     dispatch_time(
@@ -139,12 +159,7 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
                         self.navigationController!.pushViewController(responseController, animated: true)
                 })
             } else {
-                let alert = UIAlertView(title: "Request Failed",
-                    message: error?.description ?? "Could not parse a response for this request.",
-                    delegate: nil,
-                    cancelButtonTitle: "Darn")
-                
-                alert.show()
+                failure()
             }
         }
     }
