@@ -40,9 +40,8 @@ class BQSTHTMLTextView : CYRTextView {
     
     private func updateTokens() {
         self.tokens = [
-            CYRToken(name: "integer", expression: "\\d+", attributes: [NSForegroundColorAttributeName : UIColor.BQSTRedColor()]),
             CYRToken(name: "string", expression: "\".*?(\"|$)", color: (24, 110, 109), font: nil),
-            CYRToken(name: "special_numbers", expression: "[ʝ]", color: (0, 0, 255), font: nil),
+            CYRToken(name: "integer", expression: "\\d+", attributes: [NSForegroundColorAttributeName : UIColor.BQSTRedColor()]),
             CYRToken(name: "mod", expression: "\\bmod\\b", color: (245, 0, 110), font: nil),
             CYRToken(name: "hex_1", expression: "\\$[\\d a-f]+", color: (0, 0, 255), font: nil),
             CYRToken(name: "octal_1", expression: "&[0-7]+", color: (0, 0, 255), font: nil),
@@ -54,7 +53,6 @@ class BQSTHTMLTextView : CYRTextView {
             CYRToken(name: "square_brackets", expression: "[\\[\\]]", color: (105, 0, 0), font: nil),
             CYRToken(name: "absolute_brackets", expression: "[|]", color: (104, 0, 111), font: nil),
             CYRToken(name: "comment", expression: "\\b//.*", color: (31, 131, 0), font: UIFont.BQSTItalicFont(kBQSTDefaultHTMLFontSize)),
-            CYRToken(name: "reserved", expression: "(abs|acos|acosh|asin|asinh|atan|atanh|atomicweight|ceil|complex|cos|cosh|crandom|deriv|erf|erfc|exp|eye|floor|frac|gamma|gaussel|getconst|imag|inf|integ|integhq|inv|ln|log10|log2|machineprecision|max|maximize|min|minimize|molecularweight|ncum|ones|pi|plot|random|real|round|sgn|sin|sqr|sinh|sqrt|tan|tanh|transpose|trunc|var|zeros)", color: (104, 0, 111), font: nil)
         ]
     }
 }
