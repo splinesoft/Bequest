@@ -57,12 +57,12 @@ class BQSTProgressButton: UIControl {
         }
     }
     
-    var progressPercentage: CGFloat = 0 {
+    var progressPercentage: Float = 0 {
         willSet {
             self.circleShapeLayer.removeAllAnimations()
         } didSet {
-            self.circleShapeAnimation.fromValue = oldValue
-            self.circleShapeAnimation.toValue = self.progressPercentage
+            self.circleShapeAnimation.fromValue = NSNumber(float: oldValue)
+            self.circleShapeAnimation.toValue = NSNumber(float: self.progressPercentage)
             self.circleShapeLayer.addAnimation(self.circleShapeAnimation, forKey: "drawCircleAnimation")
             self.setNeedsDisplay()
         }
@@ -84,10 +84,10 @@ class BQSTProgressButton: UIControl {
     private let circleShapeAnimation: CABasicAnimation = {
         let animation = CABasicAnimation(keyPath: "strokeEnd")
         animation.duration = 0.1
-        animation.repeatCount = 1
+        animation.repeatCount = 1.0
         animation.removedOnCompletion = false
         animation.fromValue = 0
-        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
         
         return animation
     }()

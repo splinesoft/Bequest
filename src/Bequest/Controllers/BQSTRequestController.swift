@@ -119,7 +119,7 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
         self.progressButton.progressState = .Loading
         
         let progressBlock: BQSTProgressBlock = { (_, progress: NSProgress) in
-            self.progressButton.progressPercentage = CGFloat(progress.fractionCompleted)
+            self.progressButton.progressPercentage = Float(progress.fractionCompleted)
         }
         
         BQSTHTTPClient.request(request, progress: progressBlock) {
