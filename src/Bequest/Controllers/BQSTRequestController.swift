@@ -210,14 +210,12 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
         let halfWidth = CGSizeMake(fullWidth.width / 2, fullWidth.height)
     
         if let row = BQSTRequestRow(rawValue: indexPath.row) {
-            
             switch row {
             case .URL:
                 return fullWidth
             default:
                 return halfWidth
             }
-            
         }
         
         return CGSizeZero

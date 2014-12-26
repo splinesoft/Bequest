@@ -267,7 +267,7 @@ class BQSTResponseController : UITableViewController {
             case .GIF, .JPEG, .PNG:
                 let size = (self.parsedResponse!.object as UIImage).size
                 return min(size.height, 100)
-            case .HTML:
+            case .HTML, .JSON, .TXT:
                 return CGRectGetHeight(tableView.frame) - 70
             default:
                 return 0

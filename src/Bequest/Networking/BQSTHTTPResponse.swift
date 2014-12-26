@@ -81,7 +81,7 @@ public struct BQSTHTTPResponse {
                     
                     switch contentType {
                     case .JSON:
-                        let JSONObject = BQSTJSONResult.resultForData(data, options: nil)
+                        let JSONObject = BQSTJSONResult.resultForData(data, options: .AllowFragments)
                         
                         switch JSONObject {
                         case .Success(let dict):
