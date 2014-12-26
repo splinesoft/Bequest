@@ -113,7 +113,17 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
         
         self.view.endEditing(true)
         
-        let request = BQSTRequestManager.sharedManager.currentRequest
+        let request: NSURLRequest = BQSTRequestManager.sharedManager.currentRequest
+        
+        if countElements(request.URL.absoluteString!) == 0 {
+            self.BQSTShowSimpleErrorAlert("Missing URL", message: "Please add a URL for this request.")
+            return
+        }
+        
+        if request.HTTPMethod == nil || countElements(request.HTTPMethod!) == 0 {
+            self.BQSTShowSimpleErrorAlert("Missing Method", message: "Please add an HTTP method for this request.")
+            return
+        }
         
         println("Sending a request of type \(request.HTTPMethod!) to URL \(request.URL)")
         
@@ -133,13 +143,7 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
             self.progressButton.progressState = .Complete
             
             let failure: (Void) -> (Void) = {
-                let alert = UIAlertView(title: "Request Failed",
-                    message: error?.description ?? "Could not parse a response for this request.",
-                    delegate: nil,
-                    cancelButtonTitle: "Darn")
-                self.progressButton.progressState = .Ready
-                
-                alert.show()
+                self.BQSTShowSimpleErrorAlert("Request Failed", message: error?.description ?? "Could not parse a response for this request.")
             }
             
             if let httpResponse = parsedResponse {
