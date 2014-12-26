@@ -149,38 +149,42 @@ class BQSTResponseController : UITableViewController, UITableViewDelegate {
             dataSource.appendSection(section)
             
             if let requestHeaders = request!.allHTTPHeaderFields {
-                let sortedNames: [NSObject] = (requestHeaders.keys.array.sorted {
-                    return ($0 as String) < ($1 as String)
-                })
-                
-                var headerItems: [NSObject] = []
-                
-                for header in sortedNames {
-                    let value = requestHeaders[header] as String
-                    headerItems += [header, value]
+                if requestHeaders.count > 0 {
+                    let sortedNames: [NSObject] = (requestHeaders.keys.array.sorted {
+                        return ($0 as String) < ($1 as String)
+                    })
+                    
+                    var headerItems: [NSObject] = []
+                    
+                    for header in sortedNames {
+                        let value = requestHeaders[header] as String
+                        headerItems += [header, value]
+                    }
+                    
+                    let headerSection = SSSection(items: headerItems)
+                    headerSection.sectionIdentifier = NSNumber(integer: BQSTResponseSection.RequestHeaders.rawValue)
+                    dataSource.appendSection(headerSection)
                 }
-                
-                let headerSection = SSSection(items: headerItems)
-                headerSection.sectionIdentifier = NSNumber(integer: BQSTResponseSection.RequestHeaders.rawValue)
-                dataSource.appendSection(headerSection)
             }
         }
         
         // Response Headers
         if let responseHeaders = response?.allHeaderFields {
-            let sortedNames: [NSObject] = (responseHeaders.keys.array.sorted {
-                return ($0 as String) < ($1 as String)
-            })
-            
-            var headers = NSMutableArray()
-            
-            for key in sortedNames {
-                headers.addObject([key, responseHeaders[key]!])
+            if responseHeaders.count > 0 {
+                let sortedNames: [NSObject] = (responseHeaders.keys.array.sorted {
+                    return ($0 as String) < ($1 as String)
+                })
+                
+                var headers = NSMutableArray()
+                
+                for key in sortedNames {
+                    headers.addObject([key, responseHeaders[key]!])
+                }
+                
+                let section = SSSection(items: headers)
+                section.sectionIdentifier = NSNumber(integer: BQSTResponseSection.ResponseHeaders.rawValue)
+                dataSource.appendSection(section)
             }
-            
-            let section = SSSection(items: headers)
-            section.sectionIdentifier = NSNumber(integer: BQSTResponseSection.ResponseHeaders.rawValue)
-            dataSource.appendSection(section)
         }
         
         // Response object
@@ -210,7 +214,7 @@ class BQSTResponseController : UITableViewController, UITableViewDelegate {
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         switch self.responseSectionAtIndex(section) {
-        case .RequestHeaders, .ResponseHeaders:
+        case .ResponseHeaders:
             let header = BQSTTableHeaderFooterView(reuseIdentifier: BQSTTableHeaderFooterView.identifier())
             
             header.button?.removeTarget(self, action: Selector("toggleHeaders"), forControlEvents: UIControlEvents.TouchUpInside)
@@ -223,6 +227,13 @@ class BQSTResponseController : UITableViewController, UITableViewDelegate {
             
             header.button?.removeTarget(self, action: Selector("toggleHeaders"), forControlEvents: .TouchUpInside)
             header.button?.setTitle("Request", forState: .Normal)
+            
+            return header
+        case .RequestHeaders:
+            let header = BQSTTableHeaderFooterView(reuseIdentifier: BQSTTableHeaderFooterView.identifier())
+            
+            header.button?.removeTarget(self, action: Selector("toggleHeaders"), forControlEvents: .TouchUpInside)
+            header.button?.setTitle("Request Headers (\(self.dataSource.numberOfItemsInSection(section)))", forState: .Normal)
             
             return header
         default:
