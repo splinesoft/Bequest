@@ -147,8 +147,6 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
                     return
                 }
                 
-                println("response received: \(response!.statusCode)")
-
                 dispatch_after(
                     dispatch_time(
                         DISPATCH_TIME_NOW,

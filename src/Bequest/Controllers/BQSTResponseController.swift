@@ -36,10 +36,6 @@ class BQSTResponseController : UITableViewController, UITableViewDelegate {
         return dataSource
     }()
     
-    private func responseSectionAtIndex(index: Int) -> BQSTResponseSection {
-        return BQSTResponseSection(rawValue: self.dataSource.sectionAtIndex(index).sectionIdentifier.integerValue) ?? .Unknown
-    }
-    
     convenience init(request: NSURLRequest, response: NSHTTPURLResponse?, parsedResponse: BQSTHTTPResponse) {
         self.init(style: .Plain)
         self.request = request
@@ -49,10 +45,6 @@ class BQSTResponseController : UITableViewController, UITableViewDelegate {
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
-    }
-    
-    func toggleHeaders() {
-        self.dataSource.toggleSectionAtIndex(BQSTResponseSection.ResponseHeaders.rawValue)
     }
     
     override func viewDidLoad() {
@@ -68,9 +60,10 @@ class BQSTResponseController : UITableViewController, UITableViewDelegate {
         self.tableView.registerClass(BQSTTableHeaderFooterView.self,
             forHeaderFooterViewReuseIdentifier: BQSTTableHeaderFooterView.identifier())
         
-        if (response?.statusCode != nil) {
-            self.title = self.title! + " (\(response!.statusCode))"
-        }
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = UIColor.BQSTRedColor()
+        refreshControl.addTarget(self, action: Selector("reloadRequest:"), forControlEvents: .ValueChanged)
+        self.refreshControl = refreshControl
         
         dataSource.cellCreationBlock = { (item, tableView, indexPath) in
             
@@ -106,11 +99,50 @@ class BQSTResponseController : UITableViewController, UITableViewDelegate {
             }
         }
         
+        self.refreshFromResponse()
+        
+        dataSource.tableView = self.tableView
+    }
+    
+    /// MARK: Actions
+    
+    func toggleHeaders() {
+        self.dataSource.toggleSectionAtIndex(Int(self.dataSource.indexOfSectionWithIdentifier(BQSTResponseSection.ResponseHeaders.rawValue)))
+    }
+    
+    func reloadRequest(sender: UIRefreshControl) {
+        if self.request == nil {
+            sender.endRefreshing()
+            return
+        }
+        
+        BQSTHTTPClient.request(self.request!, progress: nil, {
+            (request, httpResponse, parsedResponse, error) in
+            
+            self.request = request
+            self.response = httpResponse
+            self.parsedResponse = parsedResponse
+            self.refreshFromResponse()
+            sender.endRefreshing()
+        })
+    }
+    
+    /// MARK: Updating from an HTTP response
+    
+    private func refreshFromResponse() {
+        dataSource.removeAllSections()
+        dataSource.tableView = nil
+        
+        if (response?.statusCode != nil) {
+            self.title = "Response [\(response!.statusCode)]"
+        }
+        
         // Request details and headers
         if request != nil {
             let requestItems = NSMutableArray()
             requestItems.addObject(["URL" as NSString!, self.request!.URL.absoluteString])
             requestItems.addObject(["Method" as NSString!, self.request!.HTTPMethod ?? "GET"])
+            requestItems.addObject(["Timeout" as NSString!, self.request!.timeoutInterval.description])
             
             let section = SSSection(items: requestItems)
             section.sectionIdentifier = NSNumber(integer: BQSTResponseSection.Request.rawValue)
@@ -139,7 +171,7 @@ class BQSTResponseController : UITableViewController, UITableViewDelegate {
             let sortedNames: [NSObject] = (responseHeaders.keys.array.sorted {
                 return ($0 as String) < ($1 as String)
             })
-
+            
             var headers = NSMutableArray()
             
             for key in sortedNames {
@@ -156,9 +188,14 @@ class BQSTResponseController : UITableViewController, UITableViewDelegate {
         dataSource.appendSection(bodySection)
         
         dataSource.tableView = self.tableView
+        self.dataSource.reloadData()
     }
     
     /// MARK: UITableViewDelegate
+    
+    private func responseSectionAtIndex(index: Int) -> BQSTResponseSection {
+        return BQSTResponseSection(rawValue: self.dataSource.sectionAtIndex(index).sectionIdentifier.integerValue) ?? .Unknown
+    }
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
