@@ -27,6 +27,7 @@
 		E9451C8F1A4BD6BE0066891C /* BQSTHTTPResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9451C8D1A4BD68D0066891C /* BQSTHTTPResponse.swift */; };
 		E9451C911A4BD7140066891C /* NSURLRequest+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9451C901A4BD7140066891C /* NSURLRequest+Additions.swift */; };
 		E9451C921A4BD7140066891C /* NSURLRequest+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9451C901A4BD7140066891C /* NSURLRequest+Additions.swift */; };
+		E946B7E71A4CE626000BB840 /* BQSTKIFTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946B7E61A4CE626000BB840 /* BQSTKIFTests.swift */; };
 		E96788811A47884900D38695 /* BQSTRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96788801A47884900D38695 /* BQSTRequestManager.swift */; };
 		E96788831A478E1F00D38695 /* BQSTResponseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96788821A478E1F00D38695 /* BQSTResponseController.swift */; };
 		E999D77B1A4B579F0082324D /* BQSTBlockyCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E999D7761A4B579F0082324D /* BQSTBlockyCollectionCell.swift */; };
@@ -75,6 +76,8 @@
 		E9451C8A1A4BC9350066891C /* NSData+BQSTAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSData+BQSTAdditions.swift"; sourceTree = "<group>"; };
 		E9451C8D1A4BD68D0066891C /* BQSTHTTPResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTHTTPResponse.swift; sourceTree = "<group>"; };
 		E9451C901A4BD7140066891C /* NSURLRequest+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURLRequest+Additions.swift"; sourceTree = "<group>"; };
+		E946B7E61A4CE626000BB840 /* BQSTKIFTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTKIFTests.swift; sourceTree = "<group>"; };
+		E946B7E81A4CE673000BB840 /* BequestTestsBridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BequestTestsBridgingHeader.h; sourceTree = "<group>"; };
 		E96788801A47884900D38695 /* BQSTRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTRequestManager.swift; sourceTree = "<group>"; };
 		E96788821A478E1F00D38695 /* BQSTResponseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTResponseController.swift; sourceTree = "<group>"; };
 		E999D7761A4B579F0082324D /* BQSTBlockyCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTBlockyCollectionCell.swift; sourceTree = "<group>"; };
@@ -177,6 +180,8 @@
 		5E6B02421A1D2DA500EB5CCC /* BequestTests */ = {
 			isa = PBXGroup;
 			children = (
+				E946B7E81A4CE673000BB840 /* BequestTestsBridgingHeader.h */,
+				E946B7E61A4CE626000BB840 /* BQSTKIFTests.swift */,
 				5E6B02451A1D2DA500EB5CCC /* BQSTHTTPClientTests.swift */,
 				5E6B02431A1D2DA500EB5CCC /* Supporting Files */,
 			);
@@ -472,6 +477,7 @@
 			files = (
 				5E6B025C1A1D5DBA00EB5CCC /* BQSTHTTPClient.swift in Sources */,
 				E9451C8C1A4BC9350066891C /* NSData+BQSTAdditions.swift in Sources */,
+				E946B7E71A4CE626000BB840 /* BQSTKIFTests.swift in Sources */,
 				E9451C8F1A4BD6BE0066891C /* BQSTHTTPResponse.swift in Sources */,
 				E9451C921A4BD7140066891C /* NSURLRequest+Additions.swift in Sources */,
 				5E6B02461A1D2DA500EB5CCC /* BQSTHTTPClientTests.swift in Sources */,
@@ -687,6 +693,7 @@
 				INFOPLIST_FILE = BequestTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/BequestTests/BequestTestsBridgingHeader.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bequest.app/Bequest";
 			};
 			name = Debug;
@@ -703,6 +710,7 @@
 				INFOPLIST_FILE = BequestTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/BequestTests/BequestTestsBridgingHeader.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bequest.app/Bequest";
 			};
 			name = Release;
@@ -806,6 +814,7 @@
 				INFOPLIST_FILE = BequestTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/BequestTests/BequestTestsBridgingHeader.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bequest.app/Bequest";
 			};
 			name = Adhoc;

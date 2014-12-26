@@ -37,6 +37,7 @@ class BQSTProgressButton: UIControl {
                 self.circleShapeLayer.removeFromSuperlayer()
                 self.circleShapeLayer.strokeStart = 0
                 self.circleShapeLayer.strokeEnd = 0
+                self.accessibilityLabel = "Send"
             case .Loading:
                 let circleRect = CGRectInset(self.bounds, 8, 8)
                 self.circleShapeLayer.strokeStart = 0
@@ -44,10 +45,13 @@ class BQSTProgressButton: UIControl {
                 self.circleShapeLayer.strokeColor = self.progressColor.CGColor
                 self.circleShapeLayer.path = UIBezierPath(ovalInRect: circleRect).CGPath
                 self.layer.addSublayer(self.circleShapeLayer)
+                self.accessibilityLabel = "Cancel"
+                self.accessibilityHint = "Tap to Cancel"
 
             case .Complete:
                 self.circleShapeLayer.strokeEnd = 1
                 self.circleShapeLayer.strokeColor = UIColor.BQSTGreenColor().CGColor
+                self.accessibilityLabel = "Complete"
                 
             default:
                 break

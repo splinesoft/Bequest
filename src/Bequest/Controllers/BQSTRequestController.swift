@@ -85,8 +85,10 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
                 switch row {
                 case .Method:
                     cell.label?.text = "Method"
+                    cell.textField!.accessibilityLabel = "Method"
                 case .URL:
                     cell.label?.text = "URL"
+                    cell.textField!.accessibilityLabel = "URL"
                 default:
                     break
                 }
