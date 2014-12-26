@@ -118,7 +118,7 @@ class BQSTResponseController : UITableViewController {
             return
         }
         
-        BQSTHTTPClient.request(self.request!, progress: nil, {
+        BQSTHTTPClient.request(self.request!, progress: nil) {
             (request, httpResponse, parsedResponse, error) in
             
             self.request = request
@@ -126,7 +126,7 @@ class BQSTResponseController : UITableViewController {
             self.parsedResponse = parsedResponse
             self.refreshFromResponse()
             sender.endRefreshing()
-        })
+        }
     }
     
     /// MARK: Updating from an HTTP response
@@ -190,8 +190,10 @@ class BQSTResponseController : UITableViewController {
         }
         
         // Response object
-        let bodySection = SSSection(numberOfItems: 1, header: nil, footer: nil, identifier: BQSTResponseSection.Body.rawValue)
-        dataSource.appendSection(bodySection)
+        if parsedResponse != nil {
+            let bodySection = SSSection(numberOfItems: 1, header: nil, footer: nil, identifier: BQSTResponseSection.Body.rawValue)
+            dataSource.appendSection(bodySection)
+        }
         
         dataSource.tableView = self.tableView
         self.dataSource.reloadData()
@@ -257,20 +259,9 @@ class BQSTResponseController : UITableViewController {
 
         switch self.responseSectionAtIndex(indexPath.section) {
         case .RequestHeaders, .ResponseHeaders, .Request:
-            let items: [String] = self.dataSource.itemAtIndexPath(indexPath) as [String]!
-            
+            let items: [String] = self.dataSource.itemAtIndexPath(indexPath) as [String]
             let cellWidth = CGRectGetWidth(tableView.frame) / 2
-            
-            func sizeText(text: String) -> CGFloat {
-                let attributedString = NSAttributedString.headerAttributedString(text)
-                let size = TTTAttributedLabel.sizeThatFitsAttributedString(attributedString,
-                    withConstraints: CGSizeMake(cellWidth - kBQSTSimpleCellInsets.left - kBQSTSimpleCellInsets.right, CGFloat.max),
-                    limitedToNumberOfLines: 0)
-                
-                return ceil(size.height + kBQSTSimpleCellInsets.bottom + kBQSTSimpleCellInsets.top)
-            }
-            
-            return max(sizeText(items[0]), sizeText(items[1]))
+            return BQSTHeaderCell.heightForCell(values: items, availableWidth: cellWidth)
         case .Body:
             switch self.parsedResponse!.contentType {
             case .GIF, .JPEG, .PNG:
