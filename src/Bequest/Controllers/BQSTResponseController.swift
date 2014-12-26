@@ -62,7 +62,7 @@ class BQSTResponseController : UITableViewController {
             forHeaderFooterViewReuseIdentifier: BQSTTableHeaderFooterView.identifier())
         
         let refreshControl = UIRefreshControl()
-        refreshControl.accessibilityLabel = "Refresh"
+        refreshControl.accessibilityLabel = BQSTLocalizedString("RESPONSE_REFRESH")
         refreshControl.tintColor = UIColor.BQSTRedColor()
         refreshControl.addTarget(self, action: Selector("reloadRequest:"), forControlEvents: .ValueChanged)
         self.refreshControl = refreshControl

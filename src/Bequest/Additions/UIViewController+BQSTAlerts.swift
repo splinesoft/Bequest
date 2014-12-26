@@ -14,7 +14,7 @@ extension UIViewController {
     func BQSTShowSimpleErrorAlert(title: String, message: String) {
         let controller = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         
-        let action = UIAlertAction(title: "Darn", style: .Default, handler: nil)
+        let action = UIAlertAction(title: BQSTLocalizedString("ALERT_OKAY"), style: .Default, handler: nil)
         controller.addAction(action)
         
         self.presentViewController(controller, animated: true, completion: nil)

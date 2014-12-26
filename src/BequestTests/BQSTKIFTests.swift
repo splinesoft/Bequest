@@ -12,6 +12,9 @@ import KIF
 
 class BQSTKIFTests : KIFTestCase {
     
+    private let kBQSTSendKey = BQSTLocalizedString("SEND_REQUEST")
+    private let kBQSTAlertKey = BQSTLocalizedString("ALERT_OKAY")
+    
     private var tester: KIFUITestActor {
         get {
             return KIFUITestActor(inFile: __FILE__, atLine: __LINE__, delegate: self)
@@ -34,44 +37,44 @@ class BQSTKIFTests : KIFTestCase {
     
     func testEmptyMethod() {
         self.setUpRequest("http://splinesoft.net", method: "")
-        tester.tapViewWithAccessibilityLabel("Send")
-        tester.tapViewWithAccessibilityLabel("Darn")
+        tester.tapViewWithAccessibilityLabel(kBQSTSendKey)
+        tester.tapViewWithAccessibilityLabel(kBQSTAlertKey)
     }
     
     func testEmptyURL() {
         self.setUpRequest("", method: "GET")
-        tester.tapViewWithAccessibilityLabel("Send")
-        tester.tapViewWithAccessibilityLabel("Darn")
+        tester.tapViewWithAccessibilityLabel(kBQSTSendKey)
+        tester.tapViewWithAccessibilityLabel(kBQSTAlertKey)
     }
     
     func testSimpleRequest() {
         self.setUpRequest("http://httpbin.org/get", method: "GET")
-        tester.tapViewWithAccessibilityLabel("Send")
+        tester.tapViewWithAccessibilityLabel(kBQSTSendKey)
         tester.waitForViewWithAccessibilityLabel("Response [200]")
         tester.tapViewWithAccessibilityLabel("Back")
     }
     
     func testCustomURLAndMethod() {
         self.setUpRequest("http://httpbin.org/post", method: "POST")
-        tester.tapViewWithAccessibilityLabel("Send")
+        tester.tapViewWithAccessibilityLabel(kBQSTSendKey)
         tester.waitForViewWithAccessibilityLabel("Response [200]")
         tester.tapViewWithAccessibilityLabel("Back")
     }
     
     func testCustomURLAndInvalidMethod() {
         self.setUpRequest("http://httpbin.org/post", method: "NOT-POST")
-        tester.tapViewWithAccessibilityLabel("Send")
+        tester.tapViewWithAccessibilityLabel(kBQSTSendKey)
         tester.waitForViewWithAccessibilityLabel("Response [405]")
         tester.tapViewWithAccessibilityLabel("Back")
     }
     
     func testRefreshingResponse() {
         self.setUpRequest("https://google.com", method: "GET")
-        tester.tapViewWithAccessibilityLabel("Send")
+        tester.tapViewWithAccessibilityLabel(kBQSTSendKey)
         tester.waitForViewWithAccessibilityLabel("Response [200]")
         tester.swipeViewWithAccessibilityLabel("Response", inDirection: .Down)
         tester.swipeViewWithAccessibilityLabel("Response", inDirection: .Down)
-        tester.waitForAbsenceOfViewWithAccessibilityLabel("Refresh")
+        tester.waitForAbsenceOfViewWithAccessibilityLabel(BQSTLocalizedString("RESPONSE_REFRESH"))
         tester.tapViewWithAccessibilityLabel("Back")
     }
 }
