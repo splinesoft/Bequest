@@ -113,7 +113,7 @@ class BQSTHTTPClientTests: QuickSpec {
                             (_, _, object: BQSTHTTPResponse?, _) in
                             
                             expect(object).toNot(beNil())
-                            expect(object!.contentType! == .PNG).to(beTrue())
+                            expect(object!.contentType == .PNG).to(beTrue())
                             expect(object!.object as? UIImage).toNot(beNil())
                             completion()
                         }
@@ -138,7 +138,7 @@ class BQSTHTTPClientTests: QuickSpec {
                             expect(resp).toNot(beNil())
                             expect(object).toNot(beNil())
                             expect(resp!.statusCode == 200).to(beTruthy())
-                            expect(object!.contentType! == .JSON).to(beTrue())
+                            expect(object!.contentType == .JSON).to(beTrue())
                                 
                             if let dict = object!.object as? BQSTJSONResponse {
                                 expect(dict.count == 2).to(beTrue())

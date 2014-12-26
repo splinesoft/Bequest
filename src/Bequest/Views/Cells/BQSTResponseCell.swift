@@ -34,7 +34,7 @@ class BQSTResponseCell : SSBaseTableCell {
         super.layoutSubviews()
         
         if self.response != nil {
-            switch self.response!.contentType! {
+            switch self.response!.contentType {
             case .GIF, .PNG, .JPEG:
                 self.responseImageView!.frame = self.contentView.bounds
             case .HTML:
@@ -53,7 +53,7 @@ class BQSTResponseCell : SSBaseTableCell {
     }
     
     func segmentControlChanged(segmentControl: UISegmentedControl) {        
-        if response!.contentType! == .HTML {
+        if response!.contentType == .HTML {
             if segmentControl.selectedSegmentIndex == 0 {
                 self.webView?.removeFromSuperview()
                 self.contentView.addSubview(self.textView!)
@@ -74,7 +74,7 @@ class BQSTResponseCell : SSBaseTableCell {
         self.segmentControl?.removeFromSuperview()
         self.textView?.removeFromSuperview()
         
-        switch response.contentType! {
+        switch response.contentType {
         case .GIF, .PNG, .JPEG:
             
             if self.responseImageView == nil {

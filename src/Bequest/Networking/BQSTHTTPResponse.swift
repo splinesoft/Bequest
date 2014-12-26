@@ -51,17 +51,20 @@ public enum BQSTResponseContentType: String {
     case TXT  = "text/plain"
     case HTML = "text/html"
     
+    // Som
+    case Unknown = "net.splinesoft.Unknown"
+    
     public var description: String {
         return self.rawValue
     }
 }
 
 public struct BQSTHTTPResponse {
-    var contentType: BQSTResponseContentType? // The interpreted content type
+    var contentType: BQSTResponseContentType // The interpreted content type
     var object: AnyObject // The serialized object, or raw NSData if serializing failed
     
     public static func serializeResponse(response: NSHTTPURLResponse?, data: NSData) -> BQSTHTTPResponse {
-        var serializedResponse = BQSTHTTPResponse(contentType: nil, object: data)
+        var serializedResponse = BQSTHTTPResponse(contentType: .Unknown, object: data)
         
         if let headers = response?.allHeaderFields {
             
@@ -88,11 +91,6 @@ public struct BQSTHTTPResponse {
                         }
                         
                     case .XML:
-                        //                    let XMLParser = NSXMLParser(data: data)
-                        //
-                        //                    if XMLParser.parse() {
-                        //
-                        //                    }
                         
                         break
                         

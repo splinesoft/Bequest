@@ -270,7 +270,7 @@ class BQSTResponseController : UITableViewController {
             
             return max(sizeText(items[0]), sizeText(items[1]))
         case .Body:
-            switch self.parsedResponse!.contentType! {
+            switch self.parsedResponse!.contentType {
             case .GIF, .JPEG, .PNG:
                 let size = (self.parsedResponse!.object as UIImage).size
                 return min(size.height, 100)
@@ -288,7 +288,7 @@ class BQSTResponseController : UITableViewController {
         
         switch self.responseSectionAtIndex(indexPath.section) {
         case .Body:
-            switch self.parsedResponse!.contentType! {
+            switch self.parsedResponse!.contentType {
             case .JPEG, .GIF, .PNG:
                 
                 let imageInfo = JTSImageInfo()
