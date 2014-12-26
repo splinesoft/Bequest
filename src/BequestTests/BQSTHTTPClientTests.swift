@@ -67,7 +67,7 @@ class BQSTHTTPClientTests: QuickSpec {
                         BQSTHTTPClient.request(URL!) { (_, resp: NSHTTPURLResponse?, _, _) in
                             
                             expect(resp).toNot(beNil())
-                            expect(resp!.statusCode == 200).to(beTruthy())
+                            expect(resp?.statusCode == 200).to(beTruthy())
                             completion()
                         }
                     }
@@ -80,7 +80,7 @@ class BQSTHTTPClientTests: QuickSpec {
                             (req, resp: NSHTTPURLResponse?, _, _) in
                             
                             expect(resp).toNot(beNil())
-                            expect(resp!.statusCode == 200).to(beTruthy())
+                            expect(resp?.statusCode == 200).to(beTruthy())
                             completion()
                         }
                     }
@@ -137,7 +137,7 @@ class BQSTHTTPClientTests: QuickSpec {
                             
                             expect(resp).toNot(beNil())
                             expect(object).toNot(beNil())
-                            expect(resp!.statusCode == 200).to(beTruthy())
+                            expect(resp?.statusCode == 200).to(beTruthy())
                             expect(object!.contentType == .JSON).to(beTrue())
                                 
                             if let dict = object!.object as? BQSTJSONResponse {
