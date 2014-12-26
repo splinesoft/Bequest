@@ -142,14 +142,16 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
             
             self.progressButton.progressState = .Complete
             
-            let failure: (Void) -> (Void) = {
-                self.BQSTShowSimpleErrorAlert("Request Failed", message: error?.description ?? "Could not parse a response for this request.")
+            let failure: (error: NSError?) -> (Void) = {
+                error in
+                self.progressButton.progressState = .Ready
+                self.BQSTShowSimpleErrorAlert("Request Failed", error: error)
             }
             
             if let httpResponse = parsedResponse {
                 
                 if response == nil {
-                    failure()
+                    failure(error: error)
                     return
                 }
                 
@@ -163,7 +165,7 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
                         self.navigationController!.pushViewController(responseController, animated: true)
                 })
             } else {
-                failure()
+                failure(error: error)
             }
         }
     }

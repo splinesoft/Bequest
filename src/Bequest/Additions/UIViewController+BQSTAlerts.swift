@@ -19,4 +19,11 @@ extension UIViewController {
         
         self.presentViewController(controller, animated: true, completion: nil)
     }
+    
+    func BQSTShowSimpleErrorAlert(title: String, error: NSError?) {
+        let msg = (error?.userInfo?[NSUnderlyingErrorKey] as NSError).localizedDescription
+            ?? "Could not parse a response for this request."
+        
+        self.BQSTShowSimpleErrorAlert("Request Failed", message: msg)
+    }
 }
