@@ -1,6 +1,6 @@
 osx_image: xcode61
 language: objective-c
-install: 
-    - bundle install
-    - rake setup
+before_install: gem install cocoapods --pre -N
+cache: cocoapods
+podfile: src/Podfile
 script: rake test
