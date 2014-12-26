@@ -8,6 +8,6 @@
 
 import Foundation
 
-func BQSTLocalizedString(key: String) -> String {
-    return NSLocalizedString(key, tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: "")
+func BQSTLocalizedString(key: String) -> String! {
+    return NSLocalizedString(key, tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: "") ?? ""
 }

@@ -50,13 +50,13 @@ class BQSTResponseController : UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Response"
+        self.title = BQSTLocalizedString("RESPONSE")
         
         self.view.backgroundColor = UIColor.blackColor()
 
         self.tableView.separatorStyle = .None
         self.tableView.delegate = self
-        self.tableView.accessibilityLabel = "Response"
+        self.tableView.accessibilityLabel = BQSTLocalizedString("RESPONSE")
         
         self.tableView.registerClass(BQSTTableHeaderFooterView.self,
             forHeaderFooterViewReuseIdentifier: BQSTTableHeaderFooterView.identifier())
@@ -136,15 +136,15 @@ class BQSTResponseController : UITableViewController {
         dataSource.tableView = nil
         
         if (response?.statusCode != nil) {
-            self.title = "Response [\(response!.statusCode)]"
+            self.title = BQSTLocalizedString("RESPONSE") + " [\(response!.statusCode)]"
         }
         
         // Request details and headers
         if request != nil {
             let requestItems = NSMutableArray()
-            requestItems.addObject(["URL" as NSString!, self.request!.URL.absoluteString])
-            requestItems.addObject(["Method" as NSString!, self.request!.HTTPMethod ?? "GET"])
-            requestItems.addObject(["Timeout" as NSString!, self.request!.timeoutInterval.description])
+            requestItems.addObject([BQSTLocalizedString("REQUEST_URL"), self.request!.URL.absoluteString])
+            requestItems.addObject([BQSTLocalizedString("REQUEST_METHOD"), self.request!.HTTPMethod ?? "GET"])
+            requestItems.addObject([BQSTLocalizedString("REQUEST_TIMEOUT"), self.request!.timeoutInterval.description])
             
             let section = SSSection(items: requestItems)
             section.sectionIdentifier = NSNumber(integer: BQSTResponseSection.Request.rawValue)
@@ -220,7 +220,8 @@ class BQSTResponseController : UITableViewController {
             let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier(BQSTTableHeaderFooterView.identifier()) as BQSTTableHeaderFooterView
             
             header.button?.removeTarget(self, action: Selector("toggleHeaders"), forControlEvents: UIControlEvents.TouchUpInside)
-            header.button?.setTitle("Response Headers (\(self.dataSource.numberOfItemsInSection(section)))", forState:.Normal)
+            header.button?.setTitle(BQSTLocalizedString("RESPONSE_HEADERS") +
+                " (\(self.dataSource.numberOfItemsInSection(section)))", forState:.Normal)
             header.button?.addTarget(self, action: Selector("toggleHeaders"), forControlEvents: UIControlEvents.TouchUpInside)
             
             return header
@@ -228,14 +229,15 @@ class BQSTResponseController : UITableViewController {
             let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier(BQSTTableHeaderFooterView.identifier()) as BQSTTableHeaderFooterView
             
             header.button?.removeTarget(self, action: Selector("toggleHeaders"), forControlEvents: .TouchUpInside)
-            header.button?.setTitle("Request", forState: .Normal)
+            header.button?.setTitle(BQSTLocalizedString("REQUEST"), forState: .Normal)
             
             return header
         case .RequestHeaders:
             let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier(BQSTTableHeaderFooterView.identifier()) as BQSTTableHeaderFooterView
             
             header.button?.removeTarget(self, action: Selector("toggleHeaders"), forControlEvents: .TouchUpInside)
-            header.button?.setTitle("Request Headers (\(self.dataSource.numberOfItemsInSection(section)))", forState: .Normal)
+            header.button?.setTitle(BQSTLocalizedString("REQUEST_HEADERS") +
+                " (\(self.dataSource.numberOfItemsInSection(section)))", forState: .Normal)
             
             return header
         default:

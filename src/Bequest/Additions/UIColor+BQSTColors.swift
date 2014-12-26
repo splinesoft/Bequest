@@ -12,7 +12,7 @@ import UIKit
 extension UIColor {
     
     class func BQSTRedColor() -> UIColor {
-        return self(red: CGFloat(0.88), green: CGFloat(0.11), blue: CGFloat(0.13), alpha: 1)
+        return self(red: CGFloat(0.7), green: CGFloat(0.11), blue: CGFloat(0.13), alpha: 1)
     }
     
     class func BQSTGrayColor() -> UIColor {

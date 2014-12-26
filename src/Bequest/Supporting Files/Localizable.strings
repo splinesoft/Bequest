@@ -10,8 +10,11 @@
 
 "SEND_REQUEST" = "Send";
 
+"REQUEST" = "Request";
 "REQUEST_URL" = "URL";
 "REQUEST_METHOD" = "Method";
+"REQUEST_TIMEOUT" = "Timeout";
+"REQUEST_HEADERS" = "Request Headers";
 
 /* Request errors */
 
@@ -26,4 +29,9 @@
 
 /* Responses */
 
+"RESPONSE" = "Response";
 "RESPONSE_REFRESH" = "Refresh";
+"RESPONSE_HEADERS" = "Response Headers";
+
+"RESPONSE_RAW" = "Response";
+"RESPONSE_PREVIEW" = "Preview";

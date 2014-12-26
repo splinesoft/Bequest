@@ -89,8 +89,8 @@ class BQSTResponseCell : SSBaseTableCell {
         case .HTML:
             
             self.segmentControl!.removeAllSegments()
-            self.segmentControl!.insertSegmentWithTitle("Raw", atIndex: 0, animated: false)
-            self.segmentControl!.insertSegmentWithTitle("Preview", atIndex: 1, animated: false)
+            self.segmentControl!.insertSegmentWithTitle(BQSTLocalizedString("RESPONSE_RAW"), atIndex: 0, animated: false)
+            self.segmentControl!.insertSegmentWithTitle(BQSTLocalizedString("RESPONSE_PREVIEW"), atIndex: 1, animated: false)
             self.segmentControl!.selectedSegmentIndex = 0
             
             if webView == nil {
