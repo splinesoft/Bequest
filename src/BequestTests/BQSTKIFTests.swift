@@ -62,4 +62,14 @@ class BQSTKIFTests : KIFTestCase {
         tester().waitForViewWithAccessibilityLabel("Response [405]")
         tester().tapViewWithAccessibilityLabel("Back")
     }
+    
+    func testRefreshingResponse() {
+        self.setUpRequest("https://google.com", method: "GET")
+        tester().tapViewWithAccessibilityLabel("Send")
+        tester().waitForViewWithAccessibilityLabel("Response [200]")
+        tester().swipeViewWithAccessibilityLabel("Response", inDirection: .Down)
+        tester().swipeViewWithAccessibilityLabel("Response", inDirection: .Down)
+        tester().waitForAbsenceOfViewWithAccessibilityLabel("Refresh")
+        tester().tapViewWithAccessibilityLabel("Back")
+    }
 }

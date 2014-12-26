@@ -56,11 +56,13 @@ class BQSTResponseController : UITableViewController {
 
         self.tableView.separatorStyle = .None
         self.tableView.delegate = self
+        self.tableView.accessibilityLabel = "Response"
         
         self.tableView.registerClass(BQSTTableHeaderFooterView.self,
             forHeaderFooterViewReuseIdentifier: BQSTTableHeaderFooterView.identifier())
         
         let refreshControl = UIRefreshControl()
+        refreshControl.accessibilityLabel = "Refresh"
         refreshControl.tintColor = UIColor.BQSTRedColor()
         refreshControl.addTarget(self, action: Selector("reloadRequest:"), forControlEvents: .ValueChanged)
         self.refreshControl = refreshControl
