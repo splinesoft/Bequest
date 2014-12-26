@@ -109,6 +109,7 @@ class BQSTResponseCell : SSBaseTableCell {
             self.setNeedsLayout()
             
             textView!.text = response.object as String
+            textView!.contentOffset = CGPointZero
             webView!.loadHTMLString(response.object as String, baseURL: nil)
             
         default:

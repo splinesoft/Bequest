@@ -1,5 +1,5 @@
 //
-//  BQSTCollectionValueCell.swift
+//  BQSTTextFieldCollectionCell.swift
 //  Bequest
 //
 //  Created by Jonathan Hersh on 12/12/14.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class BQSTCollectionValueCell : BQSTBlockyCollectionCell {
+class BQSTTextFieldCollectionCell : BQSTBlockyCollectionCell {
     
     var label : UILabel?
     var textField : UITextField?

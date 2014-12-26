@@ -34,7 +34,7 @@
 		E96788831A478E1F00D38695 /* BQSTResponseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96788821A478E1F00D38695 /* BQSTResponseController.swift */; };
 		E999D77B1A4B579F0082324D /* BQSTBlockyCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E999D7761A4B579F0082324D /* BQSTBlockyCollectionCell.swift */; };
 		E999D77C1A4B579F0082324D /* BQSTTableHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E999D7771A4B579F0082324D /* BQSTTableHeaderFooterView.swift */; };
-		E999D77D1A4B579F0082324D /* BQSTCollectionValueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E999D7781A4B579F0082324D /* BQSTCollectionValueCell.swift */; };
+		E999D77D1A4B579F0082324D /* BQSTTextFieldCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E999D7781A4B579F0082324D /* BQSTTextFieldCollectionCell.swift */; };
 		E999D77E1A4B579F0082324D /* BQSTResponseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E999D7791A4B579F0082324D /* BQSTResponseCell.swift */; };
 		E999D77F1A4B579F0082324D /* BQSTHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E999D77A1A4B579F0082324D /* BQSTHeaderCell.swift */; };
 		E999D7811A4B57C30082324D /* BQSTHTMLTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E999D7801A4B57C30082324D /* BQSTHTMLTextView.swift */; };
@@ -85,7 +85,7 @@
 		E96788821A478E1F00D38695 /* BQSTResponseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTResponseController.swift; sourceTree = "<group>"; };
 		E999D7761A4B579F0082324D /* BQSTBlockyCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTBlockyCollectionCell.swift; sourceTree = "<group>"; };
 		E999D7771A4B579F0082324D /* BQSTTableHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTTableHeaderFooterView.swift; sourceTree = "<group>"; };
-		E999D7781A4B579F0082324D /* BQSTCollectionValueCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTCollectionValueCell.swift; sourceTree = "<group>"; };
+		E999D7781A4B579F0082324D /* BQSTTextFieldCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTTextFieldCollectionCell.swift; sourceTree = "<group>"; };
 		E999D7791A4B579F0082324D /* BQSTResponseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTResponseCell.swift; sourceTree = "<group>"; };
 		E999D77A1A4B579F0082324D /* BQSTHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTHeaderCell.swift; sourceTree = "<group>"; };
 		E999D7801A4B57C30082324D /* BQSTHTMLTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTHTMLTextView.swift; sourceTree = "<group>"; };
@@ -247,7 +247,7 @@
 			children = (
 				E999D7761A4B579F0082324D /* BQSTBlockyCollectionCell.swift */,
 				E999D7771A4B579F0082324D /* BQSTTableHeaderFooterView.swift */,
-				E999D7781A4B579F0082324D /* BQSTCollectionValueCell.swift */,
+				E999D7781A4B579F0082324D /* BQSTTextFieldCollectionCell.swift */,
 				E999D7791A4B579F0082324D /* BQSTResponseCell.swift */,
 				E999D77A1A4B579F0082324D /* BQSTHeaderCell.swift */,
 			);
@@ -456,7 +456,7 @@
 				5E6084B41A3BAFCA00F2A8CA /* BQSTNavigationController.swift in Sources */,
 				E9451C8B1A4BC9350066891C /* NSData+BQSTAdditions.swift in Sources */,
 				5E6084AE1A3B856A00F2A8CA /* UIView+BQSTAnimations.swift in Sources */,
-				E999D77D1A4B579F0082324D /* BQSTCollectionValueCell.swift in Sources */,
+				E999D77D1A4B579F0082324D /* BQSTTextFieldCollectionCell.swift in Sources */,
 				E96788831A478E1F00D38695 /* BQSTResponseController.swift in Sources */,
 				E999D77C1A4B579F0082324D /* BQSTTableHeaderFooterView.swift in Sources */,
 				5E6B025B1A1D5C3B00EB5CCC /* BQSTHTTPClient.swift in Sources */,

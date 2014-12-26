@@ -31,8 +31,8 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
 
     private let collectionView: UICollectionView = {
         let cv = UICollectionView(frame: CGRectZero, collectionViewLayout: UICollectionViewFlowLayout())
-        cv.registerClass(BQSTCollectionValueCell.self,
-            forCellWithReuseIdentifier: BQSTCollectionValueCell.identifier())
+        cv.registerClass(BQSTTextFieldCollectionCell.self,
+            forCellWithReuseIdentifier: BQSTTextFieldCollectionCell.identifier())
         cv.keyboardDismissMode = .Interactive
         
         return cv
@@ -45,7 +45,7 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
         dataSource.rowAnimation = .Fade
         
         dataSource.cellCreationBlock = { (value, collectionView, indexPath) in
-            return BQSTCollectionValueCell.self(forCollectionView: collectionView as UICollectionView,
+            return BQSTTextFieldCollectionCell.self(forCollectionView: collectionView as UICollectionView,
                 indexPath: indexPath as NSIndexPath)
         }
         
@@ -76,7 +76,7 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
             
             if let row = BQSTRequestRow(rawValue: indexPath.row) {
                 
-                let cell = c as BQSTCollectionValueCell
+                let cell = c as BQSTTextFieldCollectionCell
                 
                 cell.textField!.tag = indexPath.row
                 cell.textField!.delegate = BQSTRequestManager.sharedManager
