@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5E0D38981A3A4D6F00A149F2 /* UIColor+BQSTColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0D38971A3A4D6F00A149F2 /* UIColor+BQSTColors.swift */; };
 		5E0D389A1A3A4DE300A149F2 /* UIView+BQSTDrawing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0D38991A3A4DE300A149F2 /* UIView+BQSTDrawing.swift */; };
+		5E1C6A701A4DAB50008A2B51 /* UIViewController+BQSTAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED7FC721A4DAA5B0068CD5C /* UIViewController+BQSTAlerts.swift */; };
 		5E6084AC1A3A546700F2A8CA /* BQSTRequestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6084AB1A3A546700F2A8CA /* BQSTRequestController.swift */; };
 		5E6084AE1A3B856A00F2A8CA /* UIView+BQSTAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6084AD1A3B856A00F2A8CA /* UIView+BQSTAnimations.swift */; };
 		5E6084B21A3B8A8100F2A8CA /* UIFont+BQSTFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6084B11A3B8A8100F2A8CA /* UIFont+BQSTFonts.swift */; };
@@ -18,6 +19,7 @@
 		5E6B02551A1D430100EB5CCC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E6B02531A1D430100EB5CCC /* Images.xcassets */; };
 		5E6B025B1A1D5C3B00EB5CCC /* BQSTHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6B025A1A1D5C3B00EB5CCC /* BQSTHTTPClient.swift */; };
 		5E6B025C1A1D5DBA00EB5CCC /* BQSTHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6B025A1A1D5C3B00EB5CCC /* BQSTHTTPClient.swift */; };
+		5ED7FC731A4DAA5B0068CD5C /* UIViewController+BQSTAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED7FC721A4DAA5B0068CD5C /* UIViewController+BQSTAlerts.swift */; };
 		5EF560531A3C046100A86002 /* UIApplication+BQSTAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF560521A3C046100A86002 /* UIApplication+BQSTAdditions.swift */; };
 		8ACBE4E5E5B575218857F7DE /* Pods_Bequest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD3E55E19E0CE39F6AE9C5F3 /* Pods_Bequest.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		91327C22DA4F4BE9A04D8B2F /* Pods_BequestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FB006581FE0A43A806A5018 /* Pods_BequestTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -28,8 +30,6 @@
 		E9451C911A4BD7140066891C /* NSURLRequest+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9451C901A4BD7140066891C /* NSURLRequest+Additions.swift */; };
 		E9451C921A4BD7140066891C /* NSURLRequest+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9451C901A4BD7140066891C /* NSURLRequest+Additions.swift */; };
 		E946B7E71A4CE626000BB840 /* BQSTKIFTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946B7E61A4CE626000BB840 /* BQSTKIFTests.swift */; };
-		E946B7EA1A4CED9D000BB840 /* UIViewController+BQSTAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946B7E91A4CED9D000BB840 /* UIViewController+BQSTAlerts.swift */; };
-		E946B7EB1A4CED9D000BB840 /* UIViewController+BQSTAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946B7E91A4CED9D000BB840 /* UIViewController+BQSTAlerts.swift */; };
 		E96788811A47884900D38695 /* BQSTRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96788801A47884900D38695 /* BQSTRequestManager.swift */; };
 		E96788831A478E1F00D38695 /* BQSTResponseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96788821A478E1F00D38695 /* BQSTResponseController.swift */; };
 		E999D77B1A4B579F0082324D /* BQSTBlockyCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E999D7761A4B579F0082324D /* BQSTBlockyCollectionCell.swift */; };
@@ -70,6 +70,7 @@
 		5E6B02531A1D430100EB5CCC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5E6B02541A1D430100EB5CCC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5E6B025A1A1D5C3B00EB5CCC /* BQSTHTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTHTTPClient.swift; sourceTree = "<group>"; };
+		5ED7FC721A4DAA5B0068CD5C /* UIViewController+BQSTAlerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+BQSTAlerts.swift"; sourceTree = "<group>"; };
 		5EF560521A3C046100A86002 /* UIApplication+BQSTAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+BQSTAdditions.swift"; sourceTree = "<group>"; };
 		67E41A9CE64DF83BF130FCB1 /* Pods-BequestTests.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BequestTests.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-BequestTests/Pods-BequestTests.adhoc.xcconfig"; sourceTree = "<group>"; };
 		9FB006581FE0A43A806A5018 /* Pods_BequestTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BequestTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,7 +81,6 @@
 		E9451C901A4BD7140066891C /* NSURLRequest+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURLRequest+Additions.swift"; sourceTree = "<group>"; };
 		E946B7E61A4CE626000BB840 /* BQSTKIFTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTKIFTests.swift; sourceTree = "<group>"; };
 		E946B7E81A4CE673000BB840 /* BequestTestsBridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BequestTestsBridgingHeader.h; sourceTree = "<group>"; };
-		E946B7E91A4CED9D000BB840 /* UIViewController+BQSTAlerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+BQSTAlerts.swift"; path = "../Views/UIViewController+BQSTAlerts.swift"; sourceTree = "<group>"; };
 		E96788801A47884900D38695 /* BQSTRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTRequestManager.swift; sourceTree = "<group>"; };
 		E96788821A478E1F00D38695 /* BQSTResponseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTResponseController.swift; sourceTree = "<group>"; };
 		E999D7761A4B579F0082324D /* BQSTBlockyCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTBlockyCollectionCell.swift; sourceTree = "<group>"; };
@@ -123,7 +123,7 @@
 				5E6084B11A3B8A8100F2A8CA /* UIFont+BQSTFonts.swift */,
 				5E6084AD1A3B856A00F2A8CA /* UIView+BQSTAnimations.swift */,
 				5E0D38991A3A4DE300A149F2 /* UIView+BQSTDrawing.swift */,
-				E946B7E91A4CED9D000BB840 /* UIViewController+BQSTAlerts.swift */,
+				5ED7FC721A4DAA5B0068CD5C /* UIViewController+BQSTAlerts.swift */,
 			);
 			path = Additions;
 			sourceTree = "<group>";
@@ -463,7 +463,6 @@
 				5E0D389A1A3A4DE300A149F2 /* UIView+BQSTDrawing.swift in Sources */,
 				E999D7811A4B57C30082324D /* BQSTHTMLTextView.swift in Sources */,
 				E999D77B1A4B579F0082324D /* BQSTBlockyCollectionCell.swift in Sources */,
-				E946B7EA1A4CED9D000BB840 /* UIViewController+BQSTAlerts.swift in Sources */,
 				5E6B02301A1D2DA500EB5CCC /* AppDelegate.swift in Sources */,
 				E999D77F1A4B579F0082324D /* BQSTHeaderCell.swift in Sources */,
 				E999D77E1A4B579F0082324D /* BQSTResponseCell.swift in Sources */,
@@ -473,6 +472,7 @@
 				5E0D38981A3A4D6F00A149F2 /* UIColor+BQSTColors.swift in Sources */,
 				E9451C8E1A4BD68D0066891C /* BQSTHTTPResponse.swift in Sources */,
 				5E6084AC1A3A546700F2A8CA /* BQSTRequestController.swift in Sources */,
+				5ED7FC731A4DAA5B0068CD5C /* UIViewController+BQSTAlerts.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,8 +485,8 @@
 				E946B7E71A4CE626000BB840 /* BQSTKIFTests.swift in Sources */,
 				E9451C8F1A4BD6BE0066891C /* BQSTHTTPResponse.swift in Sources */,
 				E9451C921A4BD7140066891C /* NSURLRequest+Additions.swift in Sources */,
-				E946B7EB1A4CED9D000BB840 /* UIViewController+BQSTAlerts.swift in Sources */,
 				5E6B02461A1D2DA500EB5CCC /* BQSTHTTPClientTests.swift in Sources */,
+				5E1C6A701A4DAB50008A2B51 /* UIViewController+BQSTAlerts.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

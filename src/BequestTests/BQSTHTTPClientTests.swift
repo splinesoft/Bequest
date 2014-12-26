@@ -64,7 +64,7 @@ class BQSTHTTPClientTests: QuickSpec {
                 it("makes successful GET requests") {
                     self.BQSTExpectHTTPResponse { (completion: () -> Void) in
                     
-                        BQSTHTTPClient.request(URL!) { (req, resp: NSHTTPURLResponse?, _, _) in
+                        BQSTHTTPClient.request(URL!) { (_, resp: NSHTTPURLResponse?, _, _) in
                             
                             expect(resp).toNot(beNil())
                             expect(resp!.statusCode == 200).to(beTruthy())
