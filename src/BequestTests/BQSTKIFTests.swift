@@ -16,6 +16,11 @@ class BQSTKIFTests : KIFTestCase {
         return KIFUITestActor(inFile: __FILE__, atLine: __LINE__, delegate: self)
     }
     
+    private func setUpRequest(url: String, method: String) {
+        tester().clearTextFromAndThenEnterText(url, intoViewWithAccessibilityLabel: "URL")
+        tester().clearTextFromAndThenEnterText(method, intoViewWithAccessibilityLabel: "Method")
+    }
+    
     override func beforeAll() {
         super.beforeAll()
         KIFTestActor.setDefaultTimeout(20)
@@ -25,30 +30,34 @@ class BQSTKIFTests : KIFTestCase {
         super.afterAll()
     }
     
-    func testDefaultRequest() {
+    func testEmptyMethod() {
+        self.setUpRequest("http://splinesoft.net", method: "")
         tester().tapViewWithAccessibilityLabel("Send")
-        tester().waitForViewWithAccessibilityLabel("Response [200]")
-        tester().tapViewWithAccessibilityLabel("Back")
+        tester().tapViewWithAccessibilityLabel("Darn")
     }
     
-    func testCustomURL() {
-        tester().clearTextFromAndThenEnterText("http://httpbin.org/get", intoViewWithAccessibilityLabel: "URL")
+    func testEmptyURL() {
+        self.setUpRequest("", method: "GET")
+        tester().tapViewWithAccessibilityLabel("Send")
+        tester().tapViewWithAccessibilityLabel("Darn")
+    }
+    
+    func testSimpleRequest() {
+        self.setUpRequest("http://httpbin.org/get", method: "GET")
         tester().tapViewWithAccessibilityLabel("Send")
         tester().waitForViewWithAccessibilityLabel("Response [200]")
         tester().tapViewWithAccessibilityLabel("Back")
     }
     
     func testCustomURLAndMethod() {
-        tester().clearTextFromAndThenEnterText("http://httpbin.org/post", intoViewWithAccessibilityLabel: "URL")
-        tester().clearTextFromAndThenEnterText("POST", intoViewWithAccessibilityLabel: "Method")
+        self.setUpRequest("http://httpbin.org/post", method: "POST")
         tester().tapViewWithAccessibilityLabel("Send")
         tester().waitForViewWithAccessibilityLabel("Response [200]")
         tester().tapViewWithAccessibilityLabel("Back")
     }
     
     func testCustomURLAndInvalidMethod() {
-        tester().clearTextFromAndThenEnterText("http://httpbin.org/post", intoViewWithAccessibilityLabel: "URL")
-        tester().clearTextFromAndThenEnterText("NOT-POST", intoViewWithAccessibilityLabel: "Method")
+        self.setUpRequest("http://httpbin.org/post", method: "NOT-POST")
         tester().tapViewWithAccessibilityLabel("Send")
         tester().waitForViewWithAccessibilityLabel("Response [405]")
         tester().tapViewWithAccessibilityLabel("Back")
