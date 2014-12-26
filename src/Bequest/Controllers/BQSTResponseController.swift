@@ -20,7 +20,7 @@ enum BQSTResponseSection: Int {
     case Unknown
 }
 
-class BQSTResponseController : UITableViewController, UITableViewDelegate {
+class BQSTResponseController : UITableViewController {
     
     private var request : NSURLRequest?
     private var response : NSHTTPURLResponse?
@@ -273,7 +273,7 @@ class BQSTResponseController : UITableViewController, UITableViewDelegate {
                 let size = (self.parsedResponse!.object as UIImage).size
                 return min(size.height, 100)
             case .HTML:
-                return CGRectGetHeight(tableView.frame) - 110
+                return CGRectGetHeight(tableView.frame) - 70
             default:
                 return 0
             }
