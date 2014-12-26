@@ -84,11 +84,11 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
                 
                 switch row {
                 case .Method:
-                    cell.label?.text = "Method"
-                    cell.textField!.accessibilityLabel = "Method"
+                    cell.label?.text = BQSTLocalizedString("REQUEST_METHOD")
+                    cell.textField!.accessibilityLabel = BQSTLocalizedString("REQUEST_METHOD")
                 case .URL:
-                    cell.label?.text = "URL"
-                    cell.textField!.accessibilityLabel = "URL"
+                    cell.label?.text = BQSTLocalizedString("REQUEST_URL")
+                    cell.textField!.accessibilityLabel = BQSTLocalizedString("REQUEST_URL")
                 default:
                     break
                 }
@@ -116,12 +116,14 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
         let request: NSURLRequest = BQSTRequestManager.sharedManager.currentRequest
         
         if countElements(request.URL.absoluteString!) == 0 {
-            self.BQSTShowSimpleErrorAlert("Missing URL", message: "Please add a URL for this request.")
+            self.BQSTShowSimpleErrorAlert(BQSTLocalizedString("REQUEST_URL_MISSING"),
+                message: BQSTLocalizedString("REQUEST_URL_MISSING_DETAIL"))
             return
         }
         
         if request.HTTPMethod == nil || countElements(request.HTTPMethod!) == 0 {
-            self.BQSTShowSimpleErrorAlert("Missing Method", message: "Please add an HTTP method for this request.")
+            self.BQSTShowSimpleErrorAlert(BQSTLocalizedString("REQUEST_METHOD_MISSING"),
+                message: BQSTLocalizedString("REQUEST_METHOD_MISSING_DETAIL"))
             return
         }
         
@@ -145,7 +147,7 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
             let failure: (error: NSError?) -> (Void) = {
                 error in
                 self.progressButton.progressState = .Ready
-                self.BQSTShowSimpleErrorAlert("Request Failed", error: error)
+                self.BQSTShowSimpleErrorAlert(BQSTLocalizedString("REQUEST_FAILED"), error: error)
             }
             
             if let httpResponse = parsedResponse {

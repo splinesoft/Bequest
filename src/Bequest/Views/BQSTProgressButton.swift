@@ -106,7 +106,7 @@ class BQSTProgressButton: UIControl {
         switch self.progressState {
         case .Ready:
             
-            ("Send" as NSString).drawInRect(CGRectInset(rect, 0, 10), withAttributes:
+            (BQSTLocalizedString("SEND_REQUEST") as NSString).drawInRect(CGRectInset(rect, 0, 10), withAttributes:
                 [NSFontAttributeName: UIFont.BQSTFont(18),
                     NSKernAttributeName: NSNull(),
                     NSForegroundColorAttributeName: self.highlighted ? UIColor.whiteColor() : UIColor.BQSTRedColor()])

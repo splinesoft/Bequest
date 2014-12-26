@@ -1,0 +1,23 @@
+/*
+  Localizable.strings
+  Bequest
+
+  Created by Jonathan Hersh on 12/26/14.
+  Copyright (c) 2014 BQST. All rights reserved.
+*/
+
+/* Constructing Requests */
+
+"SEND_REQUEST" = "Send";
+
+"REQUEST_URL" = "URL";
+"REQUEST_METHOD" = "Method";
+
+/* Request errors */
+
+"REQUEST_FAILED" = "Request Failed";
+
+"REQUEST_METHOD_MISSING" = "Missing Method";
+"REQUEST_METHOD_MISSING_DETAIL" = "Please add an HTTP method for this request.";
+"REQUEST_URL_MISSING" = "Missing URL";
+"REQUEST_URL_MISSING_DETAIL" = "Please add a URL for this request.";
