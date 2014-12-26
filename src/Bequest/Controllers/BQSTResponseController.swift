@@ -215,7 +215,7 @@ class BQSTResponseController : UITableViewController, UITableViewDelegate {
         
         switch self.responseSectionAtIndex(section) {
         case .ResponseHeaders:
-            let header = BQSTTableHeaderFooterView(reuseIdentifier: BQSTTableHeaderFooterView.identifier())
+            let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier(BQSTTableHeaderFooterView.identifier()) as BQSTTableHeaderFooterView
             
             header.button?.removeTarget(self, action: Selector("toggleHeaders"), forControlEvents: UIControlEvents.TouchUpInside)
             header.button?.setTitle("Response Headers (\(self.dataSource.numberOfItemsInSection(section)))", forState:.Normal)
@@ -223,14 +223,14 @@ class BQSTResponseController : UITableViewController, UITableViewDelegate {
             
             return header
         case .Request:
-            let header = BQSTTableHeaderFooterView(reuseIdentifier: BQSTTableHeaderFooterView.identifier())
+            let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier(BQSTTableHeaderFooterView.identifier()) as BQSTTableHeaderFooterView
             
             header.button?.removeTarget(self, action: Selector("toggleHeaders"), forControlEvents: .TouchUpInside)
             header.button?.setTitle("Request", forState: .Normal)
             
             return header
         case .RequestHeaders:
-            let header = BQSTTableHeaderFooterView(reuseIdentifier: BQSTTableHeaderFooterView.identifier())
+            let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier(BQSTTableHeaderFooterView.identifier()) as BQSTTableHeaderFooterView
             
             header.button?.removeTarget(self, action: Selector("toggleHeaders"), forControlEvents: .TouchUpInside)
             header.button?.setTitle("Request Headers (\(self.dataSource.numberOfItemsInSection(section)))", forState: .Normal)
