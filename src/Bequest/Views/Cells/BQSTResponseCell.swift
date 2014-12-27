@@ -30,6 +30,12 @@ class BQSTResponseCell : SSBaseTableCell {
         return sc
     }()
     
+    private let responseImageView: UIImageView = {
+        let iv = UIImageView(frame: CGRectZero)
+        iv.contentMode = .ScaleAspectFit
+        return iv
+    }()
+    
     private var response: BQSTHTTPResponse?
     
     override func configureCell() {
@@ -47,7 +53,7 @@ class BQSTResponseCell : SSBaseTableCell {
         if self.response != nil {
             switch self.response!.contentType {
             case .GIF, .PNG, .JPEG:
-                self.imageView?.frame = UIEdgeInsetsInsetRect(self.contentView.bounds, UIEdgeInsetsMake(4, 4, 4, 4))
+                self.responseImageView.frame = UIEdgeInsetsInsetRect(self.contentView.bounds, UIEdgeInsetsMake(4, 4, 4, 4))
             case .HTML:
                 self.segmentControl.frame = CGRectMake(floor((CGRectGetWidth(self.contentView.frame) - 150) / 2),
                     4, 150, 30)
@@ -85,6 +91,7 @@ class BQSTResponseCell : SSBaseTableCell {
     func configureWithResponse(response: BQSTHTTPResponse) {
         self.response = response
         
+        self.responseImageView.removeFromSuperview()
         self.webView.removeFromSuperview()
         self.segmentControl.removeFromSuperview()
         self.textView.removeFromSuperview()
@@ -92,8 +99,8 @@ class BQSTResponseCell : SSBaseTableCell {
         switch response.contentType {
         case .GIF, .PNG, .JPEG:
             
-            self.imageView?.contentMode = .ScaleAspectFit
-            self.imageView?.image = response.object as? UIImage
+            self.responseImageView.image = response.object as? UIImage
+            self.contentView.addSubview(self.responseImageView)
             
         case .HTML:
             
