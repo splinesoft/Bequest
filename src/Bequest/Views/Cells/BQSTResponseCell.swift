@@ -10,6 +10,9 @@ import Foundation
 import SSDataSources
 import WebKit
 
+private let kBQSTMaxImageHeight: CGFloat = 100
+private let kBQSTResponseContentInsets: UIEdgeInsets = UIEdgeInsetsMake(8, 8, 8, 8)
+
 class BQSTResponseCell : SSBaseTableCell {
     
     private let webView: WKWebView = {
@@ -37,6 +40,39 @@ class BQSTResponseCell : SSBaseTableCell {
     }()
     
     private var response: BQSTHTTPResponse?
+    
+    class func heightForResponse(response: BQSTHTTPResponse, availableWidth: CGFloat) -> CGFloat {
+        
+        switch response.contentType {
+        case .GIF, .PNG, .JPEG:
+            return min(kBQSTMaxImageHeight, (response.object as UIImage).size.height)
+                + kBQSTResponseContentInsets.bottom + kBQSTResponseContentInsets.top
+            
+        case .HTML, .TXT, .JSON, .XML:
+            
+            let string: NSString? = (response.contentType == .JSON || response.contentType == .XML
+                ? response.object.description
+                : response.object) as? NSString
+            
+            if string == nil {
+                return 0
+            }
+            
+            let width = availableWidth - 20 // rough CYRTextView insets
+            
+            let textHeight = string!.boundingRectWithSize(CGSizeMake(width, CGFloat.max),
+                    options: .UsesLineFragmentOrigin,
+                    attributes: [NSFontAttributeName: UIFont.BQSTRawResponseFont()],
+                    context: nil).height + 10
+            
+            let availableHeight = CGRectGetHeight(UIScreen.mainScreen().bounds) - 70
+            
+            return min(availableHeight, textHeight)
+            
+        default:
+            return 0
+        }
+    }
     
     override func configureCell() {
         super.configureCell()

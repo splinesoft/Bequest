@@ -260,18 +260,9 @@ class BQSTResponseController : UITableViewController {
         switch self.responseSectionAtIndex(indexPath.section) {
         case .RequestHeaders, .ResponseHeaders, .Request:
             let items: [String] = self.dataSource.itemAtIndexPath(indexPath) as [String]
-            let cellWidth = CGRectGetWidth(tableView.frame) / 2
-            return BQSTHeaderCell.heightForCell(values: items, availableWidth: cellWidth)
+            return BQSTHeaderCell.heightForValues(items, availableWidth: CGRectGetWidth(tableView.frame))
         case .Body:
-            switch self.parsedResponse!.contentType {
-            case .GIF, .JPEG, .PNG:
-                let size = (self.parsedResponse!.object as UIImage).size
-                return min(size.height, 100)
-            case .HTML, .JSON, .TXT:
-                return CGRectGetHeight(tableView.frame) - 70
-            default:
-                return 0
-            }
+            return BQSTResponseCell.heightForResponse(self.parsedResponse!, availableWidth: CGRectGetWidth(tableView.frame))
         default:
             return 0
         }

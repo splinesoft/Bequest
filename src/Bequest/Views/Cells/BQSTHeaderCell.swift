@@ -24,12 +24,12 @@ class BQSTHeaderCell : SSBaseTableCell {
     var label: TTTAttributedLabel?
     var value: TTTAttributedLabel?
     
-    class func heightForCell(#values: [String], availableWidth: CGFloat) -> CGFloat {
+    class func heightForValues(values: [String], availableWidth: CGFloat) -> CGFloat {
         
         func sizeText(text: String) -> CGFloat {
             let attributedString = NSAttributedString.headerAttributedString(text)
             let size = TTTAttributedLabel.sizeThatFitsAttributedString(attributedString,
-                withConstraints: CGSizeMake(availableWidth - kBQSTSimpleCellInsets.left - kBQSTSimpleCellInsets.right, CGFloat.max),
+                withConstraints: CGSizeMake((availableWidth / 2) - kBQSTSimpleCellInsets.left - kBQSTSimpleCellInsets.right, CGFloat.max),
                 limitedToNumberOfLines: 0)
             
             return ceil(size.height + kBQSTSimpleCellInsets.bottom + kBQSTSimpleCellInsets.top)
