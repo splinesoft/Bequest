@@ -1,5 +1,5 @@
 //
-//  String+BQSTAdditions.swift
+//  BQSTLocalizedString.swift
 //  Bequest
 //
 //  Created by Jonathan Hersh on 12/26/14.
