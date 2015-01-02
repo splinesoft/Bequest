@@ -48,7 +48,7 @@ class BQSTHeaderCell : SSBaseTableCell {
         super.configureCell()
         
         self.backgroundColor = UIColor.clearColor()
-        self.selectionStyle = .None
+        self.selectionStyle = .Gray
 
         label = TTTAttributedLabel(frame: self.contentView.frame)
         label!.font = UIFont.BQSTHTTPHeaderFont()

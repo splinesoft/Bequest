@@ -271,6 +271,8 @@ class BQSTResponseController : UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         switch self.responseSectionAtIndex(indexPath.section) {
+        case .ResponseHeaders, .RequestHeaders:
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
         case .Body:
             switch self.parsedResponse!.contentType {
             case .JPEG, .GIF, .PNG:
@@ -287,6 +289,43 @@ class BQSTResponseController : UITableViewController {
             default:
                 break
             }
+        default:
+            break
+        }
+    }
+    
+    override func tableView(tableView: UITableView, shouldShowMenuForRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        
+        switch self.responseSectionAtIndex(indexPath.section) {
+        case .ResponseHeaders, .RequestHeaders:
+            return true
+        default:
+            return false
+        }
+    }
+    
+    override func tableView(tableView: UITableView,
+        canPerformAction action: Selector,
+        forRowAtIndexPath indexPath: NSIndexPath,
+        withSender sender: AnyObject) -> Bool {
+            
+        switch self.responseSectionAtIndex(indexPath.section) {
+        case .ResponseHeaders, .RequestHeaders:
+            return NSStringFromSelector(action) == "copy:"
+        default:
+            return false
+        }
+    }
+    
+    override func tableView(tableView: UITableView,
+        performAction action: Selector,
+        forRowAtIndexPath indexPath: NSIndexPath,
+        withSender sender: AnyObject!) {
+            
+        switch self.responseSectionAtIndex(indexPath.section) {
+        case .ResponseHeaders, .RequestHeaders:
+            let item = self.dataSource.itemAtIndexPath(indexPath) as [String]
+            UIPasteboard.generalPasteboard().string = String(format: "%@: %@", item[0], item[1])
         default:
             break
         }
