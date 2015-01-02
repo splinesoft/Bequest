@@ -103,6 +103,23 @@ class BQSTProgressButton: UIControl {
                     NSForegroundColorAttributeName: self.highlighted ? UIColor.whiteColor() : UIColor.BQSTRedColor()])
             
             break
+        case .Loading:
+            
+            let xRect = CGRectInset(rect, 15, 15)
+            
+            let context = UIGraphicsGetCurrentContext()
+            
+            CGContextMoveToPoint(context, CGRectGetMinX(xRect), CGRectGetMinY(xRect))
+            CGContextAddLineToPoint(context, CGRectGetMaxX(xRect), CGRectGetMaxY(xRect))
+            CGContextMoveToPoint(context, CGRectGetMinX(xRect), CGRectGetMaxY(xRect))
+            CGContextAddLineToPoint(context, CGRectGetMaxX(xRect), CGRectGetMinY(xRect))
+            CGContextClosePath(context)
+            
+            CGContextSetLineWidth(context, 3)
+            CGContextSetStrokeColorWithColor(context, (self.highlighted ? UIColor.whiteColor().CGColor : UIColor.BQSTRedColor().CGColor))
+            
+            CGContextStrokePath(context)
+            
         default:
             break;
         }
