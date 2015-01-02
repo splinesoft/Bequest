@@ -20,7 +20,8 @@ class BQSTHTTPClientTests: QuickSpec {
             receivedResponse = true
         }
         
-        expect(receivedResponse).toEventually(beTrue(), timeout: 10, pollInterval: 0.5)
+        expect(receivedResponse).toEventually(beTrue(), timeout: 10, pollInterval: 0.25)
+        return
     }
     
     private func BQSTURLForMethod(method: String) -> NSURL {
@@ -70,6 +71,7 @@ class BQSTHTTPClientTests: QuickSpec {
                             expect(resp?.statusCode == 200).to(beTruthy())
                             completion()
                         }
+                        return
                     }
                 }
                 
@@ -83,6 +85,7 @@ class BQSTHTTPClientTests: QuickSpec {
                             expect(resp?.statusCode == 200).to(beTruthy())
                             completion()
                         }
+                        return
                     }
                 }
                 
@@ -117,6 +120,7 @@ class BQSTHTTPClientTests: QuickSpec {
                             expect(object!.object as? UIImage).toNot(beNil())
                             completion()
                         }
+                        return
                     }
                 }
             }
@@ -150,6 +154,7 @@ class BQSTHTTPClientTests: QuickSpec {
                             
                             completion()
                         }
+                        return
                     }
                 }
             }

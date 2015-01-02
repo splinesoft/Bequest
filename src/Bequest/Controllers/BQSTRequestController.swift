@@ -28,6 +28,8 @@ enum BQSTRequestRow : Int {
 }
 
 class BQSTRequestController : UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UITextFieldDelegate {
+    
+    private var currentRequest: BQSTRequest?
 
     private let collectionView: UICollectionView = {
         let cv = UICollectionView(frame: CGRectZero, collectionViewLayout: UICollectionViewFlowLayout())
@@ -106,9 +108,14 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
     
     func sendRequest() {
         
-        if self.progressButton.progressState == .Loading {
+        switch self.progressButton.progressState {
+            
+        case .Loading, .Unknown, .Complete:
             self.progressButton.progressState = .Ready
+            self.currentRequest?.cancel()
             return
+        default:
+            break
         }
         
         self.view.endEditing(true)
@@ -137,12 +144,16 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
                 self.progressButton.progressPercentage = Float(progress.fractionCompleted)
             }
         }
-        
-        BQSTHTTPClient.request(request, progress: progressBlock) {
+
+        let responseBlock: BQSTResponseBlock = {
             (request: NSURLRequest,
             response: NSHTTPURLResponse?,
             parsedResponse: BQSTHTTPResponse?,
             error: NSError?) in
+            
+            if error?.code == NSURLErrorCancelled {
+                return
+            }
             
             self.progressButton.progressState = .Complete
             
@@ -172,6 +183,8 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
                 failure(error: error)
             }
         }
+        
+        self.currentRequest = BQSTHTTPClient.request(request, progress: progressBlock, responseBlock)
     }
     
     /// MARK: UICollectionViewDelegate

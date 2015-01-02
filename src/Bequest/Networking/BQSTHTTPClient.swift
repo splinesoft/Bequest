@@ -14,38 +14,40 @@ public typealias BQSTResponseBlock = (NSURLRequest, NSHTTPURLResponse?, BQSTHTTP
 
 // MARK: HTTP Client
 
+public typealias BQSTRequest = Alamofire.Request
+
 public class BQSTHTTPClient {
     
     // MARK: HTTP Requests
     
-    public class func request(url: NSURL, _ response: BQSTResponseBlock) {
+    class func request(url: NSURL, _ response: BQSTResponseBlock) -> BQSTRequest {
         
-        self.request(url, method: nil, headers: nil, parameters: nil, progress: nil, response)
+        return self.request(url, method: nil, headers: nil, parameters: nil, progress: nil, response)
     }
     
-    public class func request(url: NSURL, method: Alamofire.Method, _ response: BQSTResponseBlock) {
+    class func request(url: NSURL, method: Alamofire.Method, _ response: BQSTResponseBlock) -> BQSTRequest {
         
-        self.request(url, method: method.rawValue, headers: nil, parameters: nil, progress: nil, response)
+        return self.request(url, method: method.rawValue, headers: nil, parameters: nil, progress: nil, response)
     }
     
-    public class func request(url: NSURL,
+    class func request(url: NSURL,
         method: String?,
         headers: [NSObject:AnyObject]?,
         parameters: [String:String]?,
         progress: BQSTProgressBlock?,
-        _ response: BQSTResponseBlock) {
+        _ response: BQSTResponseBlock) -> BQSTRequest {
             
         let URLRequest = NSURLRequest.requestForURL(url,
             method: method ?? Alamofire.Method.GET.rawValue,
             headers: headers ?? [:],
             parameters: parameters ?? [:])
 
-        self.request(URLRequest, progress: progress, response)
+        return self.request(URLRequest, progress: progress, response)
     }
     
-    public class func request(URLRequest: NSURLRequest, progress: BQSTProgressBlock?, _ response: BQSTResponseBlock) {
+    class func request(URLRequest: NSURLRequest, progress: BQSTProgressBlock?, _ response: BQSTResponseBlock) -> BQSTRequest {
         
-        let request: Alamofire.Request = Alamofire.request(URLRequest)
+        let request: BQSTRequest = Alamofire.request(URLRequest)
         
         if progress != nil {
             let counter = NSProgress()
@@ -61,7 +63,11 @@ public class BQSTHTTPClient {
             })
         }
         
-        request.response { (request: NSURLRequest, URLResponse: NSHTTPURLResponse?, object: AnyObject?, error: NSError?) in
+        request.response {
+            (request: NSURLRequest,
+            URLResponse: NSHTTPURLResponse?,
+            object: AnyObject?,
+            error: NSError?) in
             
             if let data = object as? NSData {
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
@@ -78,5 +84,7 @@ public class BQSTHTTPClient {
                 response(URLRequest, URLResponse, nil, error)
             }
         }
+        
+        return request
     }
 }
