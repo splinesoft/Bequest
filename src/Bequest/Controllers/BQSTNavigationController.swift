@@ -23,6 +23,10 @@ class BQSTNavigationController : UINavigationController {
         return self.visibleViewController.supportedInterfaceOrientations()
     }
     
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        self.visibleViewController.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
