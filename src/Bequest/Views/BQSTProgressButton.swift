@@ -39,16 +39,16 @@ class BQSTProgressButton: UIControl {
                 self.circleShapeLayer.strokeEnd = 0
                 self.accessibilityLabel = "Send"
             case .Loading:
-                let circleRect = CGRectInset(self.bounds, 8, 8)
                 self.circleShapeLayer.strokeStart = 0
                 self.circleShapeLayer.strokeEnd = 0
                 self.circleShapeLayer.strokeColor = self.progressColor.CGColor
-                self.circleShapeLayer.path = UIBezierPath(ovalInRect: circleRect).CGPath
+                self.circleShapeLayer.path = UIBezierPath(ovalInRect: CGRectInset(self.bounds, 9, 9)).CGPath
                 self.layer.addSublayer(self.circleShapeLayer)
                 self.accessibilityLabel = "Cancel"
                 self.accessibilityHint = "Tap to Cancel"
 
             case .Complete:
+                self.circleShapeLayer.removeAllAnimations()
                 self.circleShapeLayer.strokeEnd = 1
                 self.circleShapeLayer.strokeColor = UIColor.BQSTGreenColor().CGColor
                 self.accessibilityLabel = "Complete"
@@ -65,10 +65,12 @@ class BQSTProgressButton: UIControl {
         willSet {
             self.circleShapeLayer.removeAllAnimations()
         } didSet {
-            self.circleShapeAnimation.fromValue = NSNumber(float: oldValue)
-            self.circleShapeAnimation.toValue = NSNumber(float: self.progressPercentage)
-            self.circleShapeLayer.addAnimation(self.circleShapeAnimation, forKey: "drawCircleAnimation")
-            self.setNeedsDisplay()
+            UIView.animateWithDuration(0.05,
+                delay: 0.0,
+                options: .CurveLinear,
+                animations: {
+                    self.circleShapeLayer.strokeEnd = CGFloat(self.progressPercentage)
+                }, completion: nil)
         }
     }
     
@@ -83,17 +85,6 @@ class BQSTProgressButton: UIControl {
         layer.strokeStart = CGFloat(0)
         
         return layer
-    }()
-    
-    private let circleShapeAnimation: CABasicAnimation = {
-        let animation = CABasicAnimation(keyPath: "strokeEnd")
-        animation.duration = 0.1
-        animation.repeatCount = 1.0
-        animation.removedOnCompletion = false
-        animation.fromValue = 0
-        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
-        
-        return animation
     }()
     
     override var highlighted: Bool {
