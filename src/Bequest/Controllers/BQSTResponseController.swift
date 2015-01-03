@@ -11,6 +11,7 @@ import UIKit
 import SSDataSources
 import JTSImageViewController
 import TTTAttributedLabel
+import Alamofire
 
 enum BQSTResponseSection: Int {
     case Request
@@ -150,23 +151,34 @@ class BQSTResponseController : UITableViewController {
             section.sectionIdentifier = NSNumber(integer: BQSTResponseSection.Request.rawValue)
             dataSource.appendSection(section)
             
-            if let requestHeaders = request!.allHTTPHeaderFields {
-                if requestHeaders.count > 0 {
-                    let sortedNames: [NSObject] = (requestHeaders.keys.array.sorted {
-                        return ($0 as String) < ($1 as String)
-                    })
-                    
-                    var headerItems: [NSObject] = []
-                    
-                    for header in sortedNames {
-                        let value = requestHeaders[header] as String
-                        headerItems += [header, value]
-                    }
-                    
-                    let headerSection = SSSection(items: headerItems)
-                    headerSection.sectionIdentifier = NSNumber(integer: BQSTResponseSection.RequestHeaders.rawValue)
-                    dataSource.appendSection(headerSection)
+            var requestHeaders: [NSObject:AnyObject] = [:]
+            
+            if let standardHeaders = Alamofire.Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders {
+                for (key, value) in standardHeaders {
+                    requestHeaders[key] = value
                 }
+            }
+            
+            if let userHeaders = request!.allHTTPHeaderFields {
+                for (key, value) in userHeaders {
+                    requestHeaders[key] = value
+                }
+            }
+            
+            if requestHeaders.count > 0 {
+                let sortedNames: [NSObject] = (requestHeaders.keys.array.sorted {
+                    return ($0 as String) < ($1 as String)
+                })
+                
+                var headerItems = NSMutableArray()
+                
+                for header in sortedNames {
+                    headerItems.addObject([header, requestHeaders[header]!])
+                }
+
+                let headerSection = SSSection(items: headerItems)
+                headerSection.sectionIdentifier = NSNumber(integer: BQSTResponseSection.RequestHeaders.rawValue)
+                dataSource.appendSection(headerSection)
             }
         }
         
@@ -259,7 +271,7 @@ class BQSTResponseController : UITableViewController {
 
         switch self.responseSectionAtIndex(indexPath.section) {
         case .RequestHeaders, .ResponseHeaders, .Request:
-            let items: [String] = self.dataSource.itemAtIndexPath(indexPath) as [String]
+            let items = self.dataSource.itemAtIndexPath(indexPath) as [String]
             return BQSTHeaderCell.heightForValues(items, availableWidth: CGRectGetWidth(tableView.frame))
         case .Body:
             return BQSTResponseCell.heightForResponse(self.parsedResponse!, availableWidth: CGRectGetWidth(tableView.frame))
@@ -271,7 +283,7 @@ class BQSTResponseController : UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         switch self.responseSectionAtIndex(indexPath.section) {
-        case .ResponseHeaders, .RequestHeaders:
+        case .ResponseHeaders, .RequestHeaders, .Request:
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
         case .Body:
             switch self.parsedResponse!.contentType {
@@ -297,7 +309,7 @@ class BQSTResponseController : UITableViewController {
     override func tableView(tableView: UITableView, shouldShowMenuForRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         
         switch self.responseSectionAtIndex(indexPath.section) {
-        case .ResponseHeaders, .RequestHeaders:
+        case .ResponseHeaders, .RequestHeaders, .Request:
             return true
         default:
             return false
@@ -310,7 +322,7 @@ class BQSTResponseController : UITableViewController {
         withSender sender: AnyObject) -> Bool {
             
         switch self.responseSectionAtIndex(indexPath.section) {
-        case .ResponseHeaders, .RequestHeaders:
+        case .ResponseHeaders, .RequestHeaders, .Request:
             return NSStringFromSelector(action) == "copy:"
         default:
             return false
@@ -323,7 +335,7 @@ class BQSTResponseController : UITableViewController {
         withSender sender: AnyObject!) {
             
         switch self.responseSectionAtIndex(indexPath.section) {
-        case .ResponseHeaders, .RequestHeaders:
+        case .ResponseHeaders, .RequestHeaders, .Request:
             let item = self.dataSource.itemAtIndexPath(indexPath) as [String]
             UIPasteboard.generalPasteboard().string = String(format: "%@: %@", item[0], item[1])
         default:
