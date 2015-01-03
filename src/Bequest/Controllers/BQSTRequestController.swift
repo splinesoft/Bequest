@@ -170,13 +170,14 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
                     return
                 }
                 
+                let responseController = BQSTResponseController(request: request, response: response, parsedResponse: httpResponse)
+                
                 dispatch_after(
                     dispatch_time(
                         DISPATCH_TIME_NOW,
-                        Int64(0.25 * Double(NSEC_PER_SEC))
+                        Int64(0.15 * Double(NSEC_PER_SEC))
                     ),
                     dispatch_get_main_queue(), {
-                        let responseController = BQSTResponseController(request: request, response: response, parsedResponse: httpResponse)
                         self.navigationController!.pushViewController(responseController, animated: true)
                 })
             } else {
