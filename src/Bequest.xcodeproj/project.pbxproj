@@ -589,6 +589,7 @@
 					"-Winit-self",
 					"-Wreturn-type",
 					"-Wfloat-equal",
+					"-Weverything",
 				);
 			};
 			name = Debug;
@@ -662,6 +663,7 @@
 					"-Winit-self",
 					"-Wreturn-type",
 					"-Wfloat-equal",
+					"-Weverything",
 				);
 			};
 			name = Release;
@@ -818,6 +820,7 @@
 					"-Winit-self",
 					"-Wreturn-type",
 					"-Wfloat-equal",
+					"-Weverything",
 				);
 			};
 			name = Adhoc;
