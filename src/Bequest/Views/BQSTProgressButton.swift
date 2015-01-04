@@ -105,7 +105,7 @@ class BQSTProgressButton: UIControl {
             break
         case .Loading:
             
-            let xRect = CGRectInset(rect, 15, 15)
+            let xRect = CGRectOffset(CGRectInset(rect, 16, 16), 1, 0)
             
             let context = UIGraphicsGetCurrentContext()
             

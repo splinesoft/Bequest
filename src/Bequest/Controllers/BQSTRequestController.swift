@@ -54,7 +54,7 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
         return dataSource
     }()
     
-    private let progressButton: BQSTProgressButton = BQSTProgressButton(frame: CGRectMake(0, 0, 44, 44))
+    private let progressButton: BQSTProgressButton = BQSTProgressButton(frame: CGRectMake(0, 0, 45, 45))
 
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
