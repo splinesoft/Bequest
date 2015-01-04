@@ -27,7 +27,7 @@ enum BQSTRequestRow : Int {
     case NumRows
 }
 
-class BQSTRequestController : UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UITextFieldDelegate {
+class BQSTRequestController : UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     private var currentRequest: BQSTRequest?
 
