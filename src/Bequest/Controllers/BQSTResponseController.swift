@@ -72,7 +72,7 @@ class BQSTResponseController : UITableViewController {
             
             switch self.responseSectionAtIndex(indexPath.section) {
             case .Request, .RequestHeaders, .ResponseHeaders:
-                return BQSTHeaderCell(forTableView: tableView as UITableView)
+                return BQSTResponseHeaderCell(forTableView: tableView as UITableView)
             case .Body:
                 return BQSTResponseCell(forTableView: tableView as UITableView)
             default:
@@ -94,7 +94,7 @@ class BQSTResponseController : UITableViewController {
             
             switch self.responseSectionAtIndex(indexPath.section) {
             case .RequestHeaders, .ResponseHeaders, .Request:
-                (cell as BQSTHeaderCell).configureWithValues(items as [String])
+                (cell as BQSTResponseHeaderCell).configureWithValues(items as [String])
             case .Body:
                 (cell as BQSTResponseCell).configureWithResponse(self.parsedResponse!)
             default:
@@ -272,7 +272,7 @@ class BQSTResponseController : UITableViewController {
         switch self.responseSectionAtIndex(indexPath.section) {
         case .RequestHeaders, .ResponseHeaders, .Request:
             let items = self.dataSource.itemAtIndexPath(indexPath) as [String]
-            return BQSTHeaderCell.heightForValues(items, availableWidth: CGRectGetWidth(tableView.frame))
+            return BQSTResponseHeaderCell.heightForValues(items, availableWidth: CGRectGetWidth(tableView.frame))
         case .Body:
             return BQSTResponseCell.heightForResponse(self.parsedResponse!, availableWidth: CGRectGetWidth(tableView.frame))
         default:

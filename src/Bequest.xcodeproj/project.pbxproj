@@ -40,7 +40,7 @@
 		E999D77C1A4B579F0082324D /* BQSTTableHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E999D7771A4B579F0082324D /* BQSTTableHeaderFooterView.swift */; };
 		E999D77D1A4B579F0082324D /* BQSTTextFieldCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E999D7781A4B579F0082324D /* BQSTTextFieldCollectionCell.swift */; };
 		E999D77E1A4B579F0082324D /* BQSTResponseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E999D7791A4B579F0082324D /* BQSTResponseCell.swift */; };
-		E999D77F1A4B579F0082324D /* BQSTHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E999D77A1A4B579F0082324D /* BQSTHeaderCell.swift */; };
+		E999D77F1A4B579F0082324D /* BQSTResponseHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E999D77A1A4B579F0082324D /* BQSTResponseHeaderCell.swift */; };
 		E999D7811A4B57C30082324D /* BQSTHTMLTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E999D7801A4B57C30082324D /* BQSTHTMLTextView.swift */; };
 		E9D81C531A47C24B00FF7A42 /* BQSTProgressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D81C521A47C24B00FF7A42 /* BQSTProgressButton.swift */; };
 /* End PBXBuildFile section */
@@ -93,7 +93,7 @@
 		E999D7771A4B579F0082324D /* BQSTTableHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTTableHeaderFooterView.swift; sourceTree = "<group>"; };
 		E999D7781A4B579F0082324D /* BQSTTextFieldCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTTextFieldCollectionCell.swift; sourceTree = "<group>"; };
 		E999D7791A4B579F0082324D /* BQSTResponseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTResponseCell.swift; sourceTree = "<group>"; };
-		E999D77A1A4B579F0082324D /* BQSTHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTHeaderCell.swift; sourceTree = "<group>"; };
+		E999D77A1A4B579F0082324D /* BQSTResponseHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTResponseHeaderCell.swift; sourceTree = "<group>"; };
 		E999D7801A4B57C30082324D /* BQSTHTMLTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTHTMLTextView.swift; sourceTree = "<group>"; };
 		E9D81C521A47C24B00FF7A42 /* BQSTProgressButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTProgressButton.swift; sourceTree = "<group>"; };
 		EF20EFF2E4BA0F289180A5F7 /* Pods-Bequest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bequest.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bequest/Pods-Bequest.release.xcconfig"; sourceTree = "<group>"; };
@@ -257,7 +257,7 @@
 				E999D7771A4B579F0082324D /* BQSTTableHeaderFooterView.swift */,
 				E999D7781A4B579F0082324D /* BQSTTextFieldCollectionCell.swift */,
 				E999D7791A4B579F0082324D /* BQSTResponseCell.swift */,
-				E999D77A1A4B579F0082324D /* BQSTHeaderCell.swift */,
+				E999D77A1A4B579F0082324D /* BQSTResponseHeaderCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -474,7 +474,7 @@
 				E999D7811A4B57C30082324D /* BQSTHTMLTextView.swift in Sources */,
 				E999D77B1A4B579F0082324D /* BQSTBlockyCollectionCell.swift in Sources */,
 				5E6B02301A1D2DA500EB5CCC /* AppDelegate.swift in Sources */,
-				E999D77F1A4B579F0082324D /* BQSTHeaderCell.swift in Sources */,
+				E999D77F1A4B579F0082324D /* BQSTResponseHeaderCell.swift in Sources */,
 				E999D77E1A4B579F0082324D /* BQSTResponseCell.swift in Sources */,
 				E9D81C531A47C24B00FF7A42 /* BQSTProgressButton.swift in Sources */,
 				5E1C6A751A4DB304008A2B51 /* BQSTLocalizedString.swift in Sources */,

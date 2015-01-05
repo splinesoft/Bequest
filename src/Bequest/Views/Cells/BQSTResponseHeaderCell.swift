@@ -1,5 +1,5 @@
 //
-//  BQSTHeaderCell.swift
+//  BQSTResponseHeaderCell.swift
 //  Bequest
 //
 //  Created by Jonathan Hersh on 12/21/14.
@@ -19,7 +19,7 @@ extension NSAttributedString {
     }
 }
 
-class BQSTHeaderCell : SSBaseTableCell {
+class BQSTResponseHeaderCell : SSBaseTableCell {
     
     var label: TTTAttributedLabel?
     var value: TTTAttributedLabel?
