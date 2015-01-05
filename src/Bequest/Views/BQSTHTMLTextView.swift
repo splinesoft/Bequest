@@ -13,7 +13,7 @@ let kBQSTDefaultHTMLFontSize: CGFloat = 12
 
 extension CYRToken {
     
-    convenience init(name: String!, expression: String!, color: (r: CGFloat, g: CGFloat, b: CGFloat), font: UIFont?) {
+    convenience init(name: String, expression: String, color: (r: CGFloat, g: CGFloat, b: CGFloat), font: UIFont?) {
         self.init()
         
         self.name = name
@@ -31,7 +31,7 @@ extension CYRToken {
 
 class BQSTHTMLTextView : CYRTextView {
     
-    var defaultFont: UIFont! = UIFont.BQSTRawResponseFont() {
+    var defaultFont: UIFont = UIFont.BQSTRawResponseFont() {
         didSet {
             self.font = self.defaultFont
             self.updateTokens()
