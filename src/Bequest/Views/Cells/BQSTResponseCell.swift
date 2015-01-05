@@ -54,7 +54,7 @@ class BQSTResponseCell : SSBaseTableCell {
                 ? response.object.description
                 : response.object) as? NSString
             
-            if string == nil {
+            if string == nil || string!.length == 0 {
                 return 0
             }
             

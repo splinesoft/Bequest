@@ -203,8 +203,22 @@ class BQSTResponseController : UITableViewController {
         
         // Response object
         if parsedResponse != nil {
-            let bodySection = SSSection(numberOfItems: 1, header: nil, footer: nil, identifier: BQSTResponseSection.Body.rawValue)
-            dataSource.appendSection(bodySection)
+            
+            let addBodySection: () -> () = {
+                let bodySection = SSSection(numberOfItems: 1, header: nil, footer: nil, identifier: BQSTResponseSection.Body.rawValue)
+                self.dataSource.appendSection(bodySection)
+            }
+            
+            switch parsedResponse!.contentType {
+            case .JSON, .HTML, .TXT:
+                let str = parsedResponse?.object as? String
+                
+                if str != nil && countElements(str!) > 0 {
+                    addBodySection()
+                }
+            default:
+                addBodySection()
+            }
         }
         
         dataSource.tableView = self.tableView
