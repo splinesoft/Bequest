@@ -13,7 +13,7 @@ def import_pods
     pod 'CYRTextView'
 
     # Networking
-    pod 'Alamofire', :git => "https://github.com/mrackwitz/Alamofire.git", :branch => "podspec"
+    pod 'Alamofire'
 end
 
 target :Bequest do
