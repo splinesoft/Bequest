@@ -210,10 +210,16 @@ class BQSTResponseController : UITableViewController {
             }
             
             switch parsedResponse!.contentType {
-            case .JSON, .HTML, .TXT:
+            case .HTML, .TXT:
                 let str = parsedResponse?.object as? String
                 
                 if str != nil && countElements(str!) > 0 {
+                    addBodySection()
+                }
+            case .JSON:
+                let dict = parsedResponse?.object as? [NSObject:AnyObject]
+                
+                if dict != nil && countElements(dict!) > 0 {
                     addBodySection()
                 }
             default:
