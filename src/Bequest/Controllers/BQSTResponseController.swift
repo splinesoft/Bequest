@@ -247,24 +247,24 @@ class BQSTResponseController : UITableViewController {
         case .ResponseHeaders:
             let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier(BQSTTableHeaderFooterView.identifier()) as BQSTTableHeaderFooterView
             
-            header.button?.removeTarget(self, action: Selector("toggleHeaders"), forControlEvents: UIControlEvents.TouchUpInside)
-            header.button?.setTitle(BQSTLocalizedString("RESPONSE_HEADERS") +
+            header.button.removeTarget(self, action: Selector("toggleHeaders"), forControlEvents: UIControlEvents.TouchUpInside)
+            header.button.setTitle(BQSTLocalizedString("RESPONSE_HEADERS") +
                 " (\(self.dataSource.numberOfItemsInSection(section)))", forState:.Normal)
-            header.button?.addTarget(self, action: Selector("toggleHeaders"), forControlEvents: UIControlEvents.TouchUpInside)
+            header.button.addTarget(self, action: Selector("toggleHeaders"), forControlEvents: UIControlEvents.TouchUpInside)
             
             return header
         case .Request:
             let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier(BQSTTableHeaderFooterView.identifier()) as BQSTTableHeaderFooterView
             
-            header.button?.removeTarget(self, action: Selector("toggleHeaders"), forControlEvents: .TouchUpInside)
-            header.button?.setTitle(BQSTLocalizedString("REQUEST"), forState: .Normal)
+            header.button.removeTarget(self, action: Selector("toggleHeaders"), forControlEvents: .TouchUpInside)
+            header.button.setTitle(BQSTLocalizedString("REQUEST"), forState: .Normal)
             
             return header
         case .RequestHeaders:
             let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier(BQSTTableHeaderFooterView.identifier()) as BQSTTableHeaderFooterView
             
-            header.button?.removeTarget(self, action: Selector("toggleHeaders"), forControlEvents: .TouchUpInside)
-            header.button?.setTitle(BQSTLocalizedString("REQUEST_HEADERS") +
+            header.button.removeTarget(self, action: Selector("toggleHeaders"), forControlEvents: .TouchUpInside)
+            header.button.setTitle(BQSTLocalizedString("REQUEST_HEADERS") +
                 " (\(self.dataSource.numberOfItemsInSection(section)))", forState: .Normal)
             
             return header

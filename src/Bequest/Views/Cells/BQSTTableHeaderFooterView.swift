@@ -11,7 +11,16 @@ import SSDataSources
 
 class BQSTTableHeaderFooterView : SSBaseHeaderFooterView {
     
-    var button: UIButton?
+    lazy var button: UIButton = {
+        let button: UIButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
+        button.setTitleColor(UIColor.BQSTRedColor(), forState: .Normal)
+        button.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
+        button.titleLabel?.font = UIFont.BQSTFont(18)
+        button.titleLabel?.textAlignment = .Left
+        button.backgroundColor = UIColor.clearColor()
+        
+        return button
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,16 +32,8 @@ class BQSTTableHeaderFooterView : SSBaseHeaderFooterView {
         let background = UIView()
         background.backgroundColor = UIColor.BQSTNavColor()
         self.backgroundView = background
-        
-        if self.button == nil {
-            self.button = UIButton.buttonWithType(UIButtonType.Custom) as? UIButton
-            self.button!.setTitleColor(UIColor.BQSTRedColor(), forState: .Normal)
-            self.button!.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
-            self.button!.titleLabel?.font = UIFont.BQSTFont(18)
-            self.button!.titleLabel?.textAlignment = .Left
-            self.button!.backgroundColor = UIColor.clearColor()
-            self.contentView.addSubview(self.button!)
-        }
+
+        self.contentView.addSubview(self.button)
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -41,6 +42,6 @@ class BQSTTableHeaderFooterView : SSBaseHeaderFooterView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.button?.frame = UIEdgeInsetsInsetRect(self.contentView.frame, kBQSTSimpleCellInsets)
+        self.button.frame = UIEdgeInsetsInsetRect(self.contentView.frame, kBQSTSimpleCellInsets)
     }
 }

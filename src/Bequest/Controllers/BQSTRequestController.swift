@@ -74,23 +74,23 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: progressButton)
         progressButton.addTarget(self, action: Selector("sendRequest"), forControlEvents: .TouchUpInside)
         
-        dataSource.cellConfigureBlock = { (c, value, collectionView, indexPath) in
+        dataSource.cellConfigureBlock = { (c, _, collectionView, indexPath) in
             
             if let row = BQSTRequestRow(rawValue: indexPath.row) {
                 
                 let cell = c as BQSTTextFieldCollectionCell
                 
-                cell.textField!.tag = indexPath.row
-                cell.textField!.delegate = BQSTRequestManager.sharedManager
-                cell.textField!.text = BQSTRequestManager.sharedManager.valueForRow(row)
+                cell.textField.tag = indexPath.row
+                cell.textField.delegate = BQSTRequestManager.sharedManager
+                cell.textField.text = BQSTRequestManager.sharedManager.valueForRow(row)
                 
                 switch row {
                 case .Method:
-                    cell.label?.text = BQSTLocalizedString("REQUEST_METHOD")
-                    cell.textField!.accessibilityLabel = BQSTLocalizedString("REQUEST_METHOD")
+                    cell.label.text = BQSTLocalizedString("REQUEST_METHOD")
+                    cell.textField.accessibilityLabel = BQSTLocalizedString("REQUEST_METHOD")
                 case .URL:
-                    cell.label?.text = BQSTLocalizedString("REQUEST_URL")
-                    cell.textField!.accessibilityLabel = BQSTLocalizedString("REQUEST_URL")
+                    cell.label.text = BQSTLocalizedString("REQUEST_URL")
+                    cell.textField.accessibilityLabel = BQSTLocalizedString("REQUEST_URL")
                 default:
                     break
                 }

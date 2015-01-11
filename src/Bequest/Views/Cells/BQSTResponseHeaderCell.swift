@@ -21,8 +21,29 @@ extension NSAttributedString {
 
 class BQSTResponseHeaderCell : SSBaseTableCell {
     
-    var label: TTTAttributedLabel?
-    var value: TTTAttributedLabel?
+    lazy var label: TTTAttributedLabel = {
+        let label = TTTAttributedLabel(frame: self.contentView.frame)
+        label.font = UIFont.BQSTHTTPHeaderFont()
+        label.textColor = UIColor.BQSTGrayColor()
+        label.backgroundColor = UIColor.clearColor()
+        label.numberOfLines = 0
+        label.verticalAlignment = .Center
+        label.textAlignment = .Right;
+        
+        return label
+    }()
+    
+    lazy var value: TTTAttributedLabel = {
+        let value = TTTAttributedLabel(frame: self.contentView.frame)
+        value.font = UIFont.BQSTHTTPHeaderFont()
+        value.textColor = UIColor.BQSTRedColor()
+        value.backgroundColor = UIColor.clearColor()
+        value.numberOfLines = 0
+        value.verticalAlignment = .Center
+        value.textAlignment = .Left;
+        
+        return value
+    }()
     
     class func heightForValues(values: [String], availableWidth: CGFloat) -> CGFloat {
         
@@ -50,23 +71,8 @@ class BQSTResponseHeaderCell : SSBaseTableCell {
         self.backgroundColor = UIColor.clearColor()
         self.selectionStyle = .Gray
 
-        label = TTTAttributedLabel(frame: self.contentView.frame)
-        label!.font = UIFont.BQSTHTTPHeaderFont()
-        label!.textColor = UIColor.BQSTGrayColor()
-        label!.backgroundColor = UIColor.clearColor()
-        label!.numberOfLines = 0
-        label!.verticalAlignment = .Center
-        label!.textAlignment = .Right;
-        self.contentView.addSubview(label!)
-        
-        value = TTTAttributedLabel(frame: self.contentView.frame)
-        value!.font = UIFont.BQSTHTTPHeaderFont()
-        value!.textColor = UIColor.BQSTRedColor()
-        value!.backgroundColor = UIColor.clearColor()
-        value!.numberOfLines = 0
-        value!.verticalAlignment = .Center
-        value!.textAlignment = .Left;
-        self.contentView.addSubview(value!)
+        self.contentView.addSubview(label)
+        self.contentView.addSubview(value)
     }
     
     override func layoutSubviews() {
@@ -75,20 +81,20 @@ class BQSTResponseHeaderCell : SSBaseTableCell {
         let width = (CGRectGetWidth(self.contentView.frame) / 2) - kBQSTSimpleCellInsets.left - kBQSTSimpleCellInsets.right
         let height = CGRectGetHeight(self.contentView.frame) - kBQSTSimpleCellInsets.top - kBQSTSimpleCellInsets.bottom
         
-        label!.frame = CGRectMake(kBQSTSimpleCellInsets.left,
+        label.frame = CGRectMake(kBQSTSimpleCellInsets.left,
             kBQSTSimpleCellInsets.top,
             width,
             height)
         
-        value!.frame = CGRectMake(width + (2 * kBQSTSimpleCellInsets.left) + kBQSTSimpleCellInsets.right,
+        value.frame = CGRectMake(width + (2 * kBQSTSimpleCellInsets.left) + kBQSTSimpleCellInsets.right,
             kBQSTSimpleCellInsets.top,
             width,
             height)
     }
     
     func configureWithValues(items: [String]) {
-        self.label!.text = items[0]
-        self.value!.text = items[1]
+        self.label.text = items[0]
+        self.value.text = items[1]
         self.setNeedsLayout()
     }
 }

@@ -12,7 +12,9 @@ import SSDataSources
 
 class BQSTBlockyCollectionCell : SSBaseCollectionCell {
     
-    var cellColor : UIColor?
+    lazy var cellColor : UIColor = {
+        return UIColor.BQSTRedColor()
+    }()
     
     // TODO: this is exactly what we want but it segfaults the swift compiler
 //    override var highlighted : Bool = false {
@@ -29,11 +31,9 @@ class BQSTBlockyCollectionCell : SSBaseCollectionCell {
         self.layer.masksToBounds = false
         
         self.highlighted = false
-        
-        cellColor = UIColor.BQSTRedColor()
     }
     
     override func drawRect(rect: CGRect) {
-        self.BQSTDrawColoredBox(rect, color: self.cellColor!)
+        self.BQSTDrawColoredBox(rect, color: self.cellColor)
     }
 }
