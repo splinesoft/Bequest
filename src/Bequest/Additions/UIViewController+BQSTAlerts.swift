@@ -21,8 +21,10 @@ extension UIViewController {
     }
     
     func BQSTShowSimpleErrorAlert(title: String, error: NSError?) {
-        let msg = (error?.userInfo?[NSUnderlyingErrorKey] as NSError).localizedDescription
-            ?? "Could not parse a response for this request."
+        println("Request error: \(error)")
+        
+        let msg: String = (error?.userInfo?[NSUnderlyingErrorKey] as NSError).localizedDescription
+            ?? BQSTLocalizedString("REQUEST_RESPONSE_GENERIC_ERROR")
         
         self.BQSTShowSimpleErrorAlert("Request Failed", message: msg)
     }

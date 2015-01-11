@@ -24,8 +24,11 @@
 
 "REQUEST_METHOD_MISSING" = "Missing Method";
 "REQUEST_METHOD_MISSING_DETAIL" = "Please add an HTTP method for this request.";
+
 "REQUEST_URL_MISSING" = "Missing URL";
 "REQUEST_URL_MISSING_DETAIL" = "Please add a URL for this request.";
+
+"REQUEST_RESPONSE_GENERIC_ERROR" = "Could not parse a response for this request.";
 
 /* Responses */
 
