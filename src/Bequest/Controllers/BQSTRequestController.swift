@@ -81,6 +81,8 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
                 let cell = c as BQSTTextFieldCollectionCell
                 
                 cell.textField.tag = indexPath.row
+                cell.textField.keyboardType = .Default
+                
                 cell.textField.delegate = BQSTRequestManager.sharedManager
                 cell.textField.text = BQSTRequestManager.sharedManager.valueForRow(row)
                 
@@ -91,6 +93,7 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
                 case .URL:
                     cell.label.text = BQSTLocalizedString("REQUEST_URL")
                     cell.textField.accessibilityLabel = BQSTLocalizedString("REQUEST_URL")
+                    cell.textField.keyboardType = .URL
                 default:
                     break
                 }

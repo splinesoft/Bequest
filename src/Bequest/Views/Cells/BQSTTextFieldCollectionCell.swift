@@ -34,6 +34,7 @@ class BQSTTextFieldCollectionCell : BQSTBlockyCollectionCell {
         textField.autocapitalizationType = .None
         textField.autocorrectionType = .No
         textField.spellCheckingType = .No
+        textField.keyboardAppearance = .Dark
         
         return textField
     }()
