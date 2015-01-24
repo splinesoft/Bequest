@@ -64,7 +64,7 @@ class BQSTKIFTests : KIFTestCase {
     func testCustomURLAndInvalidMethod() {
         self.setUpRequest("http://httpbin.org/post", method: "NOT-POST")
         tester.tapViewWithAccessibilityLabel(kBQSTSendKey)
-        tester.waitForViewWithAccessibilityLabel("Response [405]")
+        tester.waitForViewWithAccessibilityLabel("Response [400]")
         tester.tapViewWithAccessibilityLabel("Back")
     }
     
