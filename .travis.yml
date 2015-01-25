@@ -5,4 +5,6 @@ before_install:
   - gem install cocoapods --pre -N
 cache: cocoapods
 podfile: src/Podfile
+env:
+  - LC_CTYPE=en_US.UTF-8 LANG=en_US.UTF-8
 script: rake test
