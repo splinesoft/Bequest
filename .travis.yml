@@ -1,10 +1,13 @@
-osx_image: xcode61
+osx_image: xcode611
 language: objective-c
-before_install: 
-  - xcrun instruments -w "iPhone 6 (8.1 Simulator)" || echo "Launched"
-  - gem install cocoapods --pre -N
+before_install:
+- xcrun instruments -w "iPhone 6 (8.1 Simulator)" || echo "Launched"
+- gem install cocoapods --pre -N
 cache: cocoapods
 podfile: src/Podfile
 env:
-  - LC_CTYPE=en_US.UTF-8 LANG=en_US.UTF-8
+- LC_CTYPE=en_US.UTF-8 LANG=en_US.UTF-8
 script: rake test
+notifications:
+  slack:
+    secure: IoNRbtW+dEWYeWK93CKTyiUJ1FtBp4nhixS7LZj/JPnEP6w/nSOYP2BoaxBgUSpJFVFe8HCvsVXPobtRFM4ZYqL/N0AdWt1804CKOeoSfaRWm3E1lokQG0isER9qsq8Bd3OpGT2wmSEdUtVNjzhjTg6nJhMUmEp0mEgTHWegtkk=
