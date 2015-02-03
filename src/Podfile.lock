@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (1.1.3)
+  - Alamofire (1.1.4)
   - CYRTextView (0.4.0)
   - JTSImageViewController (1.4)
   - KIF (3.1.2):
@@ -23,7 +23,7 @@ DEPENDENCIES:
   - TTTAttributedLabel
 
 SPEC CHECKSUMS:
-  Alamofire: 4337b1484a062640f8caf6e96f03a511bf137536
+  Alamofire: 524225da382071ee3e6d0badd0ee4b4dc36740de
   CYRTextView: 0ac6cf1da8ef5736fc78ea37978be50e51392c75
   JTSImageViewController: 9fe6402194b7679f0e28d0c1002d6164301fc34a
   KIF: 068074b24dd455025e7f2a488ba4fb07b9ce047b
