@@ -4,6 +4,8 @@
 
 Bequest is an **[iOS app]** of type **[developer utility]** that **[creates and replays HTTP/S requests]**.
 
+![Bequest!](https://github.com/splinesoft/Bequest/raw/master/bequest.gif)
+
 ### Major goals:
 
 1. Universal app (iPhone and iPad)
