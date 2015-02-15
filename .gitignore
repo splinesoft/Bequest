@@ -7,4 +7,5 @@ output
 xcuserdata
 xcshareddata
 *.xcworkspacedata
-
+.bundle
+vendor/bundle
