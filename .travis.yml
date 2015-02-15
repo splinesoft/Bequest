@@ -9,3 +9,7 @@ script: rake test
 notifications:
   slack:
     secure: IoNRbtW+dEWYeWK93CKTyiUJ1FtBp4nhixS7LZj/JPnEP6w/nSOYP2BoaxBgUSpJFVFe8HCvsVXPobtRFM4ZYqL/N0AdWt1804CKOeoSfaRWm3E1lokQG0isER9qsq8Bd3OpGT2wmSEdUtVNjzhjTg6nJhMUmEp0mEgTHWegtkk=
+cache:
+  directories:
+    - vendor/bundle
+    - src/Pods
