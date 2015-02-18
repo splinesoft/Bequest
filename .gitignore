@@ -2,10 +2,8 @@
 
 .DS_Store
 build
-Pods
 output
 xcuserdata
 xcshareddata
-*.xcworkspacedata
 .bundle
 vendor/bundle

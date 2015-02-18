@@ -1,0 +1,36 @@
+PODS:
+  - Alamofire (1.1.4)
+  - CYRTextView (0.4.0)
+  - JTSImageViewController (1.4)
+  - KIF (3.1.2):
+    - KIF/XCTest (= 3.1.2)
+  - KIF/XCTest (3.1.2)
+  - Nimble (0.3.0)
+  - pop (1.0.7)
+  - Quick (0.2.2)
+  - SSDataSources (0.8.0)
+  - TTTAttributedLabel (1.13.1)
+
+DEPENDENCIES:
+  - Alamofire
+  - CYRTextView
+  - JTSImageViewController
+  - KIF
+  - Nimble
+  - pop
+  - Quick
+  - SSDataSources (= 0.8.0)
+  - TTTAttributedLabel
+
+SPEC CHECKSUMS:
+  Alamofire: 524225da382071ee3e6d0badd0ee4b4dc36740de
+  CYRTextView: 0ac6cf1da8ef5736fc78ea37978be50e51392c75
+  JTSImageViewController: 9fe6402194b7679f0e28d0c1002d6164301fc34a
+  KIF: 068074b24dd455025e7f2a488ba4fb07b9ce047b
+  Nimble: a4d9d978129e83d73e33b7d8bce57443bd556068
+  pop: 2f14a1ea61339767af9e66741b418c831b3844df
+  Quick: 7b89ff625e72ef931c2a9ef2f25ac3a9d2457763
+  SSDataSources: 4a9f4ecbc390e107c98002a91181e671429bc7b4
+  TTTAttributedLabel: 71843ac4178e1ebd6b0950b54325146726a124ae
+
+COCOAPODS: 0.36.0.beta.2

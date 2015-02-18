@@ -1,0 +1,8 @@
+#include "Pods-Bequest-JTSImageViewController.xcconfig"
+CONFIGURATION_BUILD_DIR = $PODS_FRAMEWORK_BUILD_PATH
+FRAMEWORK_SEARCH_PATHS = "$PODS_FRAMEWORK_BUILD_PATH"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/JTSImageViewController" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/Alamofire" "${PODS_ROOT}/Headers/Public/CYRTextView" "${PODS_ROOT}/Headers/Public/JTSImageViewController" "${PODS_ROOT}/Headers/Public/KIF" "${PODS_ROOT}/Headers/Public/Nimble" "${PODS_ROOT}/Headers/Public/Quick" "${PODS_ROOT}/Headers/Public/SSDataSources" "${PODS_ROOT}/Headers/Public/TTTAttributedLabel" "${PODS_ROOT}/Headers/Public/pop"
+OTHER_LDFLAGS = ${PODS_BEQUEST_JTSIMAGEVIEWCONTROLLER_OTHER_LDFLAGS} -ObjC
+PODS_FRAMEWORK_BUILD_PATH = $(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Pods-Bequest
+PODS_ROOT = ${SRCROOT}
