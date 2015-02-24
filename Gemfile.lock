@@ -13,6 +13,7 @@ GEM
       json (~> 1.4)
       nokogiri (>= 1.4.4)
     claide (0.8.0)
+    clamp (0.6.3)
     cocoapods (0.36.0.beta.2)
       activesupport (>= 3.2.15)
       claide (~> 0.8.0)
@@ -80,6 +81,9 @@ GEM
       rubyzip (~> 1.1)
       security (~> 0.1.3)
       terminal-table (~> 1.4.5)
+    slather (1.3.0)
+      clamp (~> 0.6)
+      xcodeproj (~> 0.17)
     terminal-table (1.4.5)
     thread_safe (0.3.4)
     tzinfo (1.2.2)
@@ -95,4 +99,5 @@ PLATFORMS
 DEPENDENCIES
   cocoapods (= 0.36.0.beta.2)
   shenzhen
+  slather
   xcpretty

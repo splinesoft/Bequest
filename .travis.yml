@@ -13,3 +13,4 @@ cache:
   directories:
     - vendor/bundle
     - src/Pods
+after_success: slather

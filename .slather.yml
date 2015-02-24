@@ -1,0 +1,5 @@
+coverage_service: coveralls
+xcodeproj: src/Bequest.xcodeproj
+source_directory: src/Bequest
+ignore:
+  - src/BequestTests

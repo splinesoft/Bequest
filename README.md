@@ -1,6 +1,6 @@
 # Bequest
 
-[![Build Status](https://travis-ci.org/splinesoft/Bequest.svg?branch=master)](https://travis-ci.org/splinesoft/Bequest)
+[![Build Status](https://travis-ci.org/splinesoft/Bequest.svg?branch=master)](https://travis-ci.org/splinesoft/Bequest) [![Coverage Status](https://coveralls.io/repos/splinesoft/Bequest/badge.svg)](https://coveralls.io/r/splinesoft/Bequest)
 
 Bequest is an **[iOS app]** of type **[developer utility]** that **[creates and replays HTTP/S requests]**.
 
