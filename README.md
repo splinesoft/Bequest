@@ -48,11 +48,11 @@ Bequest is an **[iOS app]** of type **[developer utility]** that **[creates and 
 
 ### Getting Started
 
-Bequest is now a thing that exists! After cloning the repo:
+Bequest is now a thing that exists! After cloning the repo, `rake setup` will install the bundle (including CocoaPods beta) and then install CocoaPods.
 
-1. `bundle install` to grab the CocoaPods branch with Swift support
-2. `rake setup` to install Pods
-3. You're all set! `rake test` will run app tests.
+`rake test` will run app tests.
+
+Would you like to contribute? Send a pull request -- fix a typo in the readme, update spacing, write a feature -- and then add your name below.
 
 ### Brought to you by:
 
