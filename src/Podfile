@@ -5,6 +5,8 @@ platform :ios, '8.0'
 xcodeproj 'Bequest'
 
 def import_pods
+    use_frameworks!
+
     # UI
     pod 'SSDataSources', '0.8.0'
     pod 'pop'
