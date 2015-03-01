@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/splinesoft/Bequest.svg?branch=master)](https://travis-ci.org/splinesoft/Bequest)
 
-Bequest is an **[iOS app]** of type **[developer utility]** that **[creates and replays HTTP/S requests]**.
+Bequest is **[an iOS app]** of type **[developer utility]** that **[creates and replays HTTP/S requests]**.
 
 ![Bequest!](https://github.com/splinesoft/Bequest/raw/master/bequest.gif)
 
