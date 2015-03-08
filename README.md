@@ -1,6 +1,6 @@
 # Bequest
 
-[![Build Status](https://travis-ci.org/splinesoft/Bequest.svg?branch=master)](https://travis-ci.org/splinesoft/Bequest)
+[![Circle CI](https://circleci.com/gh/splinesoft/Bequest.svg?style=svg&circle-token=2a795f288a28385e62193b721a7a82d42b4c9581)](https://circleci.com/gh/splinesoft/Bequest)
 
 Bequest is **[an iOS app]** of type **[developer utility]** that **[creates and replays HTTP/S requests]**.
 
