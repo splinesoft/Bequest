@@ -30,13 +30,19 @@ desc 'Runs all Bequest Tests'
 task :test do
 
   puts "Running Bequest Tests...".cyan
-  sh "set -o pipefail && bundle exec xcodebuild "+
+  
+  test_command = "set -o pipefail && bundle exec xcodebuild "+
   "-scheme 'Bequest Dev' "+
   "-workspace 'src/Bequest.xcworkspace' "+
   "-sdk iphonesimulator "+
   "-destination \"platform=iOS Simulator,name=iPhone 6\" "+
   "clean test | xcpretty -c"
+  
+  if ENV['CIRCLECI'] == 'true'
+    test_command += " --report junit --output ${CIRCLE_TEST_REPORTS}/junit.xml"
+  end
 
+  sh "#{test_command}"
 end
 
 desc 'Runs various static analyzers and linters'
