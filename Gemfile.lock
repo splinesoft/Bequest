@@ -68,7 +68,7 @@ GEM
     plist (3.1.0)
     rubyzip (1.1.7)
     security (0.1.3)
-    shenzhen (0.12.0)
+    shenzhen (0.13.0)
       aws-sdk (~> 1.0)
       commander (~> 4.3)
       dotenv (~> 0.7)
@@ -87,7 +87,7 @@ GEM
     xcodeproj (0.22.0)
       activesupport (>= 3)
       colored (~> 1.2)
-    xcpretty (0.1.7)
+    xcpretty (0.1.8)
 
 PLATFORMS
   ruby
