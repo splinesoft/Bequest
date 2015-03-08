@@ -8,7 +8,7 @@ def import_pods
     use_frameworks!
 
     # UI
-    pod 'SSDataSources', '0.8.0'
+    pod 'SSDataSources'
     pod 'pop'
     pod 'TTTAttributedLabel'
     pod 'JTSImageViewController'

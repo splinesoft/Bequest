@@ -36,11 +36,6 @@
 #pragma mark - Item access
 
 /**
- * Return the indexpath for a given item in the data source.
- */
-- (NSIndexPath *) indexPathForItem:(id)item;
-
-/**
  * Helper for managed objects. As with `indexPathForItem`, but for managed object IDs.
  */
 - (NSIndexPath *) indexPathForItemWithId:(NSManagedObjectID *)itemId;
@@ -100,7 +95,12 @@
 - (void) replaceItemAtIndex:(NSUInteger)index withItem:(id)item;
 
 /**
- * Replace objects in the specified range with objects in the provided range
+ *  Replace items at the specified indexes with items from the provided array.
+ */
+- (void) replaceItemsAtIndexes:(NSIndexSet *)indexes withItemsFromArray:(NSArray *)array;
+
+/**
+ * Replace items in the specified range with items from the provided array.
  */
 - (void) replaceItemsInRange:(NSRange)range withItemsFromArray:(NSArray *)otherArray;
  

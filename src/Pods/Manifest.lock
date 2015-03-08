@@ -8,7 +8,7 @@ PODS:
   - Nimble (0.3.0)
   - pop (1.0.7)
   - Quick (0.2.2)
-  - SSDataSources (0.8.0)
+  - SSDataSources (0.8.2)
   - TTTAttributedLabel (1.13.1)
 
 DEPENDENCIES:
@@ -19,7 +19,7 @@ DEPENDENCIES:
   - Nimble
   - pop
   - Quick
-  - SSDataSources (= 0.8.0)
+  - SSDataSources
   - TTTAttributedLabel
 
 SPEC CHECKSUMS:
@@ -30,7 +30,7 @@ SPEC CHECKSUMS:
   Nimble: a4d9d978129e83d73e33b7d8bce57443bd556068
   pop: 2f14a1ea61339767af9e66741b418c831b3844df
   Quick: 7b89ff625e72ef931c2a9ef2f25ac3a9d2457763
-  SSDataSources: 4a9f4ecbc390e107c98002a91181e671429bc7b4
+  SSDataSources: c10e97d83d93332a303604717fe683ffd3298cd8
   TTTAttributedLabel: 71843ac4178e1ebd6b0950b54325146726a124ae
 
 COCOAPODS: 0.36.0.rc.1

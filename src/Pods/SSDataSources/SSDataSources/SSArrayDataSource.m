@@ -7,7 +7,6 @@
 //
 
 #import "SSDataSources.h"
-#import <CoreData/CoreData.h>
 
 /**
  * An internal container to hold the raw items that are handed to SSArrayDataSource
@@ -169,11 +168,15 @@ static void *SSArrayKeyPathDataSourceContext = &SSArrayKeyPathDataSourceContext;
 #pragma mark - Replacing items
 
 - (void)replaceItemAtIndex:(NSUInteger)index withItem:(id)item {
-    [self.items replaceObjectAtIndex:index withObject:item];
+    [self replaceItemsAtIndexes:[NSIndexSet indexSetWithIndex:index] withItemsFromArray:@[ item ]];
 }
 
 - (void)replaceItemsInRange:(NSRange)range withItemsFromArray:(NSArray *)otherArray {
-    [self.items replaceObjectsInRange:range withObjectsFromArray:otherArray];
+    [self replaceItemsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:range] withItemsFromArray:otherArray];
+}
+
+- (void)replaceItemsAtIndexes:(NSIndexSet *)indexes withItemsFromArray:(NSArray *)array {
+    [self.items replaceObjectsAtIndexes:indexes withObjects:array];
 }
 
 #pragma mark - Moving Items
@@ -213,16 +216,6 @@ static void *SSArrayKeyPathDataSourceContext = &SSArrayKeyPathDataSourceContext;
 }
 
 #pragma mark - Item Searching
-
-- (NSIndexPath *)indexPathForItem:(id)item {
-    NSUInteger row = [self.items indexOfObjectIdenticalTo:item];
-  
-    if (row == NSNotFound) {
-        return nil;
-    }
-  
-    return [NSIndexPath indexPathForRow:(NSInteger)row inSection:0];
-}
 
 - (NSIndexPath *)indexPathForItemWithId:(NSManagedObjectID *)itemId {
     NSUInteger row = [self.items indexOfObjectPassingTest:^BOOL(NSManagedObject *object,

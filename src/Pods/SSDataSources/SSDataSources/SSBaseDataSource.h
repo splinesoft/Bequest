@@ -108,6 +108,15 @@ typedef void (^SSTableCellDeletionBlock)
  */
 - (NSUInteger) numberOfItems;
 
+/**
+ * Search all sections for the specified item. Sends -isEqual: to every object in the data source.
+ *
+ * @param item item for which to search
+ *
+ * @return an indexpath, or nil if not found
+ */
+- (NSIndexPath *) indexPathForItem:(id)item;
+
 #pragma mark - SSBaseDataSource
 
 /**
@@ -255,6 +264,13 @@ typedef void (^SSTableCellDeletionBlock)
  *  @param indexes sections to delete
  */
 - (void) deleteSectionsAtIndexes:(NSIndexSet *)indexes;
+
+/**
+*  Reload the specified indexes. You probably don't need to call this directly.
+*
+*  @param indexes sections to reload
+*/
+- (void) reloadSectionsAtIndexes:(NSIndexSet *)indexes;
 
 /**
  *  Reload data in the table and collection view and reset empty view state.

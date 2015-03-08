@@ -28,7 +28,7 @@
 #define COCOAPODS_POD_AVAILABLE_SSDataSources
 #define COCOAPODS_VERSION_MAJOR_SSDataSources 0
 #define COCOAPODS_VERSION_MINOR_SSDataSources 8
-#define COCOAPODS_VERSION_PATCH_SSDataSources 0
+#define COCOAPODS_VERSION_PATCH_SSDataSources 2
 
 // TTTAttributedLabel
 #define COCOAPODS_POD_AVAILABLE_TTTAttributedLabel
