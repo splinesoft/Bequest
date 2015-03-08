@@ -38,3 +38,10 @@ task :test do
   "clean test | xcpretty -c"
 
 end
+
+desc 'Runs various static analyzers and linters'
+task :lint do
+  
+  sh "bundle exec pod outdated --project-directory=src"
+  
+end

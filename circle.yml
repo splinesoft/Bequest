@@ -10,3 +10,8 @@ dependencies:
 test:
   override:
     - rake test
+  post:
+    - rake lint > lint.txt
+general:
+  artifacts:
+    - lint.txt
