@@ -11,7 +11,7 @@ import SSDataSources
 
 class BQSTTableHeaderFooterView : SSBaseHeaderFooterView {
     
-    lazy var button: UIButton = {
+    let button: UIButton = {
         let button: UIButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
         button.setTitleColor(UIColor.BQSTRedColor(), forState: .Normal)
         button.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
