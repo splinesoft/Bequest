@@ -4,7 +4,8 @@ machine:
     LC_CTYPE: en_US.UTF-8
 dependencies:
   pre:
-    - xcrun instruments -w "iPhone 6 (8.1 Simulator)" || exit 0
+    - sudo xcode-select --switch /Applications/Xcode-6.2.app
+    - xcrun instruments -w "iPhone 6 (8.2 Simulator)" || exit 0
   override:    
     - rake setup
 test:
