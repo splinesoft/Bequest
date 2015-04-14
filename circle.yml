@@ -6,12 +6,14 @@ dependencies:
   pre:
     - sudo xcode-select --switch /Applications/Xcode-6.2.app
     - xcrun instruments -w "iPhone 6 (8.2 Simulator)" || exit 0
+    - brew install cloc
   override:    
     - rake setup
 test:
   override:
     - rake test
   post:
+    - /usr/local/bin/cloc --exclude-dir=Pods --quiet --sum-one src
     - rake lint > lint.txt
 general:
   artifacts:
