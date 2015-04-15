@@ -88,7 +88,7 @@ GEM
     xcodeproj (0.23.1)
       activesupport (>= 3)
       colored (~> 1.2)
-    xcpretty (0.1.8)
+    xcpretty (0.1.9)
 
 PLATFORMS
   ruby
