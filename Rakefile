@@ -50,4 +50,5 @@ task :lint do
   
   sh "bundle exec pod outdated --project-directory=src"
   
+  puts `bundle exec obcd --path src/Bequest find HeaderStyle`
 end

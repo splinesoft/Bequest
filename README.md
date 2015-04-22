@@ -33,12 +33,12 @@ Bequest is **[an iOS app]** of type **[developer utility]** that **[creates and 
 
 ### Nice to have:
 
-* Search saved requests by URL, header, parameter
-* Syntax highlighting for response text
-* Prettify/auto-indent response JSON/XML
-* CloudKit as saved request storage
-* Something nicer to look at than a spinner and text label while it's loading
-* A slick app icon with a "B" and an arrow or something EVEN CRAZIER
+- Search saved requests by URL, header, parameter
+- [x] Syntax highlighting for response text
+- [x] Prettify/auto-indent response JSON/XML
+- CloudKit as saved request storage
+- Something nicer to look at than a spinner and text label while it's loading
+- A slick app icon with a "B" and an arrow or something EVEN CRAZIER
 
 ### Yacht features:
 
@@ -48,9 +48,13 @@ Bequest is **[an iOS app]** of type **[developer utility]** that **[creates and 
 
 ### Getting Started
 
-Bequest is now a thing that exists! After cloning the repo, `rake setup` will install the bundle (including CocoaPods beta) and then install CocoaPods.
+Bequest is now a thing that exists! After cloning the repo:
 
-`rake test` will run app tests.
+| Task | Description |
+| ---- | ----- |
+| `rake setup` | Install Rubygems and CocoaPods. |
+| `rake test` | Run all tests. |
+| `rake lint` | Lints Bequest with various static analyzers. |
 
 Would you like to contribute? Send a pull request -- fix a typo in the readme, update spacing, write a feature -- and then add your name below.
 
