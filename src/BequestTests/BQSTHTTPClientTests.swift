@@ -50,7 +50,7 @@ class BQSTHTTPClientTests: QuickSpec {
                         method: "GET", headers: [:], parameters: [:]);
                     
                     expect(URLRequest).toNot(beNil())
-                    expect(URLRequest.URL.isEqual(URL)).to(beTruthy())
+                    expect(URLRequest.URL!.isEqual(URL)).to(beTruthy())
                 }
                 
                 it("can create a POST request") {

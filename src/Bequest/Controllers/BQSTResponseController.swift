@@ -72,9 +72,9 @@ class BQSTResponseController : UITableViewController {
             
             switch self.responseSectionAtIndex(indexPath.section) {
             case .Request, .RequestHeaders, .ResponseHeaders:
-                return BQSTResponseHeaderCell(forTableView: tableView as UITableView)
+                return BQSTResponseHeaderCell(forTableView: tableView as! UITableView)
             case .Body:
-                return BQSTResponseCell(forTableView: tableView as UITableView)
+                return BQSTResponseCell(forTableView: tableView as! UITableView)
             default:
                 return nil // crash
             }
@@ -94,9 +94,9 @@ class BQSTResponseController : UITableViewController {
             
             switch self.responseSectionAtIndex(indexPath.section) {
             case .RequestHeaders, .ResponseHeaders, .Request:
-                (cell as BQSTResponseHeaderCell).configureWithValues(items as [String])
+                (cell as! BQSTResponseHeaderCell).configureWithValues(items as! [String])
             case .Body:
-                (cell as BQSTResponseCell).configureWithResponse(self.parsedResponse!)
+                (cell as! BQSTResponseCell).configureWithResponse(self.parsedResponse!)
             default:
                 break
             }
@@ -143,11 +143,11 @@ class BQSTResponseController : UITableViewController {
         // Request details and headers
         if request != nil {
             let requestItems = NSMutableArray()
-            requestItems.addObject([BQSTLocalizedString("REQUEST_URL"), self.request!.URL.absoluteString])
+            requestItems.addObject([BQSTLocalizedString("REQUEST_URL"), self.request!.URL!.absoluteString])
             requestItems.addObject([BQSTLocalizedString("REQUEST_METHOD"), self.request!.HTTPMethod ?? "GET"])
             requestItems.addObject([BQSTLocalizedString("REQUEST_TIMEOUT"), self.request!.timeoutInterval.description])
             
-            let section = SSSection(items: requestItems)
+            let section = SSSection(items: requestItems as [AnyObject])
             section.sectionIdentifier = NSNumber(integer: BQSTResponseSection.Request.rawValue)
             dataSource.appendSection(section)
             
@@ -167,7 +167,7 @@ class BQSTResponseController : UITableViewController {
             
             if requestHeaders.count > 0 {
                 let sortedNames: [NSObject] = (requestHeaders.keys.array.sorted {
-                    return ($0 as String) < ($1 as String)
+                    return ($0 as! String) < ($1 as! String)
                 })
                 
                 var headerItems = NSMutableArray()
@@ -176,7 +176,7 @@ class BQSTResponseController : UITableViewController {
                     headerItems.addObject([header, requestHeaders[header]!])
                 }
 
-                let headerSection = SSSection(items: headerItems)
+                let headerSection = SSSection(items: headerItems as [AnyObject])
                 headerSection.sectionIdentifier = NSNumber(integer: BQSTResponseSection.RequestHeaders.rawValue)
                 dataSource.appendSection(headerSection)
             }
@@ -186,7 +186,7 @@ class BQSTResponseController : UITableViewController {
         if let responseHeaders = response?.allHeaderFields {
             if responseHeaders.count > 0 {
                 let sortedNames: [NSObject] = (responseHeaders.keys.array.sorted {
-                    return ($0 as String) < ($1 as String)
+                    return ($0 as! String) < ($1 as! String)
                 })
                 
                 var headers = NSMutableArray()
@@ -195,7 +195,7 @@ class BQSTResponseController : UITableViewController {
                     headers.addObject([key, responseHeaders[key]!])
                 }
                 
-                let section = SSSection(items: headers)
+                let section = SSSection(items: headers as [AnyObject])
                 section.sectionIdentifier = NSNumber(integer: BQSTResponseSection.ResponseHeaders.rawValue)
                 dataSource.appendSection(section)
             }
@@ -213,13 +213,13 @@ class BQSTResponseController : UITableViewController {
             case .HTML, .TXT:
                 let str = parsedResponse?.object as? String
                 
-                if str != nil && countElements(str!) > 0 {
+                if str != nil && count(str!) > 0 {
                     addBodySection()
                 }
             case .JSON:
                 let dict = parsedResponse?.object as? [NSObject:AnyObject]
                 
-                if dict != nil && countElements(dict!) > 0 {
+                if dict != nil && count(dict!) > 0 {
                     addBodySection()
                 }
             default:
@@ -251,7 +251,7 @@ class BQSTResponseController : UITableViewController {
         
         switch self.responseSectionAtIndex(section) {
         case .ResponseHeaders:
-            let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier(BQSTTableHeaderFooterView.identifier()) as BQSTTableHeaderFooterView
+            let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier(BQSTTableHeaderFooterView.identifier()) as! BQSTTableHeaderFooterView
             
             header.button.removeTarget(self, action: Selector("toggleHeaders"), forControlEvents: UIControlEvents.TouchUpInside)
             header.button.setTitle(BQSTLocalizedString("RESPONSE_HEADERS") +
@@ -260,14 +260,14 @@ class BQSTResponseController : UITableViewController {
             
             return header
         case .Request:
-            let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier(BQSTTableHeaderFooterView.identifier()) as BQSTTableHeaderFooterView
+            let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier(BQSTTableHeaderFooterView.identifier()) as! BQSTTableHeaderFooterView
             
             header.button.removeTarget(self, action: Selector("toggleHeaders"), forControlEvents: .TouchUpInside)
             header.button.setTitle(BQSTLocalizedString("REQUEST"), forState: .Normal)
             
             return header
         case .RequestHeaders:
-            let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier(BQSTTableHeaderFooterView.identifier()) as BQSTTableHeaderFooterView
+            let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier(BQSTTableHeaderFooterView.identifier()) as! BQSTTableHeaderFooterView
             
             header.button.removeTarget(self, action: Selector("toggleHeaders"), forControlEvents: .TouchUpInside)
             header.button.setTitle(BQSTLocalizedString("REQUEST_HEADERS") +
@@ -291,7 +291,7 @@ class BQSTResponseController : UITableViewController {
 
         switch self.responseSectionAtIndex(indexPath.section) {
         case .RequestHeaders, .ResponseHeaders, .Request:
-            let items = self.dataSource.itemAtIndexPath(indexPath) as [String]
+            let items = self.dataSource.itemAtIndexPath(indexPath) as! [String]
             return BQSTResponseHeaderCell.heightForValues(items, availableWidth: CGRectGetWidth(tableView.frame))
         case .Body:
             return BQSTResponseCell.heightForResponse(self.parsedResponse!, availableWidth: CGRectGetWidth(tableView.frame))
@@ -310,7 +310,7 @@ class BQSTResponseController : UITableViewController {
             case .JPEG, .GIF, .PNG:
                 
                 let imageInfo = JTSImageInfo()
-                imageInfo.image = self.parsedResponse!.object as UIImage
+                imageInfo.image = self.parsedResponse!.object as! UIImage
                 imageInfo.referenceView = tableView
                 imageInfo.referenceContentMode = .ScaleAspectFit
                 
@@ -356,7 +356,7 @@ class BQSTResponseController : UITableViewController {
             
         switch self.responseSectionAtIndex(indexPath.section) {
         case .ResponseHeaders, .RequestHeaders, .Request:
-            let item = self.dataSource.itemAtIndexPath(indexPath) as [String]
+            let item = self.dataSource.itemAtIndexPath(indexPath) as! [String]
             UIPasteboard.generalPasteboard().string = String(format: "%@: %@", item[0], item[1])
         default:
             break

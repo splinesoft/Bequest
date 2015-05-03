@@ -11,7 +11,7 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    lazy var window: UIWindow = {
+    lazy var window: UIWindow? = {
         let window = UIWindow(frame: UIScreen.mainScreen().bounds)
         window.rootViewController = BQSTNavigationController(rootViewController: BQSTRequestController())
         
@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        window.makeKeyAndVisible()
+        window?.makeKeyAndVisible()
         
         return true
     }

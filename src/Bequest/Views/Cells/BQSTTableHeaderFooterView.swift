@@ -12,7 +12,7 @@ import SSDataSources
 class BQSTTableHeaderFooterView : SSBaseHeaderFooterView {
     
     let button: UIButton = {
-        let button: UIButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
+        let button: UIButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
         button.setTitleColor(UIColor.BQSTRedColor(), forState: .Normal)
         button.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
         button.titleLabel?.font = UIFont.BQSTFont(18)

@@ -23,7 +23,7 @@ extension UIViewController {
     func BQSTShowSimpleErrorAlert(title: String, error: NSError?) {
         println("Request error: \(error)")
         
-        let msg: String = (error?.userInfo?[NSUnderlyingErrorKey] as NSError).localizedDescription
+        let msg: String = (error?.userInfo?[NSUnderlyingErrorKey] as! NSError).localizedDescription
             ?? BQSTLocalizedString("REQUEST_RESPONSE_GENERIC_ERROR")
         
         self.BQSTShowSimpleErrorAlert("Request Failed", message: msg)

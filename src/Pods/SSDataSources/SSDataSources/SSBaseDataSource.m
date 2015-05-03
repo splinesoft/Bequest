@@ -104,6 +104,8 @@
     if (tableView) {
         tableView.dataSource = self;
     }
+
+    [self _updateEmptyView];
 }
 
 - (void)setCollectionView:(UICollectionView *)collectionView {
@@ -112,6 +114,8 @@
     if (collectionView) {
         collectionView.dataSource = self;
     }
+
+    [self _updateEmptyView];
 }
 
 #pragma mark - UITableViewDataSource
@@ -284,8 +288,10 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
     
     // Reloading seems to work around an awkward delay where the empty view
     // is not immediately visible but the separator lines still are
-    [tableView reloadData];
-    [collectionView reloadData];
+    if (shouldShowEmptyView) {
+        [tableView reloadData];
+        [collectionView reloadData];
+    }
 }
 
 #pragma mark - NSIndexPath helpers

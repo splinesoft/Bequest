@@ -47,7 +47,7 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
         dataSource.rowAnimation = .Fade
         
         dataSource.cellCreationBlock = { (value, collectionView, indexPath) in
-            return BQSTTextFieldCollectionCell.self(forCollectionView: collectionView as UICollectionView,
+            return BQSTTextFieldCollectionCell.self(forCollectionView: collectionView as! UICollectionView,
                 indexPath: indexPath as NSIndexPath)
         }
         
@@ -78,7 +78,7 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
             
             if let row = BQSTRequestRow(rawValue: indexPath.row) {
                 
-                let cell = c as BQSTTextFieldCollectionCell
+                let cell = c as! BQSTTextFieldCollectionCell
                 
                 cell.textField.tag = indexPath.row
                 cell.textField.keyboardType = .Default
@@ -125,19 +125,19 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
         
         let request: NSURLRequest = BQSTRequestManager.sharedManager.currentRequest
         
-        if countElements(request.URL.absoluteString!) == 0 {
+        if count(request.URL!.absoluteString!) == 0 {
             self.BQSTShowSimpleErrorAlert(BQSTLocalizedString("REQUEST_URL_MISSING"),
                 message: BQSTLocalizedString("REQUEST_URL_MISSING_DETAIL"))
             return
         }
         
-        if request.HTTPMethod == nil || countElements(request.HTTPMethod!) == 0 {
+        if request.HTTPMethod == nil || count(request.HTTPMethod!) == 0 {
             self.BQSTShowSimpleErrorAlert(BQSTLocalizedString("REQUEST_METHOD_MISSING"),
                 message: BQSTLocalizedString("REQUEST_METHOD_MISSING_DETAIL"))
             return
         }
         
-        println("Sending a request of type \(request.HTTPMethod!) to URL \(request.URL)")
+        println("Sending a request of type \(request.HTTPMethod!) to URL \(request.URL!)")
         
         self.progressButton.progressPercentage = 0
         self.progressButton.progressState = .Loading

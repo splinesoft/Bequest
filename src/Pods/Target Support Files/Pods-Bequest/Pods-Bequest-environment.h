@@ -9,8 +9,8 @@
 // Alamofire
 #define COCOAPODS_POD_AVAILABLE_Alamofire
 #define COCOAPODS_VERSION_MAJOR_Alamofire 1
-#define COCOAPODS_VERSION_MINOR_Alamofire 1
-#define COCOAPODS_VERSION_PATCH_Alamofire 4
+#define COCOAPODS_VERSION_MINOR_Alamofire 2
+#define COCOAPODS_VERSION_PATCH_Alamofire 1
 
 // CYRTextView
 #define COCOAPODS_POD_AVAILABLE_CYRTextView
@@ -28,7 +28,7 @@
 #define COCOAPODS_POD_AVAILABLE_SSDataSources
 #define COCOAPODS_VERSION_MAJOR_SSDataSources 0
 #define COCOAPODS_VERSION_MINOR_SSDataSources 8
-#define COCOAPODS_VERSION_PATCH_SSDataSources 2
+#define COCOAPODS_VERSION_PATCH_SSDataSources 5
 
 // TTTAttributedLabel
 #define COCOAPODS_POD_AVAILABLE_TTTAttributedLabel
