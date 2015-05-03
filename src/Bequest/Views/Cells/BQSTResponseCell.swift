@@ -45,7 +45,7 @@ class BQSTResponseCell : SSBaseTableCell {
         
         switch response.contentType {
         case .GIF, .PNG, .JPEG:
-            return min(kBQSTMaxImageHeight, (response.object as UIImage).size.height)
+            return min(kBQSTMaxImageHeight, (response.object as! UIImage).size.height)
                 + kBQSTResponseContentInsets.bottom + kBQSTResponseContentInsets.top
             
         case .HTML, .TXT, .JSON, .XML:
@@ -148,9 +148,9 @@ class BQSTResponseCell : SSBaseTableCell {
             self.contentView.addSubview(self.segmentControl)
             self.contentView.addSubview(self.textView)
             
-            textView.text = response.object as String
+            textView.text = response.object as! String
             textView.contentOffset = CGPointZero
-            webView.loadHTMLString(response.object as String, baseURL: nil)
+            webView.loadHTMLString(response.object as! String, baseURL: nil)
             
         case .JSON, .TXT, .XML:
             

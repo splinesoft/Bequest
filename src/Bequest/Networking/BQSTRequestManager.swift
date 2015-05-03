@@ -30,7 +30,7 @@ class BQSTRequestManager : NSObject, UITextFieldDelegate {
     
     internal var currentRequest : NSURLRequest {
         get {
-            return mutableRequest.copy() as NSURLRequest
+            return mutableRequest.copy() as! NSURLRequest
         }
     }
     
