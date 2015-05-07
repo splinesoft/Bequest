@@ -15,6 +15,8 @@
 "REQUEST_METHOD" = "Method";
 "REQUEST_TIMEOUT" = "Timeout";
 "REQUEST_HEADERS" = "Request Headers";
+"REQUEST_METHOD_CUSTOM" = "Custom Method";
+"REQUEST_METHOD_CUSTOM_PLACEHOLDER" = "CUSTOM";
 
 /* Request errors */
 

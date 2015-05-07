@@ -2,12 +2,13 @@ PODS:
   - Alamofire (1.2.1)
   - CYRTextView (0.4.0)
   - JTSImageViewController (1.4)
-  - KIF (3.2.1):
-    - KIF/XCTest (= 3.2.1)
-  - KIF/XCTest (3.2.1)
+  - KIF (3.2.2):
+    - KIF/XCTest (= 3.2.2)
+  - KIF/XCTest (3.2.2)
   - Nimble (0.4.2)
   - pop (1.0.7)
   - Quick (0.3.1)
+  - SnapKit (0.11.0)
   - SSDataSources (0.8.5)
   - TTTAttributedLabel (1.13.1)
 
@@ -19,6 +20,7 @@ DEPENDENCIES:
   - Nimble
   - pop
   - Quick
+  - SnapKit
   - SSDataSources
   - TTTAttributedLabel
 
@@ -26,10 +28,11 @@ SPEC CHECKSUMS:
   Alamofire: 1acfdf179aff68b41a48dff70c1ac7fa263e2bcb
   CYRTextView: 1c1a4d708eee54ecad66b8ad42dbfe73083bdfce
   JTSImageViewController: 6a367b144e257db02cdfacdba78d684377d3777b
-  KIF: ef1691e54e1d969c3b4fd0b5b56a3d7ddf37f216
+  KIF: b0bd762b0c7890b04920cf618021d6d4fd5127bd
   Nimble: 49b7a7da8919f42823d37c6d68cc6d15a7009f32
   pop: 628ffc631644601567ee8bfaaaea493ebd7d0923
   Quick: 824572d3d198d51e52cf4aa722cebf7e59952a35
+  SnapKit: 5194d53cee209d337a989919ff66a70b7aa3dda3
   SSDataSources: b01170fb23b82acf0649194e9189b0bf5f702681
   TTTAttributedLabel: 0a9e524c8d78301506c26affffc827429b833b25
 

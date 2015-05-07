@@ -35,6 +35,7 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
         let cv = UICollectionView(frame: CGRectZero, collectionViewLayout: UICollectionViewFlowLayout())
         cv.registerClass(BQSTTextFieldCollectionCell.self,
             forCellWithReuseIdentifier: BQSTTextFieldCollectionCell.identifier())
+        cv.registerClass(BQSTHTTPMethodCell.self, forCellWithReuseIdentifier: BQSTHTTPMethodCell.identifier())
         cv.keyboardDismissMode = .Interactive
         
         return cv
@@ -46,8 +47,18 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
         
         dataSource.rowAnimation = .Fade
         
-        dataSource.cellCreationBlock = { (value, collectionView, indexPath) in
-            return BQSTTextFieldCollectionCell.self(forCollectionView: collectionView as! UICollectionView,
+        dataSource.cellCreationBlock = { value, collectionView, indexPath in
+            
+            if let row = BQSTRequestRow(rawValue: indexPath.row) {
+                if row == .Method {
+                    return BQSTHTTPMethodCell(forCollectionView: collectionView as! UICollectionView, indexPath: indexPath as NSIndexPath)
+                } else {
+                    return BQSTTextFieldCollectionCell(forCollectionView: collectionView as! UICollectionView,
+                        indexPath: indexPath as NSIndexPath)
+                }
+            }
+            
+            return BQSTTextFieldCollectionCell(forCollectionView: collectionView as! UICollectionView,
                 indexPath: indexPath as NSIndexPath)
         }
         
@@ -78,31 +89,43 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
             
             if let row = BQSTRequestRow(rawValue: indexPath.row) {
                 
-                let cell = c as! BQSTTextFieldCollectionCell
-                
-                cell.textField.tag = indexPath.row
-                cell.textField.keyboardType = .Default
-                
-                cell.textField.delegate = BQSTRequestManager.sharedManager
-                cell.textField.text = BQSTRequestManager.sharedManager.valueForRow(row)
-                
                 switch row {
                 case .Method:
+                    
+                    let cell = c as! BQSTHTTPMethodCell
+                    
                     cell.label.text = BQSTLocalizedString("REQUEST_METHOD")
-                    cell.textField.accessibilityLabel = BQSTLocalizedString("REQUEST_METHOD")
+                    cell.accessibilityLabel = BQSTLocalizedString("REQUEST_METHOD")
+                    cell.method = BQSTRequestManager.sharedManager.valueForRow(row) ?? "GET"
+                                        
+                    cell.changeBlock = { (newType: String) in
+                        BQSTRequestManager.sharedManager.mutableRequest.HTTPMethod = newType
+                    }
+                
                 case .URL:
-                    cell.label.text = BQSTLocalizedString("REQUEST_URL")
+                    
+                    let cell = c as! BQSTTextFieldCollectionCell
+                    
+                    cell.textField.tag = indexPath.row
+                    cell.textField.keyboardType = .Default
                     cell.textField.accessibilityLabel = BQSTLocalizedString("REQUEST_URL")
                     cell.textField.keyboardType = .URL
+                    cell.textField.delegate = BQSTRequestManager.sharedManager
+                    cell.textField.text = BQSTRequestManager.sharedManager.valueForRow(row)
+                
+                    cell.label.text = BQSTLocalizedString("REQUEST_URL")
+                    
                 default:
                     break
                 }
             }
         }
 
-        collectionView.frame = self.view.frame
         collectionView.delegate = self
         self.view.addSubview(collectionView)
+        collectionView.snp_makeConstraints { make in
+            make.edges.equalTo(self.view)
+        }
         
         dataSource.collectionView = collectionView
     }
@@ -230,7 +253,7 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
     
         if let row = BQSTRequestRow(rawValue: indexPath.row) {
             switch row {
-            case .URL:
+            case .URL, .Method:
                 return fullWidth
             default:
                 return halfWidth

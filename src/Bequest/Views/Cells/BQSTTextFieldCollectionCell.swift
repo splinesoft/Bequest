@@ -10,23 +10,8 @@ import Foundation
 
 class BQSTTextFieldCollectionCell : BQSTBlockyCollectionCell {
     
-    lazy var label : UILabel = {
-        let label = UILabel(frame: CGRectMake(kBQSTBoxInsets.left,
-            CGRectGetHeight(self.contentView.frame) - kBQSTBoxInsets.bottom,
-            CGRectGetWidth(self.contentView.frame) - kBQSTBoxInsets.right,
-            kBQSTBoxInsets.bottom))
-        label.font = UIFont.BQSTFont(14)
-        label.textColor = UIColor.darkTextColor()
-        label.textAlignment = .Right
-        
-        return label
-    }()
-    
     lazy var textField : UITextField = {
-        let textField = UITextField(frame: CGRectMake(kBQSTBoxShadowInsets.left,
-            0,
-            CGRectGetWidth(self.contentView.frame) - kBQSTBoxInsets.right - kBQSTBoxShadowInsets.left,
-            CGRectGetHeight(self.contentView.frame) - kBQSTBoxInsets.bottom))
+        let textField = UITextField(frame: CGRectZero)
         textField.font = UIFont.BQSTMonoFont(16)
         textField.textColor = UIColor.whiteColor()
         textField.clearButtonMode = .WhileEditing
@@ -42,7 +27,9 @@ class BQSTTextFieldCollectionCell : BQSTBlockyCollectionCell {
     override func configureCell() {
         super.configureCell()
         
-        self.contentView.addSubview(label)
         self.contentView.addSubview(textField)
+        textField.snp_makeConstraints { make in
+            make.edges.equalTo(self.contentView).insets(UIEdgeInsetsMake(0, 14, 14, 14))
+        }
     }
 }

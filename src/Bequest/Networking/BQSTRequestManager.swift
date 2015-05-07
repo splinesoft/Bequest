@@ -24,11 +24,11 @@ extension BQSTRequestRow {
 
 class BQSTRequestManager : NSObject, UITextFieldDelegate {
     
-    private let mutableRequest : NSMutableURLRequest = NSMutableURLRequest(URL: kBQSTDefaultURL,
+    let mutableRequest : NSMutableURLRequest = NSMutableURLRequest(URL: kBQSTDefaultURL,
         cachePolicy: .ReloadIgnoringLocalCacheData,
         timeoutInterval: 30)
     
-    internal var currentRequest : NSURLRequest {
+    var currentRequest : NSURLRequest {
         get {
             return mutableRequest.copy() as! NSURLRequest
         }
@@ -41,7 +41,7 @@ class BQSTRequestManager : NSObject, UITextFieldDelegate {
     func valueForRow(row: BQSTRequestRow) -> String? {
         switch row {
         case .URL:
-            return mutableRequest.URL?.absoluteString ?? kBQSTDefaultURL.absoluteString
+            return mutableRequest.URL?.absoluteString ?? kBQSTDefaultURL.absoluteString!
         case .Method:
             return mutableRequest.HTTPMethod ?? "GET"
         default:
@@ -59,8 +59,6 @@ class BQSTRequestManager : NSObject, UITextFieldDelegate {
         switch (BQSTRequestRow.rowFromTextField(textField)) {
         case .URL:
             mutableRequest.URL = NSURL(string: text)
-        case .Method:
-            mutableRequest.HTTPMethod = text
         default:
             break
         }
