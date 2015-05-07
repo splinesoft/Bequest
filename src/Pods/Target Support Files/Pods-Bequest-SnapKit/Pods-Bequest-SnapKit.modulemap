@@ -1,0 +1,6 @@
+framework module SnapKit {
+  umbrella header "Pods-Bequest-SnapKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

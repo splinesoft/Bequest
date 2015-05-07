@@ -55,6 +55,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Nimble.framework'
   install_framework 'Quick.framework'
   install_framework 'SSDataSources.framework'
+  install_framework 'SnapKit.framework'
   install_framework 'TTTAttributedLabel.framework'
   install_framework 'pop.framework'
 fi
@@ -66,6 +67,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Nimble.framework'
   install_framework 'Quick.framework'
   install_framework 'SSDataSources.framework'
+  install_framework 'SnapKit.framework'
   install_framework 'TTTAttributedLabel.framework'
   install_framework 'pop.framework'
 fi
@@ -77,6 +79,7 @@ if [[ "$CONFIGURATION" == "Adhoc" ]]; then
   install_framework 'Nimble.framework'
   install_framework 'Quick.framework'
   install_framework 'SSDataSources.framework'
+  install_framework 'SnapKit.framework'
   install_framework 'TTTAttributedLabel.framework'
   install_framework 'pop.framework'
 fi

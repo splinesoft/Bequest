@@ -42,6 +42,7 @@
 		E999D77E1A4B579F0082324D /* BQSTResponseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E999D7791A4B579F0082324D /* BQSTResponseCell.swift */; };
 		E999D77F1A4B579F0082324D /* BQSTResponseHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E999D77A1A4B579F0082324D /* BQSTResponseHeaderCell.swift */; };
 		E999D7811A4B57C30082324D /* BQSTHTMLTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E999D7801A4B57C30082324D /* BQSTHTMLTextView.swift */; };
+		E9B077F01AF828E20091E113 /* BQSTHTTPMethodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B077EF1AF828E20091E113 /* BQSTHTTPMethodCell.swift */; };
 		E9D81C531A47C24B00FF7A42 /* BQSTProgressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D81C521A47C24B00FF7A42 /* BQSTProgressButton.swift */; };
 /* End PBXBuildFile section */
 
@@ -95,6 +96,7 @@
 		E999D7791A4B579F0082324D /* BQSTResponseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTResponseCell.swift; sourceTree = "<group>"; };
 		E999D77A1A4B579F0082324D /* BQSTResponseHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTResponseHeaderCell.swift; sourceTree = "<group>"; };
 		E999D7801A4B57C30082324D /* BQSTHTMLTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTHTMLTextView.swift; sourceTree = "<group>"; };
+		E9B077EF1AF828E20091E113 /* BQSTHTTPMethodCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTHTTPMethodCell.swift; sourceTree = "<group>"; };
 		E9D81C521A47C24B00FF7A42 /* BQSTProgressButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BQSTProgressButton.swift; sourceTree = "<group>"; };
 		EF20EFF2E4BA0F289180A5F7 /* Pods-Bequest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bequest.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bequest/Pods-Bequest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -254,6 +256,7 @@
 			isa = PBXGroup;
 			children = (
 				E999D7761A4B579F0082324D /* BQSTBlockyCollectionCell.swift */,
+				E9B077EF1AF828E20091E113 /* BQSTHTTPMethodCell.swift */,
 				E999D7771A4B579F0082324D /* BQSTTableHeaderFooterView.swift */,
 				E999D7781A4B579F0082324D /* BQSTTextFieldCollectionCell.swift */,
 				E999D7791A4B579F0082324D /* BQSTResponseCell.swift */,
@@ -467,6 +470,7 @@
 				E9451C8B1A4BC9350066891C /* NSData+BQSTAdditions.swift in Sources */,
 				5E6084AE1A3B856A00F2A8CA /* UIView+BQSTAnimations.swift in Sources */,
 				E999D77D1A4B579F0082324D /* BQSTTextFieldCollectionCell.swift in Sources */,
+				E9B077F01AF828E20091E113 /* BQSTHTTPMethodCell.swift in Sources */,
 				E96788831A478E1F00D38695 /* BQSTResponseController.swift in Sources */,
 				E999D77C1A4B579F0082324D /* BQSTTableHeaderFooterView.swift in Sources */,
 				5E6B025B1A1D5C3B00EB5CCC /* BQSTHTTPClient.swift in Sources */,
@@ -679,6 +683,7 @@
 				CLANG_WARN_OBJC_MISSING_PROPERTY_SYNTHESIS = YES;
 				CLANG_WARN_OBJC_RECEIVER_WEAK = YES;
 				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_MULTIPLE_DEFINITION_TYPES_FOR_SELECTOR = YES;
@@ -702,6 +707,7 @@
 				CLANG_WARN_OBJC_MISSING_PROPERTY_SYNTHESIS = YES;
 				CLANG_WARN_OBJC_RECEIVER_WEAK = YES;
 				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_MULTIPLE_DEFINITION_TYPES_FOR_SELECTOR = YES;
@@ -836,6 +842,7 @@
 				CLANG_WARN_OBJC_MISSING_PROPERTY_SYNTHESIS = YES;
 				CLANG_WARN_OBJC_RECEIVER_WEAK = YES;
 				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_MULTIPLE_DEFINITION_TYPES_FOR_SELECTOR = YES;

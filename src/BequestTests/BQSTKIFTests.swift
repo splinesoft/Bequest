@@ -23,7 +23,7 @@ class BQSTKIFTests : KIFTestCase {
     
     private func setUpRequest(url: String, method: String) {
         tester.clearTextFromAndThenEnterText(url, intoViewWithAccessibilityLabel: "URL")
-        tester.clearTextFromAndThenEnterText(method, intoViewWithAccessibilityLabel: "Method")
+        tester.tapViewWithAccessibilityLabel(count(method) > 0 ? method : "GET")
     }
     
     override func beforeAll() {
@@ -35,10 +35,10 @@ class BQSTKIFTests : KIFTestCase {
         super.afterAll()
     }
     
-    func testEmptyMethod() {
+    func testEmptyMethodDefaultsToGET() {
         self.setUpRequest("http://splinesoft.net", method: "")
         tester.tapViewWithAccessibilityLabel(kBQSTSendKey)
-        tester.tapViewWithAccessibilityLabel(kBQSTAlertKey)
+        tester.tapViewWithAccessibilityLabel("Back")
     }
     
     func testEmptyURL() {
@@ -61,10 +61,12 @@ class BQSTKIFTests : KIFTestCase {
         tester.tapViewWithAccessibilityLabel("Back")
     }
     
-    func testCustomURLAndInvalidMethod() {
-        self.setUpRequest("http://httpbin.org/post", method: "NOT-POST")
+    func testCustomMethodRequest() {
+        tester.clearTextFromAndThenEnterText("http://splinesoft.net", intoViewWithAccessibilityLabel: "URL")
+        tester.scrollViewWithAccessibilityIdentifier(BQSTLocalizedString("REQUEST_METHOD"), byFractionOfSizeHorizontal: -1, vertical: 0)
+        tester.clearTextFromAndThenEnterText("HEAD", intoViewWithAccessibilityLabel: BQSTLocalizedString("REQUEST_METHOD_CUSTOM"))
         tester.tapViewWithAccessibilityLabel(kBQSTSendKey)
-        tester.waitForViewWithAccessibilityLabel("Response [400]")
+        tester.waitForViewWithAccessibilityLabel("Response [200]")
         tester.tapViewWithAccessibilityLabel("Back")
     }
     

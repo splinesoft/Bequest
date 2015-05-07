@@ -13,6 +13,7 @@ def import_pods
     pod 'TTTAttributedLabel'
     pod 'JTSImageViewController'
     pod 'CYRTextView'
+    pod 'SnapKit'
 
     # Networking
     pod 'Alamofire'

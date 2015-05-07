@@ -52,6 +52,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'CYRTextView.framework'
   install_framework 'JTSImageViewController.framework'
   install_framework 'SSDataSources.framework'
+  install_framework 'SnapKit.framework'
   install_framework 'TTTAttributedLabel.framework'
   install_framework 'pop.framework'
 fi
@@ -60,6 +61,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'CYRTextView.framework'
   install_framework 'JTSImageViewController.framework'
   install_framework 'SSDataSources.framework'
+  install_framework 'SnapKit.framework'
   install_framework 'TTTAttributedLabel.framework'
   install_framework 'pop.framework'
 fi
@@ -68,6 +70,7 @@ if [[ "$CONFIGURATION" == "Adhoc" ]]; then
   install_framework 'CYRTextView.framework'
   install_framework 'JTSImageViewController.framework'
   install_framework 'SSDataSources.framework'
+  install_framework 'SnapKit.framework'
   install_framework 'TTTAttributedLabel.framework'
   install_framework 'pop.framework'
 fi

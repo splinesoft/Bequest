@@ -5,5 +5,5 @@
 #pragma once
 
 #import <SSDataSources/SSDataSources.h>
-#import <pop/pop.h>
+#import <pop/POP.h>
 #import <CYRTextView/CYRTextView.h>

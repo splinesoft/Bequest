@@ -17,19 +17,20 @@ Bequest is **[an iOS app]** of type **[developer utility]** that **[creates and 
 
 ### Major features:
 
-* Create an HTTP/S request with:
-     * A **URL**
-     * A **method** (`GET`, `POST`, `PATCH`, `PUT`, or any custom value)
-     * Zero or more **headers**
-     * Zero or more **parameters**
-     * ...?
-* View the response including:
-     * Headers
-     * Text contents
-     * An option to render the response in a webview
-     * Open in other apps(?)
-* Save the request to be replayed later
-* Display and restore saved requests 
+- Create an HTTP/S request with:
+     - [x] A **URL**
+     - [x] A **method** (`GET`, `POST`, `PATCH`, `PUT`, or any custom value)
+     - Zero or more **headers**
+     - Zero or more **parameters**
+     - A standard or custom **User Agent**
+     - ...?
+- View the response including:
+     - Headers
+     - Text contents
+     - An option to render the response in a webview
+     - Open in other apps(?)
+- Save the request to be replayed later
+- Display and restore saved requests 
 
 ### Nice to have:
 
