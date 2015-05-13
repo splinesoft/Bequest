@@ -50,13 +50,13 @@ class BQSTHTTPClientTests: QuickSpec {
                         method: "GET", headers: [:], parameters: [:]);
                     
                     expect(URLRequest).toNot(beNil())
-                    expect(URLRequest.URL!.isEqual(URL)).to(beTruthy())
+                    expect(URLRequest.URL!).to(equal(URL))
                 }
                 
                 it("can create a POST request") {
                     let URLRequest: NSURLRequest = NSURLRequest.requestForURL(URL!, method: "POST", headers: [:], parameters: [:])
                     
-                    expect(URLRequest.HTTPMethod == "POST").to(beTruthy())
+                    expect(URLRequest.HTTPMethod).to(equal("POST"))
                 }
             }
             
@@ -68,7 +68,7 @@ class BQSTHTTPClientTests: QuickSpec {
                         BQSTHTTPClient.request(URL!) { (_, resp: NSHTTPURLResponse?, _, _) in
                             
                             expect(resp).toNot(beNil())
-                            expect(resp?.statusCode == 200).to(beTruthy())
+                            expect(resp?.statusCode).to(equal(200))
                             completion()
                         }
                         return
@@ -82,7 +82,7 @@ class BQSTHTTPClientTests: QuickSpec {
                             (req, resp: NSHTTPURLResponse?, _, _) in
                             
                             expect(resp).toNot(beNil())
-                            expect(resp?.statusCode == 200).to(beTruthy())
+                            expect(resp?.statusCode).to(equal(200))
                             completion()
                         }
                         return
@@ -116,7 +116,7 @@ class BQSTHTTPClientTests: QuickSpec {
                             (_, _, object: BQSTHTTPResponse?, _) in
                             
                             expect(object).toNot(beNil())
-                            expect(object!.contentType == .PNG).to(beTrue())
+                            expect(object!.contentType).to(equal(BQSTResponseContentType.PNG))
                             expect(object!.object as? UIImage).toNot(beNil())
                             completion()
                         }
@@ -141,13 +141,13 @@ class BQSTHTTPClientTests: QuickSpec {
                             
                             expect(resp).toNot(beNil())
                             expect(object).toNot(beNil())
-                            expect(resp?.statusCode == 200).to(beTruthy())
-                            expect(object!.contentType == .JSON).to(beTrue())
+                            expect(resp?.statusCode).to(equal(200));
+                            expect(object!.contentType).to(equal(BQSTResponseContentType.JSON));
                                 
                             if let dict = object!.object as? BQSTJSONResponse {
-                                expect(dict.count == 2).to(beTrue())
-                                expect(dict["one"] as? String == "two").to(beTrue())
-                                expect(dict["key"] as? String == "value").to(beTrue())
+                                expect(dict.count).to(equal(2))
+                                expect(dict["one"] as? String).to(equal("two"))
+                                expect(dict["key"] as? String).to(equal("value"))
                             } else {
                                 XCTFail("Failed to parse JSON object")
                             }
