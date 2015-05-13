@@ -25,9 +25,9 @@ Bequest is **[an iOS app]** of type **[developer utility]** that **[creates and 
      - A standard or custom **User Agent**
      - ...?
 - View the response including:
-     - Headers
-     - Text contents
-     - An option to render the response in a webview
+     - [x] Headers
+     - [x] Text contents
+     - [x] An option to render the response in a webview
      - Open in other apps(?)
 - Save the request to be replayed later
 - Display and restore saved requests 
@@ -36,7 +36,7 @@ Bequest is **[an iOS app]** of type **[developer utility]** that **[creates and 
 
 - Search saved requests by URL, header, parameter
 - [x] Syntax highlighting for response text
-- [x] Prettify/auto-indent response JSON/XML
+- [x] Prettify/auto-indent response HTML/JSON/XML
 - CloudKit as saved request storage
 - Something nicer to look at than a spinner and text label while it's loading
 - A slick app icon with a "B" and an arrow or something EVEN CRAZIER
