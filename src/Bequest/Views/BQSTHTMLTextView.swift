@@ -12,16 +12,16 @@ import CYRTextView
 let kBQSTDefaultHTMLFontSize: CGFloat = 12
 
 extension CYRToken {
-    
+
     convenience init(name: String, expression: String, color: (r: CGFloat, g: CGFloat, b: CGFloat), font: UIFont?) {
         self.init()
-        
+
         self.name = name
         self.expression = expression
-        
+
         let f = font ?? UIFont.BQSTRawResponseFont()
         let c = UIColor(red: color.r / 255, green: color.g / 255, blue: color.b / 255, alpha: 1)
-        
+
         self.attributes = [
             NSFontAttributeName : f,
             NSForegroundColorAttributeName : c
@@ -30,14 +30,14 @@ extension CYRToken {
 }
 
 class BQSTHTMLTextView : CYRTextView {
-    
+
     var defaultFont: UIFont = UIFont.BQSTRawResponseFont() {
         didSet {
             self.font = self.defaultFont
             self.updateTokens()
         }
     }
-    
+
     private func updateTokens() {
         self.tokens = [
             CYRToken(name: "string", expression: "\".*?(\"|$)", color: (24, 110, 109), font: nil),

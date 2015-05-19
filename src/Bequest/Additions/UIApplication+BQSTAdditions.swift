@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 extension UIApplication {
-    
+
     class func BQSTApplicationName() -> String? {
         return NSBundle.mainBundle().objectForInfoDictionaryKey(kCFBundleNameKey as String) as? String
     }

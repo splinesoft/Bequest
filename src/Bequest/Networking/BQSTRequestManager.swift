@@ -17,27 +17,27 @@ extension BQSTRequestRow {
         if let row = BQSTRequestRow(rawValue: textField.tag) {
             return row
         }
-        
+
         return .NumRows // not a great default value
     }
 }
 
 class BQSTRequestManager : NSObject, UITextFieldDelegate {
-    
+
     let mutableRequest : NSMutableURLRequest = NSMutableURLRequest(URL: kBQSTDefaultURL,
         cachePolicy: .ReloadIgnoringLocalCacheData,
         timeoutInterval: 30)
-    
+
     var currentRequest : NSURLRequest {
         get {
             return mutableRequest.copy() as! NSURLRequest
         }
     }
-    
+
     class var sharedManager : BQSTRequestManager! {
         return _sharedManager
     }
-    
+
     func valueForRow(row: BQSTRequestRow) -> String? {
         switch row {
         case .URL:
@@ -47,15 +47,15 @@ class BQSTRequestManager : NSObject, UITextFieldDelegate {
         default:
             break
         }
-        
+
         return nil
     }
-    
+
     /// MARK: UITextFieldDelegate
-    
+
     func textFieldDidEndEditing(textField: UITextField) {
         let text = textField.text
-        
+
         switch (BQSTRequestRow.rowFromTextField(textField)) {
         case .URL:
             mutableRequest.URL = NSURL(string: text)
@@ -63,25 +63,25 @@ class BQSTRequestManager : NSObject, UITextFieldDelegate {
             break
         }
     }
-    
+
     func textFieldShouldEndEditing(textField: UITextField) -> Bool {
         return true
     }
-    
+
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
-    
+
     func textField(textField: UITextField,
         shouldChangeCharactersInRange range: NSRange,
         replacementString string: String) -> Bool {
-            
+
         if string == "\n" {
             textField.resignFirstResponder()
             return false
         }
-        
+
         return true
     }
 }

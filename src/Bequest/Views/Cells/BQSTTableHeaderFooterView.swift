@@ -10,7 +10,7 @@ import Foundation
 import SSDataSources
 
 class BQSTTableHeaderFooterView : SSBaseHeaderFooterView {
-    
+
     let button: UIButton = {
         let button: UIButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
         button.setTitleColor(UIColor.BQSTRedColor(), forState: .Normal)
@@ -18,14 +18,14 @@ class BQSTTableHeaderFooterView : SSBaseHeaderFooterView {
         button.titleLabel?.font = UIFont.BQSTFont(18)
         button.titleLabel?.textAlignment = .Left
         button.backgroundColor = UIColor.clearColor()
-        
+
         return button
     }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
-    
+
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
 
@@ -39,7 +39,7 @@ class BQSTTableHeaderFooterView : SSBaseHeaderFooterView {
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         self.button.frame = UIEdgeInsetsInsetRect(self.contentView.frame, kBQSTSimpleCellInsets)

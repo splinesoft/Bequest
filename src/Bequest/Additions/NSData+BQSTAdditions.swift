@@ -9,14 +9,14 @@
 import Foundation
 
 extension NSStringEncoding {
-    
+
     static func stringEncodingFromCharset(charset: String) -> NSStringEncoding? {
         let charString = NSMutableString(string: charset.lowercaseString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()))
         charString.replaceOccurrencesOfString("charset=",
             withString: "",
             options: .CaseInsensitiveSearch,
             range: NSMakeRange(0, charString.length))
-        
+
         switch charString {
         case "utf-8":
             return NSUTF8StringEncoding
@@ -31,25 +31,25 @@ extension NSStringEncoding {
 }
 
 extension NSData {
-    
+
     func BQSTStringByGuessingEncoding() -> NSString? {
         var convertedString: NSString?
         var usedLossy: ObjCBool = false
         let encodingOptions = [
             NSStringEncodingDetectionSuggestedEncodingsKey : [NSUTF8StringEncoding, NSASCIIStringEncoding, NSUTF16StringEncoding]
         ]
-        
+
         let encoding = NSString.stringEncodingForData(self,
             encodingOptions: encodingOptions,
             convertedString: &convertedString,
             usedLossyConversion: &usedLossy)
-        
+
         return convertedString
     }
 
     func BQSTString(#contentType: String?) -> NSString {
         var string: NSString?
-        
+
         if let contentTypeComponents = contentType?.componentsSeparatedByString(";") {
             if contentTypeComponents.count > 1 {
                 var charset = contentTypeComponents[1]
@@ -58,12 +58,12 @@ extension NSData {
                 }
             }
         }
-        
+
         if string == nil {
             string = self.BQSTStringByGuessingEncoding()
         }
-        
+
         return string ?? ""
     }
-    
+
 }

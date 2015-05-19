@@ -13,14 +13,14 @@ import TTTAttributedLabel
 let kBQSTSimpleCellInsets = UIEdgeInsetsMake(3, 8, 3, 8)
 
 extension NSAttributedString {
-    
+
     class func headerAttributedString(string: String) -> NSAttributedString {
         return self(string: string, attributes: [NSFontAttributeName : UIFont.BQSTHTTPHeaderFont()])
     }
 }
 
 class BQSTResponseHeaderCell : SSBaseTableCell {
-    
+
     lazy var label: TTTAttributedLabel = {
         let label = TTTAttributedLabel(frame: self.contentView.frame)
         label.font = UIFont.BQSTHTTPHeaderFont()
@@ -29,10 +29,10 @@ class BQSTResponseHeaderCell : SSBaseTableCell {
         label.numberOfLines = 0
         label.verticalAlignment = .Center
         label.textAlignment = .Right;
-        
+
         return label
     }()
-    
+
     lazy var value: TTTAttributedLabel = {
         let value = TTTAttributedLabel(frame: self.contentView.frame)
         value.font = UIFont.BQSTHTTPHeaderFont()
@@ -41,21 +41,21 @@ class BQSTResponseHeaderCell : SSBaseTableCell {
         value.numberOfLines = 0
         value.verticalAlignment = .Center
         value.textAlignment = .Left;
-        
+
         return value
     }()
-    
+
     class func heightForValues(values: [String], availableWidth: CGFloat) -> CGFloat {
-        
+
         func sizeText(text: String) -> CGFloat {
             let attributedString = NSAttributedString.headerAttributedString(text)
             let size = TTTAttributedLabel.sizeThatFitsAttributedString(attributedString,
                 withConstraints: CGSizeMake((availableWidth / 2) - kBQSTSimpleCellInsets.left - kBQSTSimpleCellInsets.right, CGFloat.max),
                 limitedToNumberOfLines: 0)
-            
+
             return ceil(size.height + kBQSTSimpleCellInsets.bottom + kBQSTSimpleCellInsets.top)
         }
-        
+
         if values.count > 1 {
             return max(sizeText(values[0]), sizeText(values[1]))
         } else if values.count > 0 {
@@ -64,34 +64,34 @@ class BQSTResponseHeaderCell : SSBaseTableCell {
             return 0
         }
     }
-    
+
     override func configureCell() {
         super.configureCell()
-        
+
         self.backgroundColor = UIColor.clearColor()
         self.selectionStyle = .Gray
 
         self.contentView.addSubview(label)
         self.contentView.addSubview(value)
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
-        
+
         let width = (CGRectGetWidth(self.contentView.frame) / 2) - kBQSTSimpleCellInsets.left - kBQSTSimpleCellInsets.right
         let height = CGRectGetHeight(self.contentView.frame) - kBQSTSimpleCellInsets.top - kBQSTSimpleCellInsets.bottom
-        
+
         label.frame = CGRectMake(kBQSTSimpleCellInsets.left,
             kBQSTSimpleCellInsets.top,
             width,
             height)
-        
+
         value.frame = CGRectMake(width + (2 * kBQSTSimpleCellInsets.left) + kBQSTSimpleCellInsets.right,
             kBQSTSimpleCellInsets.top,
             width,
             height)
     }
-    
+
     func configureWithValues(items: [String]) {
         self.label.text = items[0]
         self.value.text = items[1]

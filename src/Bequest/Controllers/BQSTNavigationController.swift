@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class BQSTNavigationController : UINavigationController {
-    
+
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return self.visibleViewController.preferredStatusBarStyle()
     }
@@ -18,18 +18,18 @@ class BQSTNavigationController : UINavigationController {
     override func shouldAutorotate() -> Bool {
         return self.visibleViewController.shouldAutorotate()
     }
-    
+
     override func supportedInterfaceOrientations() -> Int {
         return self.visibleViewController.supportedInterfaceOrientations()
     }
-    
+
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         self.visibleViewController.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.navigationBar.barTintColor = UIColor.BQSTNavColor()
         self.navigationBar.opaque = false
         self.navigationBar.translucent = true

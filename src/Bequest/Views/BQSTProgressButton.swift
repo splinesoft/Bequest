@@ -17,21 +17,21 @@ enum BQSTProgressButtonState: Int {
 }
 
 class BQSTProgressButton: UIControl {
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.opaque = false
         self.backgroundColor = UIColor.clearColor()
     }
-    
+
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
+
     var progressState: BQSTProgressButtonState = .Unknown {
         willSet {
             self.circleShapeLayer.removeAllAnimations()
-            
+
             switch newValue {
             case .Ready:
                 self.circleShapeLayer.removeFromSuperlayer()
@@ -52,15 +52,15 @@ class BQSTProgressButton: UIControl {
                 self.circleShapeLayer.strokeEnd = 1
                 self.circleShapeLayer.strokeColor = UIColor.BQSTGreenColor().CGColor
                 self.accessibilityLabel = "Complete"
-                
+
             default:
                 break
             }
-            
+
             self.layer.setNeedsDisplay()
         }
     }
-    
+
     var progressPercentage: Float = 0 {
         willSet {
             self.circleShapeLayer.removeAllAnimations()
@@ -73,9 +73,9 @@ class BQSTProgressButton: UIControl {
                 }, completion: nil)
         }
     }
-    
+
     var progressColor: UIColor = UIColor.BQSTRedColor()
-    
+
     private let circleShapeLayer: CAShapeLayer = {
         let layer = CAShapeLayer()
         layer.lineWidth = 2
@@ -83,10 +83,10 @@ class BQSTProgressButton: UIControl {
         layer.fillColor = UIColor.clearColor().CGColor
         layer.lineCap = kCALineCapRound
         layer.strokeStart = CGFloat(0)
-        
+
         return layer
     }()
-    
+
     override var highlighted: Bool {
         didSet {
             self.setNeedsDisplay()
@@ -96,30 +96,30 @@ class BQSTProgressButton: UIControl {
     override func drawRect(rect: CGRect) {
         switch self.progressState {
         case .Ready:
-            
+
             (BQSTLocalizedString("SEND_REQUEST") as NSString).drawInRect(CGRectInset(rect, 0, 10), withAttributes:
                 [NSFontAttributeName: UIFont.BQSTFont(18),
                     NSKernAttributeName: NSNull(),
                     NSForegroundColorAttributeName: self.highlighted ? UIColor.whiteColor() : UIColor.BQSTRedColor()])
-            
+
             break
         case .Loading:
-            
+
             let xRect = CGRectOffset(CGRectInset(rect, 16, 16), 1, 0)
-            
+
             let context = UIGraphicsGetCurrentContext()
-            
+
             CGContextMoveToPoint(context, CGRectGetMinX(xRect), CGRectGetMinY(xRect))
             CGContextAddLineToPoint(context, CGRectGetMaxX(xRect), CGRectGetMaxY(xRect))
             CGContextMoveToPoint(context, CGRectGetMinX(xRect), CGRectGetMaxY(xRect))
             CGContextAddLineToPoint(context, CGRectGetMaxX(xRect), CGRectGetMinY(xRect))
             CGContextClosePath(context)
-            
+
             CGContextSetLineWidth(context, 3)
             CGContextSetStrokeColorWithColor(context, (self.highlighted ? UIColor.whiteColor().CGColor : UIColor.BQSTRedColor().CGColor))
-            
+
             CGContextStrokePath(context)
-            
+
         default:
             break;
         }
