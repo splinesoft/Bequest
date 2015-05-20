@@ -10,13 +10,13 @@ import Foundation
 import UIKit
 import SSDataSources
 
-class BQSTBlockyCollectionCell : SSBaseCollectionCell {
+class BQSTBlockyCollectionCell: SSBaseCollectionCell {
 
-    lazy var cellColor : UIColor = {
+    lazy var cellColor: UIColor = {
         return UIColor.BQSTRedColor()
     }()
 
-    lazy var label : UILabel = {
+    lazy var label: UILabel = {
         let label = UILabel(frame: CGRectZero)
         label.font = UIFont.BQSTFont(14)
         label.textColor = UIColor.darkTextColor()
@@ -25,7 +25,7 @@ class BQSTBlockyCollectionCell : SSBaseCollectionCell {
         return label
     }()
 
-    override var highlighted : Bool {
+    override var highlighted: Bool {
         didSet {
             self.BQSTBounce(nil)
         }

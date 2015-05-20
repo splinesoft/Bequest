@@ -15,11 +15,11 @@ let kBQSTSimpleCellInsets = UIEdgeInsetsMake(3, 8, 3, 8)
 extension NSAttributedString {
 
     class func headerAttributedString(string: String) -> NSAttributedString {
-        return self(string: string, attributes: [NSFontAttributeName : UIFont.BQSTHTTPHeaderFont()])
+        return self(string: string, attributes: [NSFontAttributeName: UIFont.BQSTHTTPHeaderFont()])
     }
 }
 
-class BQSTResponseHeaderCell : SSBaseTableCell {
+class BQSTResponseHeaderCell: SSBaseTableCell {
 
     lazy var label: TTTAttributedLabel = {
         let label = TTTAttributedLabel(frame: self.contentView.frame)

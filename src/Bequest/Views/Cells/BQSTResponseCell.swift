@@ -13,7 +13,7 @@ import WebKit
 private let kBQSTMaxImageHeight: CGFloat = 100
 private let kBQSTResponseContentInsets: UIEdgeInsets = UIEdgeInsetsMake(8, 8, 8, 8)
 
-class BQSTResponseCell : SSBaseTableCell {
+class BQSTResponseCell: SSBaseTableCell {
 
     private let webView: WKWebView = {
         return WKWebView(frame: CGRectZero, configuration: WKWebViewConfiguration())
@@ -52,7 +52,7 @@ class BQSTResponseCell : SSBaseTableCell {
 
             let string: NSString? = (response.contentType == .JSON || response.contentType == .XML
                 ? response.object.description
-                : response.object) as? NSString
+               : response.object) as? NSString
 
             if string == nil || string!.length == 0 {
                 return 0

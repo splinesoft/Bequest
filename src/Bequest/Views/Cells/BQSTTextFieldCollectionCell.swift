@@ -8,9 +8,9 @@
 
 import Foundation
 
-class BQSTTextFieldCollectionCell : BQSTBlockyCollectionCell {
+class BQSTTextFieldCollectionCell: BQSTBlockyCollectionCell {
 
-    lazy var textField : UITextField = {
+    lazy var textField: UITextField = {
         let textField = UITextField(frame: CGRectZero)
         textField.font = UIFont.BQSTMonoFont(16)
         textField.textColor = UIColor.whiteColor()

@@ -7,7 +7,8 @@ machine:
 dependencies:
   pre:
     - xcrun instruments -w "iPhone 6 (8.3 Simulator)" || exit 0
-    - brew install cloc
+    - sudo ln -s /Applications/Xcode-6.3.1.app /Applications/Xcode.app
+    - brew update && brew install cloc swiftlint
   override:    
     - rake setup
 test:

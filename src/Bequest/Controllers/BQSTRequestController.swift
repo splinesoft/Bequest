@@ -13,21 +13,21 @@ import SSDataSources
 let kBQSTRequestInsets = UIEdgeInsetsMake(10, 10, 10, 10)
 let kBQSTLineSpacing = CGFloat(14)
 
-enum BQSTRequestSection : Int {
+enum BQSTRequestSection: Int {
     case Request = 0
     case Response
 
     case NumSections
 }
 
-enum BQSTRequestRow : Int {
+enum BQSTRequestRow: Int {
     case URL = 0
     case Method
 
     case NumRows
 }
 
-class BQSTRequestController : UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class BQSTRequestController: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     private var currentRequest: BQSTRequest?
 
@@ -41,7 +41,7 @@ class BQSTRequestController : UIViewController, UICollectionViewDelegate, UIColl
         return cv
     }()
 
-    private let dataSource : SSSectionedDataSource = {
+    private let dataSource: SSSectionedDataSource = {
         let section = SSSection(numberOfItems: UInt(BQSTRequestRow.NumRows.rawValue))
         let dataSource = SSSectionedDataSource(section: section)
 

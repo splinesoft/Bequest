@@ -9,13 +9,13 @@
 import Foundation
 import UIKit
 
-let kBQSTBoxInsets : UIEdgeInsets = UIEdgeInsetsMake(0, 0, 14, 14)
-let kBQSTBoxShadowInsets : UIEdgeInsets = UIEdgeInsetsMake(14, 14, 0, 0)
-let kBQSTShadowOpacity : CGFloat = 0.7
+let kBQSTBoxInsets: UIEdgeInsets = UIEdgeInsetsMake(0, 0, 14, 14)
+let kBQSTBoxShadowInsets: UIEdgeInsets = UIEdgeInsetsMake(14, 14, 0, 0)
+let kBQSTShadowOpacity: CGFloat = 0.7
 
 extension UIView {
 
-    func BQSTDrawColoredBox(rect : CGRect, color : UIColor) {
+    func BQSTDrawColoredBox(rect: CGRect, color: UIColor) {
         let context = UIGraphicsGetCurrentContext()
 
         // Draw gray box shadow

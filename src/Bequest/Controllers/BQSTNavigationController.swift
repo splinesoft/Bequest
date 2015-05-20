@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class BQSTNavigationController : UINavigationController {
+class BQSTNavigationController: UINavigationController {
 
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return self.visibleViewController.preferredStatusBarStyle()

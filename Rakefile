@@ -31,12 +31,12 @@ task :test do
 
   puts "Running Bequest Tests...".cyan
   
-  test_command = "set -o pipefail && bundle exec xcodebuild "+
+  test_command = "set -o pipefail && xcodebuild "+
   "-scheme 'Bequest Dev' "+
   "-workspace 'src/Bequest.xcworkspace' "+
   "-sdk iphonesimulator "+
   "-destination \"platform=iOS Simulator,name=iPhone 6\" "+
-  "clean test | xcpretty -c"
+  "clean test | bundle exec xcpretty -c"
   
   if ENV['CIRCLECI'] == 'true'
     test_command += " --report junit --output ${CIRCLE_TEST_REPORTS}/junit.xml"
@@ -51,4 +51,8 @@ task :lint do
   sh "bundle exec pod outdated --project-directory=src"
   
   puts `bundle exec obcd --path src/Bequest find HeaderStyle`
+  
+  sh "pushd src/Bequest && /usr/local/bin/swiftlint && popd"
+  sh "pushd src/BequestTests && /usr/local/bin/swiftlint && popd"
+  
 end

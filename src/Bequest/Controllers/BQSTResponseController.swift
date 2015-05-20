@@ -21,12 +21,12 @@ enum BQSTResponseSection: Int {
     case Unknown
 }
 
-class BQSTResponseController : UITableViewController {
+class BQSTResponseController: UITableViewController {
 
-    private var request : NSURLRequest?
-    private var response : NSHTTPURLResponse?
-    private var parsedResponse : BQSTHTTPResponse?
-    private let dataSource : SSExpandingDataSource = {
+    private var request: NSURLRequest?
+    private var response: NSHTTPURLResponse?
+    private var parsedResponse: BQSTHTTPResponse?
+    private let dataSource: SSExpandingDataSource = {
         let dataSource = SSExpandingDataSource(items: nil)
         dataSource.removeAllSections()
         dataSource.rowAnimation = .Fade

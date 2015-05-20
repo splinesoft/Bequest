@@ -11,11 +11,11 @@ import UIKit
 
 extension UIFont {
 
-    class func BQSTFont(size : CGFloat) -> UIFont {
+    class func BQSTFont(size: CGFloat) -> UIFont {
         return self(name: "Avenir", size: size)!
     }
 
-    class func BQSTMonoFont(size : CGFloat) -> UIFont {
+    class func BQSTMonoFont(size: CGFloat) -> UIFont {
         return self(name: "Menlo", size: size)!
     }
 

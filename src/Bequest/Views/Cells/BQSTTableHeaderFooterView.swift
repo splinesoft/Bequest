@@ -9,7 +9,7 @@
 import Foundation
 import SSDataSources
 
-class BQSTTableHeaderFooterView : SSBaseHeaderFooterView {
+class BQSTTableHeaderFooterView: SSBaseHeaderFooterView {
 
     let button: UIButton = {
         let button: UIButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton

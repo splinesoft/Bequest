@@ -12,19 +12,19 @@ import SnapKit
 
 public typealias BQSTHTTPMethodChangeBlock = (String) -> Void
 
-private class BQSTHTTPMethodView : UIView, UICollectionViewDelegateFlowLayout, UITextFieldDelegate {
+private class BQSTHTTPMethodView: UIView, UICollectionViewDelegateFlowLayout, UITextFieldDelegate {
 
     private var changeBlock: BQSTHTTPMethodChangeBlock?
 
-    private class BQSTSelectableCollectionCell : SSBaseCollectionCell {
+    private class BQSTSelectableCollectionCell: SSBaseCollectionCell {
         override var selected: Bool {
             willSet {
-                self.backgroundColor = newValue ? .grayColor() : .clearColor()
+                self.backgroundColor = newValue ? .grayColor(): .clearColor()
             }
         }
     }
 
-    private class BQSTHTTPMethodButtonCell : BQSTSelectableCollectionCell {
+    private class BQSTHTTPMethodButtonCell: BQSTSelectableCollectionCell {
         lazy var label: UILabel = {
             let lbl = UILabel(frame: CGRectZero)
             lbl.textColor = UIColor.whiteColor()
@@ -43,7 +43,7 @@ private class BQSTHTTPMethodView : UIView, UICollectionViewDelegateFlowLayout, U
         }
     }
 
-    private class BQSTHTTPCustomMethodCell : BQSTSelectableCollectionCell {
+    private class BQSTHTTPCustomMethodCell: BQSTSelectableCollectionCell {
         lazy var textField: UITextField = {
             let tf = UITextField(frame: CGRectZero)
             tf.textColor = UIColor.whiteColor()
@@ -52,7 +52,7 @@ private class BQSTHTTPMethodView : UIView, UICollectionViewDelegateFlowLayout, U
             tf.autocapitalizationType = .AllCharacters
             tf.accessibilityLabel = BQSTLocalizedString("REQUEST_METHOD_CUSTOM")
             tf.attributedPlaceholder = NSAttributedString(string: BQSTLocalizedString("REQUEST_METHOD_CUSTOM_PLACEHOLDER"),
-                attributes: [ NSFontAttributeName : UIFont.BQSTMonoFont(18), NSForegroundColorAttributeName : UIColor.lightGrayColor() ])
+                attributes: [ NSFontAttributeName: UIFont.BQSTMonoFont(18), NSForegroundColorAttributeName: UIColor.lightGrayColor() ])
             tf.textAlignment = .Center
             return tf
         }()
@@ -164,7 +164,7 @@ private class BQSTHTTPMethodView : UIView, UICollectionViewDelegateFlowLayout, U
         }
 
         let item = dataSource.itemAtIndexPath(indexPath) as! NSString
-        let width = item.sizeWithAttributes([ NSFontAttributeName : UIFont.BQSTMonoFont(18) ]).width
+        let width = item.sizeWithAttributes([ NSFontAttributeName: UIFont.BQSTMonoFont(18) ]).width
 
         return CGSize(width: max(width + 12, 70), height: height)
     }
@@ -231,9 +231,9 @@ private class BQSTHTTPMethodView : UIView, UICollectionViewDelegateFlowLayout, U
     }
 }
 
-class BQSTHTTPMethodCell : BQSTBlockyCollectionCell {
+class BQSTHTTPMethodCell: BQSTBlockyCollectionCell {
 
-    var changeBlock : BQSTHTTPMethodChangeBlock? {
+    var changeBlock: BQSTHTTPMethodChangeBlock? {
         willSet {
             methodView.changeBlock = newValue
         }

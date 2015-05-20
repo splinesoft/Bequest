@@ -23,13 +23,13 @@ extension CYRToken {
         let c = UIColor(red: color.r / 255, green: color.g / 255, blue: color.b / 255, alpha: 1)
 
         self.attributes = [
-            NSFontAttributeName : f,
-            NSForegroundColorAttributeName : c
+            NSFontAttributeName: f,
+            NSForegroundColorAttributeName: c
         ]
     }
 }
 
-class BQSTHTMLTextView : CYRTextView {
+class BQSTHTMLTextView: CYRTextView {
 
     var defaultFont: UIFont = UIFont.BQSTRawResponseFont() {
         didSet {
@@ -41,7 +41,7 @@ class BQSTHTMLTextView : CYRTextView {
     private func updateTokens() {
         self.tokens = [
             CYRToken(name: "string", expression: "\".*?(\"|$)", color: (24, 110, 109), font: nil),
-            CYRToken(name: "integer", expression: "\\d+", attributes: [NSForegroundColorAttributeName : UIColor.BQSTRedColor()]),
+            CYRToken(name: "integer", expression: "\\d+", attributes: [NSForegroundColorAttributeName: UIColor.BQSTRedColor()]),
             CYRToken(name: "mod", expression: "\\bmod\\b", color: (245, 0, 110), font: nil),
             CYRToken(name: "hex_1", expression: "\\$[\\d a-f]+", color: (0, 0, 255), font: nil),
             CYRToken(name: "octal_1", expression: "&[0-7]+", color: (0, 0, 255), font: nil),

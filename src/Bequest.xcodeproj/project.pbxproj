@@ -278,6 +278,7 @@
 				5E6B02281A1D2DA500EB5CCC /* Resources */,
 				7F2F7E3AD49BF60B03E9B410 /* Copy Pods Resources */,
 				9E68881C4B9C84109305BEAA /* Embed Pods Frameworks */,
+				E94E618C1B0A549B0007E791 /* Swiftlint */,
 			);
 			buildRules = (
 			);
@@ -456,6 +457,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BequestTests/Pods-BequestTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		E94E618C1B0A549B0007E791 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ \"$CONFIGURATION\" = \"Debug\" ]] && [[ \"$CIRCLECI\" != \"true\" ]]; then\n  cd Bequest && /usr/local/bin/swiftlint\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 

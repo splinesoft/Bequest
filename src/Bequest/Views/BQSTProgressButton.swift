@@ -100,7 +100,7 @@ class BQSTProgressButton: UIControl {
             (BQSTLocalizedString("SEND_REQUEST") as NSString).drawInRect(CGRectInset(rect, 0, 10), withAttributes:
                 [NSFontAttributeName: UIFont.BQSTFont(18),
                     NSKernAttributeName: NSNull(),
-                    NSForegroundColorAttributeName: self.highlighted ? UIColor.whiteColor() : UIColor.BQSTRedColor()])
+                    NSForegroundColorAttributeName: self.highlighted ? UIColor.whiteColor(): UIColor.BQSTRedColor()])
 
             break
         case .Loading:
@@ -116,7 +116,7 @@ class BQSTProgressButton: UIControl {
             CGContextClosePath(context)
 
             CGContextSetLineWidth(context, 3)
-            CGContextSetStrokeColorWithColor(context, (self.highlighted ? UIColor.whiteColor().CGColor : UIColor.BQSTRedColor().CGColor))
+            CGContextSetStrokeColorWithColor(context, (self.highlighted ? UIColor.whiteColor().CGColor: UIColor.BQSTRedColor().CGColor))
 
             CGContextStrokePath(context)
 

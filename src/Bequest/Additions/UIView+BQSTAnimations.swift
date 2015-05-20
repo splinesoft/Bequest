@@ -12,7 +12,7 @@ import pop
 
 extension UIView {
 
-    func BQSTBounce(completion : (() -> ())?) {
+    func BQSTBounce(completion: (() -> ())?) {
 
         self.layer.pop_removeAllAnimations()
 
@@ -23,7 +23,7 @@ extension UIView {
         bounceAnimation.velocity = NSValue(CGSize: CGSizeMake(2, 2))
 
         if completion != nil {
-            bounceAnimation.completionBlock = { (animation : POPAnimation!, finished) in
+            bounceAnimation.completionBlock = { (animation: POPAnimation!, finished) in
                 completion!()
             }
         }

@@ -13,7 +13,7 @@ private let _sharedManager = BQSTRequestManager()
 private let kBQSTDefaultURL = NSURL(string: "http://splinesoft.net")!
 
 extension BQSTRequestRow {
-    static func rowFromTextField(textField : UITextField) -> BQSTRequestRow {
+    static func rowFromTextField(textField: UITextField) -> BQSTRequestRow {
         if let row = BQSTRequestRow(rawValue: textField.tag) {
             return row
         }
@@ -22,19 +22,19 @@ extension BQSTRequestRow {
     }
 }
 
-class BQSTRequestManager : NSObject, UITextFieldDelegate {
+class BQSTRequestManager: NSObject, UITextFieldDelegate {
 
-    let mutableRequest : NSMutableURLRequest = NSMutableURLRequest(URL: kBQSTDefaultURL,
+    let mutableRequest: NSMutableURLRequest = NSMutableURLRequest(URL: kBQSTDefaultURL,
         cachePolicy: .ReloadIgnoringLocalCacheData,
         timeoutInterval: 30)
 
-    var currentRequest : NSURLRequest {
+    var currentRequest: NSURLRequest {
         get {
             return mutableRequest.copy() as! NSURLRequest
         }
     }
 
-    class var sharedManager : BQSTRequestManager! {
+    class var sharedManager: BQSTRequestManager! {
         return _sharedManager
     }
 
