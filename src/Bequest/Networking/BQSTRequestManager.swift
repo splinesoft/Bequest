@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 
-private let _sharedManager = BQSTRequestManager()
 private let kBQSTDefaultURL = NSURL(string: "http://splinesoft.net")!
 
 extension BQSTRequestRow {
@@ -23,6 +22,7 @@ extension BQSTRequestRow {
 }
 
 class BQSTRequestManager: NSObject, UITextFieldDelegate {
+    static let sharedManager = BQSTRequestManager()
 
     let mutableRequest: NSMutableURLRequest = NSMutableURLRequest(URL: kBQSTDefaultURL,
         cachePolicy: .ReloadIgnoringLocalCacheData,
@@ -30,12 +30,12 @@ class BQSTRequestManager: NSObject, UITextFieldDelegate {
 
     var currentRequest: NSURLRequest {
         get {
-            return mutableRequest.copy() as! NSURLRequest
+            if let request = mutableRequest.copy() as? NSURLRequest {
+                return request
+            } else {
+                return NSURLRequest()
+            }
         }
-    }
-
-    class var sharedManager: BQSTRequestManager! {
-        return _sharedManager
     }
 
     func valueForRow(row: BQSTRequestRow) -> String? {
