@@ -470,7 +470,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [[ \"$CONFIGURATION\" = \"Debug\" ]] && [[ \"$CIRCLECI\" != \"true\" ]]; then\n  cd Bequest && /usr/local/bin/swiftlint\nfi";
+			shellScript = "if [[ \"$CONFIGURATION\" = \"Debug\" ]] && [[ \"$CIRCLECI\" != \"true\" ]]; then\n  /usr/local/bin/swiftlint lint --path Bequest || exit 0\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 

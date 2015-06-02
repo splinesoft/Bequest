@@ -52,7 +52,9 @@ task :lint do
   
   puts `bundle exec obcd --path src/Bequest find HeaderStyle`
   
-  sh "pushd src/Bequest && /usr/local/bin/swiftlint && popd"
-  sh "pushd src/BequestTests && /usr/local/bin/swiftlint && popd"
+  swiftlint = "/usr/local/bin/swiftlint lint --path "
+  
+  puts `#{swiftlint} src/Bequest`
+  puts `#{swiftlint} src/BequestTests`
   
 end
