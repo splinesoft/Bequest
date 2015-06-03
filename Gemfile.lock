@@ -98,3 +98,6 @@ DEPENDENCIES
   obcd
   shenzhen
   xcpretty
+
+BUNDLED WITH
+   1.10.2

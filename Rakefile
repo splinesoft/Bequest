@@ -31,12 +31,26 @@ task :test do
 
   puts "Running Bequest Tests...".cyan
   
-  test_command = "set -o pipefail && xcodebuild "+
+  swiftcov = `which swiftcov`.chomp
+  test_command = "set -o pipefail && "
+  
+  if swiftcov.length > 0
+    if ENV['CIRCLE_CI'] == 'true'
+      output = "$CIRCLE_ARTIFACTS" 
+    else 
+      output = "output/coverage" 
+    end
+    
+    test_command += "#{swiftcov} generate --output #{output} "
+  end
+  
+  test_command += "xcodebuild "+
   "-scheme 'Bequest Dev' "+
   "-workspace 'src/Bequest.xcworkspace' "+
+  "-configuration Debug "+
   "-sdk iphonesimulator "+
   "-destination \"platform=iOS Simulator,name=iPhone 6\" "+
-  "clean test | bundle exec xcpretty -c"
+  "clean test"
   
   if ENV['CIRCLECI'] == 'true'
     test_command += " --report junit --output ${CIRCLE_TEST_REPORTS}/junit.xml"
