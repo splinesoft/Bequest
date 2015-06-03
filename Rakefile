@@ -51,15 +51,16 @@ task :test do
   sh build_command
       
   if swiftcov.length > 0
-    if ENV['CIRCLE_CI'] == 'true'
+    if ENV['CIRCLECI'] == 'true'
       output = "$CIRCLE_ARTIFACTS" 
     else 
-      output = "output/coverage" 
+      output = "output" 
     end
     
-    cov_command += "#{swiftcov} generate --output #{output} #{test_command}"
+    cov_command += "#{swiftcov} generate --output tmp/gcov #{test_command}"
     
     sh cov_command
+    sh "gcovr --root tmp/gcov --use-gcov-files --html --html-details --output #{output}/coverage.html --keep"
   end
 end
 

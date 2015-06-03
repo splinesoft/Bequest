@@ -10,6 +10,7 @@ dependencies:
     - sudo ln -s /Applications/Xcode-6.3.1.app /Applications/Xcode.app
     - brew update && brew install cloc swiftlint
     - git clone git@github.com:realm/SwiftCov.git && cd SwiftCov && sudo make install
+    - sudo easy_install pip && pip install gcovr
   override:    
     - rake setup
 test:
