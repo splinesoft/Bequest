@@ -32,8 +32,24 @@ task :test do
   puts "Running Bequest Tests...".cyan
   
   swiftcov = `which swiftcov`.chomp
-  test_command = "set -o pipefail && "
+  build_command = cov_command = "set -o pipefail && "
   
+  test_command = "xcodebuild "+
+  "-scheme 'Bequest Dev' "+
+  "-workspace 'src/Bequest.xcworkspace' "+
+  "-configuration Debug "+
+  "-sdk iphonesimulator "+
+  "-destination \"platform=iOS Simulator,name=iPhone 6\" "+
+  "test"
+  
+  build_command += test_command + " | bundle exec xcpretty -c"
+  
+  if ENV['CIRCLECI'] == 'true'
+    build_command += " --report junit --output ${CIRCLE_TEST_REPORTS}/junit.xml"
+  end
+    
+  sh build_command
+      
   if swiftcov.length > 0
     if ENV['CIRCLE_CI'] == 'true'
       output = "$CIRCLE_ARTIFACTS" 
@@ -41,22 +57,10 @@ task :test do
       output = "output/coverage" 
     end
     
-    test_command += "#{swiftcov} generate --output #{output} "
+    cov_command += "#{swiftcov} generate --output #{output} #{test_command}"
+    
+    sh cov_command
   end
-  
-  test_command += "xcodebuild "+
-  "-scheme 'Bequest Dev' "+
-  "-workspace 'src/Bequest.xcworkspace' "+
-  "-configuration Debug "+
-  "-sdk iphonesimulator "+
-  "-destination \"platform=iOS Simulator,name=iPhone 6\" "+
-  "clean test"
-  
-  if ENV['CIRCLECI'] == 'true'
-    test_command += " --report junit --output ${CIRCLE_TEST_REPORTS}/junit.xml"
-  end
-
-  sh "#{test_command}"
 end
 
 desc 'Runs various static analyzers and linters'
