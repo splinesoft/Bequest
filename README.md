@@ -9,7 +9,7 @@ Bequest is **[an iOS app]** of type **[developer utility]** that **[creates and 
 ### Major goals:
 
 1. Universal app (iPhone and iPad)
-2. 99% Swift (excluding Pods)
+2. :100:% Swift (excluding Pods)
 3. Developed and maintained open-source at this location
 4. Released on the App Store for the gasp-inducingly phone-grabbingly TouchID-pressingly price of $0.99
 
