@@ -1,6 +1,0 @@
-framework module pop {
-  umbrella header "Pods-BequestTests-pop-umbrella.h"
-
-  export *
-  module * { export * }
-}

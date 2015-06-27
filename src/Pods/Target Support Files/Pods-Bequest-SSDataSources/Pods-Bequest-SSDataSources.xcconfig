@@ -1,1 +1,0 @@
-PODS_BEQUEST_SSDATASOURCES_OTHER_LDFLAGS = -framework "CoreData" -framework "UIKit"
