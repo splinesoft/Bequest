@@ -47,7 +47,7 @@ extension NSData {
         return convertedString
     }
 
-    func BQSTString(#contentType: String?) -> NSString {
+    func BQSTString(contentType contentType: String?) -> NSString {
         var string: NSString?
 
         if let contentTypeComponents = contentType?.componentsSeparatedByString(";") {

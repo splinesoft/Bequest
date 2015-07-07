@@ -23,7 +23,7 @@ class BQSTKIFTests: KIFTestCase {
 
     private func setUpRequest(url: String, method: String) {
         tester.clearTextFromAndThenEnterText(url, intoViewWithAccessibilityLabel: "URL")
-        tester.tapViewWithAccessibilityLabel(count(method) > 0 ? method: "GET")
+        tester.tapViewWithAccessibilityLabel(method.characters.count > 0 ? method: "GET")
     }
 
     override func beforeAll() {

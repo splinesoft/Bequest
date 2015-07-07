@@ -148,19 +148,19 @@ class BQSTRequestController: UIViewController, UICollectionViewDelegate, UIColle
 
         let request: NSURLRequest = BQSTRequestManager.sharedManager.currentRequest
 
-        if count(request.URL!.absoluteString!) == 0 {
+        if (request.URL!.absoluteString!).characters.count == 0 {
             self.BQSTShowSimpleErrorAlert(BQSTLocalizedString("REQUEST_URL_MISSING"),
                 message: BQSTLocalizedString("REQUEST_URL_MISSING_DETAIL"))
             return
         }
 
-        if request.HTTPMethod == nil || count(request.HTTPMethod!) == 0 {
+        if request.HTTPMethod == nil || (request.HTTPMethod!).characters.count == 0 {
             self.BQSTShowSimpleErrorAlert(BQSTLocalizedString("REQUEST_METHOD_MISSING"),
                 message: BQSTLocalizedString("REQUEST_METHOD_MISSING_DETAIL"))
             return
         }
 
-        println("Sending a request of type \(request.HTTPMethod!) to URL \(request.URL!)")
+        print("Sending a request of type \(request.HTTPMethod!) to URL \(request.URL!)", appendNewline: false)
 
         self.progressButton.progressPercentage = 0
         self.progressButton.progressState = .Loading
@@ -217,7 +217,7 @@ class BQSTRequestController: UIViewController, UICollectionViewDelegate, UIColle
     /// MARK: UICollectionViewDelegate
 
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        println("Selected index \(indexPath)")
+        print("Selected index \(indexPath)", appendNewline: false)
     }
 
     /// MARK: UICollectionViewDelegateFlowLayout
