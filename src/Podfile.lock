@@ -5,35 +5,51 @@ PODS:
   - KIF (3.2.3):
     - KIF/XCTest (= 3.2.3)
   - KIF/XCTest (3.2.3)
-  - Nimble (0.4.2)
+  - Nimble (1.0.0)
   - pop (1.0.7)
-  - Quick (0.3.1)
+  - Quick (0.4.0)
   - SnapKit (0.12.0)
   - SSDataSources (0.8.5)
-  - TTTAttributedLabel (1.13.1)
+  - TTTAttributedLabel (1.13.4)
 
 DEPENDENCIES:
-  - Alamofire
+  - Alamofire (from `git@github.com:Alamofire/Alamofire.git`, branch `swift-2.0`)
   - CYRTextView
   - JTSImageViewController
   - KIF
   - Nimble
   - pop
   - Quick
-  - SnapKit
+  - SnapKit (from `git@github.com:SnapKit/SnapKit.git`, branch `swift-2.0`)
   - SSDataSources
   - TTTAttributedLabel
+
+EXTERNAL SOURCES:
+  Alamofire:
+    :branch: swift-2.0
+    :git: git@github.com:Alamofire/Alamofire.git
+  SnapKit:
+    :branch: swift-2.0
+    :git: git@github.com:SnapKit/SnapKit.git
+
+CHECKOUT OPTIONS:
+  Alamofire:
+    :commit: fd71afb3a0af2042b9f05a6b9f29317ad4903703
+    :git: git@github.com:Alamofire/Alamofire.git
+  SnapKit:
+    :commit: e9c9f6fe8e0954a50dd62a61a449b66ef84ae205
+    :git: git@github.com:SnapKit/SnapKit.git
 
 SPEC CHECKSUMS:
   Alamofire: 5550bf0b575ed1a4bf9be572f9463e1015cc169e
   CYRTextView: 1c1a4d708eee54ecad66b8ad42dbfe73083bdfce
   JTSImageViewController: 6a367b144e257db02cdfacdba78d684377d3777b
   KIF: a94bffe9c97e449e44f8fa481c53243d21309e1e
-  Nimble: 49b7a7da8919f42823d37c6d68cc6d15a7009f32
+  Nimble: 8bee528e5fcc403653076545db562d2b5db7bb87
   pop: 628ffc631644601567ee8bfaaaea493ebd7d0923
-  Quick: 824572d3d198d51e52cf4aa722cebf7e59952a35
+  Quick: 2286bfff349102670c6d2dafd0d2cefab42f5f0b
   SnapKit: 00c388aa3bf1944c1b55472f31e841f75bd83882
   SSDataSources: b01170fb23b82acf0649194e9189b0bf5f702681
-  TTTAttributedLabel: 0a9e524c8d78301506c26affffc827429b833b25
+  TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
 
 COCOAPODS: 0.38.0.beta.2

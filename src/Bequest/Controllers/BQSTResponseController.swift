@@ -166,7 +166,7 @@ class BQSTResponseController: UITableViewController {
             }
 
             if requestHeaders.count > 0 {
-                let sortedNames: [NSObject] = (requestHeaders.keys.array.sorted {
+                let sortedNames: [NSObject] = (requestHeaders.keys.array.sort {
                     return ($0 as! String) < ($1 as! String)
                 })
 
@@ -185,7 +185,7 @@ class BQSTResponseController: UITableViewController {
         // Response Headers
         if let responseHeaders = response?.allHeaderFields {
             if responseHeaders.count > 0 {
-                let sortedNames: [NSObject] = (responseHeaders.keys.array.sorted {
+                let sortedNames: [NSObject] = (responseHeaders.keys.array.sort {
                     return ($0 as! String) < ($1 as! String)
                 })
 
@@ -213,13 +213,13 @@ class BQSTResponseController: UITableViewController {
             case .HTML, .TXT:
                 let str = parsedResponse?.object as? String
 
-                if str != nil && count(str!) > 0 {
+                if str != nil && (str!).characters.count > 0 {
                     addBodySection()
                 }
             case .JSON:
                 let dict = parsedResponse?.object as? [NSObject:AnyObject]
 
-                if dict != nil && count(dict!) > 0 {
+                if dict != nil && (dict!).count > 0 {
                     addBodySection()
                 }
             default:
@@ -339,7 +339,7 @@ class BQSTResponseController: UITableViewController {
     override func tableView(tableView: UITableView,
         canPerformAction action: Selector,
         forRowAtIndexPath indexPath: NSIndexPath,
-        withSender sender: AnyObject) -> Bool {
+        withSender sender: AnyObject?) -> Bool {
 
         switch self.responseSectionAtIndex(indexPath.section) {
         case .ResponseHeaders, .RequestHeaders, .Request:
@@ -352,7 +352,7 @@ class BQSTResponseController: UITableViewController {
     override func tableView(tableView: UITableView,
         performAction action: Selector,
         forRowAtIndexPath indexPath: NSIndexPath,
-        withSender sender: AnyObject!) {
+        withSender sender: AnyObject?) {
 
         switch self.responseSectionAtIndex(indexPath.section) {
         case .ResponseHeaders, .RequestHeaders, .Request:

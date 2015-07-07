@@ -13,10 +13,10 @@ def import_pods
     pod 'TTTAttributedLabel'
     pod 'JTSImageViewController'
     pod 'CYRTextView'
-    pod 'SnapKit'
+    pod 'SnapKit', :git => 'git@github.com:SnapKit/SnapKit.git', :branch => 'swift-2.0'
 
     # Networking
-    pod 'Alamofire'
+    pod 'Alamofire', :git => 'git@github.com:Alamofire/Alamofire.git', :branch => 'swift-2.0'
 end
 
 target :Bequest do

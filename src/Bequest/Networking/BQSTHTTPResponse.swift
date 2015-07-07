@@ -20,7 +20,7 @@ public enum BQSTJSONResult {
     public static func resultForData(data: NSData, options: NSJSONReadingOptions = .AllowFragments) -> BQSTJSONResult {
 
         var error: NSError?
-        var object = NSJSONSerialization.JSONObjectWithData(data, options: options, error: &error) as? BQSTJSONResponse
+        var object = NSJSONSerialization.JSONObjectWithData(data, options: options) as? BQSTJSONResponse
 
         if object != nil {
             return .Success(object!)
@@ -77,7 +77,7 @@ public struct BQSTHTTPResponse {
 
                     serializedResponse.contentType = contentType
 
-                    println("content-type: \(contentTypeRaw)")
+                    print("content-type: \(contentTypeRaw)", appendNewline: false)
 
                     switch contentType {
                     case .JSON:

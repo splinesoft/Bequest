@@ -19,7 +19,7 @@ class BQSTNavigationController: UINavigationController {
         return self.visibleViewController.shouldAutorotate()
     }
 
-    override func supportedInterfaceOrientations() -> Int {
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
         return self.visibleViewController.supportedInterfaceOrientations()
     }
 
